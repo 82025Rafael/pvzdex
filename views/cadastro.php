@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Cadastro</h1>
-    <form action="..\controllers\usuario-controller.php" method="POST">
+    <form action="..\controllers\cadastro-controller.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
         <label for="senha">Senha:</label>
