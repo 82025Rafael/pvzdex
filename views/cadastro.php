@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Cadastro</h1>
-    <form action="..\controllers\cadastro_controller.php" method="POST">
+    <form action="..\models\cadastro_model.php" method="POST">
         <label >Nome:</label>
         <input type="text" id="nome" name="nome_usr" required>
 

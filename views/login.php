@@ -12,7 +12,7 @@ if (isset($_SESSION['erroLogin'])) {echo $_SESSION['erroLogin'];}// iniciando/re
 
 </head>
 <body>
-    <form action="../controllers/login_controller.php" method="POST">
+    <form action="../models/login_model.php" method="POST">
     <label>Usuário:</label> 
     <input type="text" id="nome_usr" name="nome_usr" required>
             <br><br>
