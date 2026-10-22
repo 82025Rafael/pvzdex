@@ -279,5 +279,5 @@ insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chan
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Sepultar',9,0,-1,'Protege contra ataques', null); -- 18
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Pedrada',10,0.5,3,'Olha a pedra!', null); -- 19
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Doce Saudável',10,0,10,'Cura 20 de vida', null); -- 20
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Doce Saudável',10,0,10,'Cura 20 de vida', null); -- 20!
 
