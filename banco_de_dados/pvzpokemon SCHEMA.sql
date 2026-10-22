@@ -105,6 +105,17 @@ foreign key (id_esp) references especie(id_esp),
 foreign key (id_evo) references especie(id_esp)
 );
 
+create table inventario(
+
+id_usr int not null,
+id_item int not null,
+quant_item int not null,
+
+foreign key (id_usr) references usuario(id_usr),
+foreign key (id_item) references item(id_item)
+
+);
+
 use pvzpokemon; -- INSERTS
 
 insert into tipo(nome_tipo) values ('Protetor'); -- 1 
