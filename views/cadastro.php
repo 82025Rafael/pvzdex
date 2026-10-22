@@ -10,13 +10,10 @@
     <form action="..\controllers\usuario-controller.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
-        <br><br>
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required>
-        <br><br>
         <label for="cor_favorita">Cor Favorita:</label>
         <input type="color" id="cor_favorita" name="cor">
-        <br><br>
         <input type="submit" value="Cadastrar">
     </form>
 </body>

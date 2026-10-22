@@ -7,11 +7,14 @@
 </head>
 <body>
     <form action="../controllers/usuario_controller.php" method="POST">
-    <label for="username">usuário:</label>
+    <label>Usuário:</label> 
     <input type="text" id="username" name="username" required>
-    <label for="password">Senha:</label>
+            <br><br>
+    <label>Senha:</label>
     <input type="password" id="password" name="password" required>
+            <br><br>
     <button type="submit">Login</button>
+    <p>Não possui login? Clique <a href="cadastro.php">aqui</a> para cadastrar!</p>
 </form>
 </body>
 </html>
