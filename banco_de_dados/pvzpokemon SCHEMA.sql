@@ -6,7 +6,7 @@ create table usuario(
 nome_usr varchar(100) not null,
 id_usr int auto_increment primary key,
 senha varchar(20) not null,
-cor_favorita char(7) default "#a55ffa"
+cor_favorita char(7) default '#00bfff'
 
 );
 

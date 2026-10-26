@@ -1,5 +1,5 @@
 <?php
-requiure_once '../config.php';
+require_once '../config.php';
 class usuario {
     private $db;
     //Constructor para inicializar a conexão com o banco de dados
