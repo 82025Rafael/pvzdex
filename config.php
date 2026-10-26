@@ -1,6 +1,6 @@
 <?php
 try{
-    $dsn = 'mysql:host=localhost;"dbname=db"';
+    $dsn = 'mysql:host=localhost;"dbname=pvzpokemon"';
     $user = 'root';
     $senha = '';
     $db = new PDO($dsn, $user, $senha);
