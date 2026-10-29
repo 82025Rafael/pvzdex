@@ -3,13 +3,12 @@ use pvzpokemon;
 
 create table usuario(
 
-nome_usr varchar(100) not null,
+nome_usr varchar(100) not null unique,
 id_usr int auto_increment primary key,
 senha varchar(20) not null,
 cor_favorita char(7) default "#a55ffa"
 
 );
-
 
 create table item(
 
@@ -62,9 +61,7 @@ foreign key (id_cond) references condicao(id_cond),
 foreign key (id_tipo) references tipo(id_tipo)
 );
 
-
 create table especie(
-
 nome_esp varchar(100) not null,
 id_esp int primary key auto_increment,
 vida int not null,
@@ -90,7 +87,8 @@ id_atk4 int,
 
 id_cond int,
 
-vida_pkm int not null,
+vida_restante_pkm int not null,
+vida_total_pkm int not null,
 
 id_pkm int primary key auto_increment,
 
@@ -174,7 +172,7 @@ insert into item(nome_item, preco_item, desc_item) values ('Super Fedor', 300, '
 insert into item(nome_item, preco_item, desc_item) values ('Discobola', 250, 'Evolui Dançarino para Discotron 3000'); -- 21
 insert into item(nome_item, preco_item, desc_item) values ('Hambúrguer', 100, 'Evolui Paparazzumbi para Sumô'); -- 22
 insert into item(nome_item, preco_item, desc_item) values ('Bandeira', 300, 'Evolui Sumô para Aspirante a Herói'); -- 23
-insert into item(nome_item, preco_item, desc_item) values ('Telportee', 200, 'Evolui Cabra para Planador Cabra 3000'); -- 24
+insert into item(nome_item, preco_item, desc_item) values ('Telporte', 200, 'Evolui Cabra para Planador Cabra 3000'); -- 24
 
 
 
