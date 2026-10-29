@@ -9,10 +9,30 @@
 </head>
 <body>
     <h1>Bem vindo ao jogo!</h1>
+
+    <?php
+    
+session_start();
+
+if($_SESSION['logado'] == true)
+    { echo "
+
+    Aperte para começar <br>
+    <button type='button' href='menuPoke.php'> JOGAR </button>
+    <br>
+    <br>
+
+    Aperte para trocar de sessão <br> 
+    <button type='button'> <a href='login.php' > LOGIN </a> </button>
+    
+    ";
+    }
+else{
+    echo "Aperte para entrar na sessão <br> <button type='button'> <a href='login.php' > LOGIN </a> </button>";}
+
+
+    ?>
 </body>
 </html>
-<?php
-    if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
-        header ('Location: login.php');
-    }
-    ?>
+
+
