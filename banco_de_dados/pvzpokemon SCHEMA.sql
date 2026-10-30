@@ -6,7 +6,8 @@ create table usuario(
 nome_usr varchar(100) not null unique,
 id_usr int auto_increment primary key,
 senha varchar(20) not null,
-cor_favorita char(7) default "#a55ffa"
+cor_favorita char(7) default '#00bfff',
+dinheiro int default 500
 
 );
 
@@ -111,6 +112,16 @@ quant_item int not null,
 
 foreign key (id_usr) references usuario(id_usr),
 foreign key (id_item) references item(id_item)
+
+);
+
+create table timepokemon(
+
+id_usr int not null,
+id_pkm int not null,
+
+foreign key (id_usr) references usuario(id_usr),
+foreign key (id_pkm) references pokemon(id_pkm)
 
 );
 
