@@ -15,6 +15,7 @@ class pokemon {
     private $id_esp;
     //id da evolução
     private $id_evo; 
-    }
+   
     public function __construct() {
        }
+    }
