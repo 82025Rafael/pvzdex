@@ -3,10 +3,11 @@ use pvzpokemon;
 
 create table usuario(
 
-nome_usr varchar(100) not null,
+nome_usr varchar(100) not null unique,
 id_usr int auto_increment primary key,
 senha varchar(20) not null,
-cor_favorita char(7) default "#a55ffa"
+cor_favorita char(7) default '#00bfff',
+dinheiro int default 500
 
 );
 
@@ -116,6 +117,16 @@ foreign key (id_item) references item(id_item)
 
 );
 
+create table timepokemon(
+
+id_usr int not null,
+id_pkm int not null,
+
+foreign key (id_usr) references usuario(id_usr),
+foreign key (id_pkm) references pokemon(id_pkm)
+
+);
+
 use pvzpokemon; -- INSERTS
 
 insert into tipo(nome_tipo) values ('Protetor'); -- 1 
@@ -174,7 +185,7 @@ insert into item(nome_item, preco_item, desc_item) values ('Super Fedor', 300, '
 insert into item(nome_item, preco_item, desc_item) values ('Discobola', 250, 'Evolui Dançarino para Discotron 3000'); -- 21
 insert into item(nome_item, preco_item, desc_item) values ('Hambúrguer', 100, 'Evolui Paparazzumbi para Sumô'); -- 22
 insert into item(nome_item, preco_item, desc_item) values ('Bandeira', 300, 'Evolui Sumô para Aspirante a Herói'); -- 23
-insert into item(nome_item, preco_item, desc_item) values ('Telportee', 200, 'Evolui Cabra para Planador Cabra 3000'); -- 24
+insert into item(nome_item, preco_item, desc_item) values ('Telporte', 200, 'Evolui Cabra para Planador Cabra 3000'); -- 24
 
 
 

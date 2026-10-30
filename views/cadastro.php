@@ -7,13 +7,19 @@
 </head>
 <body>
     <h1>Cadastro</h1>
-    <form action="..\controllers\usuario-controller.php" method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        <label for="senha">Senha:</label>
+    <form action="..\models\cadastro_model.php" method="POST">
+        <label >Nome:</label>
+        <input type="text" id="nome" name="nome_usr" required>
+
+        <br><br>
+        <label >Senha:</label>
         <input type="password" id="senha" name="senha" required>
-        <label for="cor_favorita">Cor Favorita:</label>
+
+        <br><br>
+        <label>Cor Favorita:</label>
         <input type="color" id="cor_favorita" name="cor">
+
+        <br><br>
         <input type="submit" value="Cadastrar">
     </form>
 </body>
