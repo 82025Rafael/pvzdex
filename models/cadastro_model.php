@@ -11,7 +11,8 @@ $sql = "insert into usuario (nome_usr, senha, cor_favorita) values (:n, :s, :c)"
 $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
 
 $stmt->execute([
-        ':n' => $nome_usr,
+
+        ':n' => $nome_usr, //EVITA SQL INJECT
         ':s' => $senha,
         ':c' => $cor
 ]);
@@ -37,7 +38,7 @@ $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id' => $id_usr]);
 //Redireciona para o index
-header('Location: ../views/index.php');
+header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {
     echo "Erro ao cadastrar usuário: " . $e->getMessage();
 }
