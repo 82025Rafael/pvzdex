@@ -1,15 +1,13 @@
 <?php
 
 require_once '../config.php'; // conectando com o banco
-
-
     //convertendo caracteres especiais em entidades HTML para evitar XSS 
     //e transformando em variaveis
     $nome_usr = htmlspecialchars($_POST['nome_usr']);   
     $senha = htmlspecialchars($_POST['senha']);
     $cor = htmlspecialchars($_POST['cor']);
 try{
-$sql = "insert into usuario (nome_usr, senha, cor_favorita) values (:n, :s, :c)"; // INSERT SQL
+$sql = "insert into usuario (nome_usr, senha, cor_favorita) values (:n, :s, :c)"; 
 $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
 
 $stmt->execute([
@@ -38,7 +36,7 @@ $stmt->execute([':id' => $id_usr]);
 $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id,  'Girassol', 20, 9, 10)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id' => $id_usr]);
-
+//Redireciona para o index
 header('Location: ../views/index.php');
 } catch(PDOException $e) {
     echo "Erro ao cadastrar usuário: " . $e->getMessage();
