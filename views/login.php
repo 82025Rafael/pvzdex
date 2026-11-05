@@ -38,4 +38,5 @@ if (isset($_SESSION['erroLogin'])) {echo $_SESSION['erroLogin'];}// iniciando/re
 <?php
 $_SESSION['logado'] = false;
 $_SESSION['id_usr'] = '';
+$_SESSION['nome_usr'] = '';
 ?>
