@@ -38,10 +38,8 @@ $stmt->execute([':id' => $id_usr]);
 $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id,  'Girassol', 20, 9, 10)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id' => $id_usr]);
- {
-    echo "Usuário cadastrado com sucesso!";
-}
-//header('Location: ../views/index.php');
+
+header('Location: ../views/index.php');
 } catch(PDOException $e) {
     echo "Erro ao cadastrar usuário: " . $e->getMessage();
 }
