@@ -14,16 +14,16 @@ $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
 
 $stmt->execute([
 
-        ':n' => $nome_usr,
+        ':n' => $nome_usr, //EVITA SQL INJECT
         ':s' => $senha,
         ':c' => $cor
 
 ]);
 
  {
-    echo "Usuário cadastrado com sucesso!";
+    echo "Usuário cadastrado com sucesso!"; // obaaaa
 }
-header('Location: ../views/index.php');
+header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {
     echo "Erro ao cadastrar usuário: " . $e->getMessage();
 }

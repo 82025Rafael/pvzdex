@@ -1,9 +1,56 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body{
 
+    height: 100vh;
+    width: 100vw;
 background-image:url("../imagensPVZ/Cenários/teladetitulo.png");
 background-attachment: fixed;
 background-size: cover;
+display: flex;
+justify-content:center;
+align-items: center;
+
+}
+
+.menuzin{ 
+
+    background-image:linear-gradient(180deg,rgba(2, 74, 0, 1) 0%, rgba(54, 0, 35, 1) 100%); 
+    color:white;
+    font-size: larger;
+
+    align-content:center;
+    text-align:center;
+
+    
+    width:20vw;
+    height: 35vh;
+   
+    border-radius:5%;
+
+}
+
+
+.botaoIni{
+
+color:white;
+
+font-size:150%;
+width:80%;
+border-color:rgb(16, 77, 95);
+border-radius: 50px;
+border-width:5%;
+background-image: linear-gradient(180deg,rgb(21, 165, 14) 0%, rgb(147, 13, 224) 100%); 
 
 
 
+}
+a{ text-decoration:none;}
+a:visited{
+    color:white;
+    text-decoration:none;
 }
