@@ -1,5 +1,5 @@
 <?php
-    require_once '../models/selecao_model.php';
+    require_once '../models/selecao_model.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
