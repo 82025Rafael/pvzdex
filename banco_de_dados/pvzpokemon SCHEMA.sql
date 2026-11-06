@@ -157,25 +157,26 @@ insert into item(nome_item, preco_item, desc_item) values ('Taco com Waffle', 13
 insert into item(nome_item, preco_item, desc_item) values ('Alfaiceberg', 20, 'Cura de Queimadura'); -- 5
 insert into item(nome_item, preco_item, desc_item) values ('Molho Picante', 40, 'Cura de Congelamento'); -- 6
 insert into item(nome_item, preco_item, desc_item) values ('Vitamina Z', 20, 'Cura de Veneno'); -- 7
-insert into item(nome_item, preco_item, desc_item) values ('Doce Açucarado', 20, 'Cura da Paralisia'); -- 8
-insert into item(nome_item, preco_item, desc_item) values ('Aloe', 60, 'Cura Tudo'); -- 9
-insert into item(nome_item, preco_item, desc_item) values ('Frangão', 120, 'Cura Tudo e 100% de vida'); -- 10
-insert into item(nome_item, preco_item, desc_item) values ('Cenoura do Poder', 80, 'Revive com 50% de vida'); -- 11
+insert into item(nome_item, preco_item, desc_item) values ('Cabeça Flutuante', 20, 'Cura da Paralisia'); -- 8
+insert into item(nome_item, preco_item, desc_item) values ('Café', 20, 'Cura da Sono'); -- 9
+insert into item(nome_item, preco_item, desc_item) values ('Aloe', 60, 'Cura Tudo'); -- 10
+insert into item(nome_item, preco_item, desc_item) values ('Frangão', 120, 'Cura Tudo e 100% de vida'); -- 11
+insert into item(nome_item, preco_item, desc_item) values ('Cenoura do Poder', 80, 'Revive com 50% de vida'); -- 12
 
-insert into item(nome_item, preco_item, desc_item) values ('Pedra de Gelo', 100, 'Evolui Disparervilha para Gelervilha'); -- 12
-insert into item(nome_item, preco_item, desc_item) values ('Capacete', 300, 'Evolui Gelervilha para Ervilhadora'); -- 13
-insert into item(nome_item, preco_item, desc_item) values ('Saxofone', 250, 'Evolui Uvas Azedas para Mirtilartista'); -- 14
-insert into item(nome_item, preco_item, desc_item) values ('Buraco Negro', 400, 'Evolui Boca-de-Dragão para Pitaya'); -- 15
-insert into item(nome_item, preco_item, desc_item) values ('Arco-íris', 250, 'Evolui Girassol para Flor Elétrica'); -- 16
-insert into item(nome_item, preco_item, desc_item) values ('Babosa', 350, 'Evolui Nabossauro para Babosassauro'); -- 17
+insert into item(nome_item, preco_item, desc_item) values ('Pedra de Gelo', 100, 'Evolui Disparervilha para Gelervilha'); -- 13
+insert into item(nome_item, preco_item, desc_item) values ('Capacete', 300, 'Evolui Gelervilha para Ervilhadora'); -- 14
+insert into item(nome_item, preco_item, desc_item) values ('Saxofone', 250, 'Evolui Uvas Azedas para Mirtilartista'); -- 15
+insert into item(nome_item, preco_item, desc_item) values ('Buraco Negro', 400, 'Evolui Boca-de-Dragão para Pitaya'); -- 16
+insert into item(nome_item, preco_item, desc_item) values ('Arco-íris', 250, 'Evolui Girassol para Flor Elétrica'); -- 17
+insert into item(nome_item, preco_item, desc_item) values ('Babosa', 350, 'Evolui Nabossauro para Babosassauro'); -- 18
 
-insert into item(nome_item, preco_item, desc_item) values ('Cutelo', 200, 'Evolui Galinha para Mascote de Time'); -- 18
-insert into item(nome_item, preco_item, desc_item) values ('Pedra do Fogo', 200, 'Evolui Galinha para Galo'); -- 19
-insert into item(nome_item, preco_item, desc_item) values ('Super Fedor', 300, 'Evolui Zumbolha para Gigante Gasoso'); -- 20
-insert into item(nome_item, preco_item, desc_item) values ('Discobola', 250, 'Evolui Dançarino para Discotron 3000'); -- 21
-insert into item(nome_item, preco_item, desc_item) values ('Hambúrguer', 100, 'Evolui Paparazzumbi para Sumô'); -- 22
-insert into item(nome_item, preco_item, desc_item) values ('Bandeira', 300, 'Evolui Sumô para Aspirante a Herói'); -- 23
-insert into item(nome_item, preco_item, desc_item) values ('Telporte', 200, 'Evolui Cabra para Planador Cabra 3000'); -- 24
+insert into item(nome_item, preco_item, desc_item) values ('Cutelo', 200, 'Evolui Galinha para Mascote de Time'); -- 19
+insert into item(nome_item, preco_item, desc_item) values ('Pedra do Fogo', 200, 'Evolui Galinha para Galo'); -- 20
+insert into item(nome_item, preco_item, desc_item) values ('Super Fedor', 300, 'Evolui Zumbolha para Gigante Gasoso'); -- 21
+insert into item(nome_item, preco_item, desc_item) values ('Discobola', 250, 'Evolui Dançarino para Discotron 3000'); -- 22
+insert into item(nome_item, preco_item, desc_item) values ('Hambúrguer', 100, 'Evolui Paparazzumbi para Sumô'); -- 23
+insert into item(nome_item, preco_item, desc_item) values ('Bandeira', 300, 'Evolui Sumô para Aspirante a Herói'); -- 24
+insert into item(nome_item, preco_item, desc_item) values ('Telporte', 200, 'Evolui Cabra para Planador Cabra 3000'); -- 25
 
 
 

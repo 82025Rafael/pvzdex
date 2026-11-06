@@ -6,16 +6,37 @@ require_once '../config.php'; // conectando com o banco
     $nome_usr = htmlspecialchars($_POST['nome_usr']);   
     $senha = htmlspecialchars($_POST['senha']);
     $cor = htmlspecialchars($_POST['cor']);
-try{
-$sql = "insert into usuario (nome_usr, senha, cor_favorita) values (:n, :s, :c)"; 
-$stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
 
+    $usuario = new usuario(); // CRIANDO CLASSE DO USUARIO
+ try{
+     $usuario->setNome($nome_usr);
+
+$sql = "select nome_usr from usuario where nome_usr = :n"; // VERIFICANDO SE USUARIO JA EXISTE
+$stmt = $pdo->prepare($sql);
 $stmt->execute([
-
-        ':n' => $nome_usr, //EVITA SQL INJECT
-        ':s' => $senha,
-        ':c' => $cor
+    ':n' => $nome_usr
 ]);
+$teste = $stmt->fetch();
+
+if(!empty($teste))
+    {throw new Exception("Nome de Usuário já existente!");}
+
+}
+catch(Exception $e){
+
+    $_SESSION['erroCadastro'] = $e->getMessage();
+
+}
+
+
+
+try{
+
+    $usuario->setSenha($senha);
+    $usuario->setCorfav($cor_favorita);
+
+    $usuario->cadastroUsr();
+
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
 $sql = "Select id_usr from usuario where nome_usr = :n"; // Select do id do usuario
 $stmt = $pdo->prepare($sql);

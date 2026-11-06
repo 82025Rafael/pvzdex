@@ -12,7 +12,7 @@
 <div class="menuzin">
     <h1>Cadastro</h1>
         <form action="..\models\cadastro_model.php" method="POST">
-            <label ><h2> Nome </h2> </label>
+            <label ><h3> Nome </h3> </label>
             <input type="text" id="nome" name="nome_usr" required maxlenght="100">
 
             <br><br>

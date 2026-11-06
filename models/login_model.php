@@ -9,7 +9,7 @@ session_start(); // iniciando/retomando sessão
 
 try{
     
-$sql = "SELECT id_usr, nome_usr, senha from usuario where nome_usr = :n and senha = :s"; // SQL SELECT tudo do usuario
+$sql = "SELECT id_usr, nome_usr, senha, cor_favorita, dinheiro from usuario where nome_usr = :n and senha = :s"; // SQL SELECT tudo do usuario
 $stmt = $pdo->prepare($sql); // prepara e executa o SQL
 $stmt->execute([
 
@@ -27,6 +27,9 @@ if ($usuario)
         $_SESSION['logado'] = true; // Definindo que ESTOU LOGADA e enfiando os dados do usuario na SEÇÃO
         $_SESSION['id_usr'] = $usuario['id_usr'];
         $_SESSION['nome_usr'] = $usuario['nome_usr'];
+        $_SESSION['cor_favorita'] = $_usuario['cor_favorita'];
+        $_SESSION['dinheiro'] = $_usuario['dinheiro'];
+
         unset($_SESSION['erroLogin']);
         header("location:../views/index.php");
     }
