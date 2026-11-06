@@ -20,24 +20,19 @@
                     <h1>Plants Vs. Zombies</h1>
                     <h2>Só que Pokémon</h2>
 
- <br>
+ 
 
-    <h2> Bem-vindo(a), <?= $_SESSION['nome_usr'];?>!! </h2> <br>
+    <h3> Bem-vindo(a), <?= $_SESSION['nome_usr'];?>!! </h3> <br>
 
-                  
-                    Aperte para começar <br>
-                    <button type='button' href='menuPoke.php'> JOGAR </button>
-                    <br>
-                    <br>
+    
                     
 
-    Aperte para começar <br>
+    Aperte para começar <br><br>
     <button type='button' class="botaoIni" href='menuPoke.php'> JOGAR </button>
     <br>
-    <br>
 
-    Aperte para trocar de sessão <br> 
-    <button type='button' class = "botaoIni"> <a href='login.php' > LOGIN </a> </button>
+     <br> Se esse não é você, clique aqui 
+   <a href='login.php' class = "botaoLogin">Trocar de sessão </a>
 
 </div>
   
