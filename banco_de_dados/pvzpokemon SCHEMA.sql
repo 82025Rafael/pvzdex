@@ -92,6 +92,7 @@ vida_restante_pkm int not null,
 vida_total_pkm int not null,
 
 id_pkm int primary key auto_increment,
+id_evo int,
 
 foreign key (id_atk1) references ataque(id_atk),
 foreign key (id_atk2) references ataque(id_atk),
@@ -194,54 +195,78 @@ insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Mirtilartis
 
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Disparervilha', 2,10,1,3); -- 11
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Ervilhadora', 10,40,5,3); -- 12
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatossauro', 10,50,6,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Repolho Boxeador', 4,10,1,3); -- 13
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aneis de Cebola', 8,40,4,3); -- 14
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatossauro', 10,50,6,3); -- 13
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Repolho Boxeador', 4,10,1,3); -- 14
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aneis de Cebola', 8,40,4,3); -- 15
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carambola Cadente', 5,20,5,4); -- 15
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Boca-de-Dragão', 6,30,4,4); -- 16
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gelervilha', 4,20,2,4); -- 17
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Pitaya de Matéria-Escura', 12,60,8,4); -- 18
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Typha', 6,20,3,4); -- 19
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carambola Cadente', 5,20,5,4); -- 16
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Boca-de-Dragão', 6,30,4,4); -- 17
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gelervilha', 4,20,2,4); -- 18
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Pitaya de Matéria-Escura', 12,60,8,4); -- 19
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Typha', 6,20,3,4); -- 20
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Girassol', 2,10,1,5); -- 20
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Flor Elétrica', 6,50,4,5);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Babosassauro', 8,70,5,5);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carnívora', 5,30,4,5);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zoiudo', 4,10,2,5);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Girassol', 2,10,1,5); -- 21
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Flor Elétrica', 6,50,4,5); -- 22
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Babosassauro', 8,70,5,5); -- 23
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carnívora', 5,30,4,5); -- 24
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zoiudo', 4,10,2,5); -- 25
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cabra', 2,10,0,6);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Planador Cabra 3000', 3,30,3,6);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Brontaço', 10,50,5,6);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Assombrado', 4,10,2,6);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cavaleiro do Golfinho', 6,20,2,6);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cabra', 2,10,0,6); -- 26
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Planador Cabra 3000', 3,30,3,6); -- 27
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Brontaço', 10,50,5,6); -- 28
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Assombrado', 4,10,2,6); -- 29
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cavaleiro do Golfinho', 6,20,2,6); -- 30
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Químico Louco', 6,50,4,7);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbolha', 4,50,3,7);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Guarda-Sol', 6,60,4,7);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbinho Leprechaun', 3,20,1,7);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Paparazzumbi', 2,10,1,7);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Químico Louco', 6,50,4,7); -- 31
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbolha', 4,50,3,7); -- 32
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Guarda-Sol', 6,60,4,7); -- 33
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbinho Leprechaun', 3,20,1,7); --34
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Paparazzumbi', 2,10,1,7); -- 35
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gigante Gasoso', 5,50,6,8);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Soldado', 6,40,5,8);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Dançarino', 6,10,3,8);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Discotron 3000', 10,50,6,8);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Valquíria', 0,60,4,8);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gigante Gasoso', 5,50,6,8); -- 36
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Soldado', 6,40,5,8); -- 37
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Dançarino', 6,10,3,8); -- 38
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Discotron 3000', 10,50,6,8); -- 39
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Valquíria', 0,60,4,8); -- 40
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Sumô', 4,30,2,9);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aspirante a Herói', 12,10,7,9);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('All-Star Cósmico', 4,20,3,9);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Faraó Imortal', 8,60,6,9);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Mascote de Time', 3,40,3,9);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Sumô', 4,30,2,9); -- 41
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aspirante a Herói', 12,10,7,9); -- 42
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('All-Star Cósmico', 4,20,3,9); -- 43
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Faraó Imortal', 8,60,6,9); -- 44
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Mascote de Time', 3,40,3,9); -- 45
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbinho Salsicha', 4,20,2,10);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Galinha Zumbi', 4,20,1,10);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Galo de Fogo', 6,10,4,10);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Yeti Criogênico', 6,40,5,10);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbô SubTubarãoTrônico', 10,50,6,10);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbinho Salsicha', 4,20,2,10); -- 46
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Galinha Zumbi', 4,20,1,10); -- 47
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Galo de Fogo', 6,10,4,10); -- 48
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Yeti Criogênico', 6,40,5,10); -- 49
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbô SubTubarãoTrônico', 10,50,6,10); -- 50
+
+update especie set id_evo = 10 where id_esp = 9; -- Uvas Azedas -> Mirtilartista
+
+update especie set id_evo = 23 where id_esp = 8; -- Nabossauro -> Babosassauro
+
+update especie set id_evo = 22 where id_esp = 21; -- Girassol -> Flor Eletrica
+
+update especie set id_evo = 18 where id_esp = 11; -- Disarervilha -> Gelervilha
+update especie set id_evo = 12 where id_esp = 18; -- Gelervilha -> Ervilhadora
+
+update especie set id_evo = 19 where id_esp = 17; -- Boca-de-Dragão -> Pitaya
+
+update especie set id_evo = 27 where id_esp = 26; --  Cabra -> Planador Cabra 3000
+
+update especie set id_evo = 36 where id_esp = 32; --  Zumbolha -> Gigante Gasoso
+
+update especie set id_evo = 39 where id_esp = 38; --  Dançarino -> Discotron 3000
+
+update especie set id_evo = 41 where id_esp = 35; --  Paparazzumbi -> Sumô
+update especie set id_evo = 42 where id_esp = 42; --  Sumô -> Aspirante a Herói
+
+update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
+update especie set id_evo = 48 where id_esp = 45; --  Galinha -> Mascote
+
 
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ruinagumelo',1,7.0,4,'Destroi violentamente o inimigo, mas precisa de recarga', null); -- 1
