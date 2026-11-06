@@ -11,7 +11,6 @@ dinheiro int default 500
 
 );
 
-
 create table item(
 
 nome_item varchar(100) not null,
@@ -63,14 +62,13 @@ foreign key (id_cond) references condicao(id_cond),
 foreign key (id_tipo) references tipo(id_tipo)
 );
 
-
 create table especie(
-
 nome_esp varchar(100) not null,
 id_esp int primary key auto_increment,
 vida int not null,
 forca int not null,
 veloc int not null,
+id_evo int,
 
 id_tipo int not null,
 foreign key (id_tipo) references tipo(id_tipo)
@@ -82,7 +80,6 @@ nome_pkm varchar(100) not null,
 id_usr int,
 
 id_esp int not null,
-id_evo int,
 
 id_atk1 int,
 id_atk2 int,
@@ -91,7 +88,8 @@ id_atk4 int,
 
 id_cond int,
 
-vida_pkm int not null,
+vida_restante_pkm int not null,
+vida_total_pkm int not null,
 
 id_pkm int primary key auto_increment,
 
@@ -117,15 +115,6 @@ foreign key (id_item) references item(id_item)
 
 );
 
-create table timepokemon(
-
-id_usr int not null,
-id_pkm int not null,
-
-foreign key (id_usr) references usuario(id_usr),
-foreign key (id_pkm) references pokemon(id_pkm)
-
-);
 
 use pvzpokemon; -- INSERTS
 
@@ -189,35 +178,35 @@ insert into item(nome_item, preco_item, desc_item) values ('Telporte', 200, 'Evo
 
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Noz Obstáculo', 0,60,1,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cacto', 4,50,3,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Tricenourátops', 2,20,2,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Planterna', 6,30,3,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatamina', 0,10,1,1);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Noz Obstáculo', 0,60,1,1); -- 1
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cacto', 4,50,3,1); -- 2
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Tricenourátops', 2,20,2,1); -- 3
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Planterna', 6,30,3,1); -- 4
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatamina', 0,10,1,1); -- 5
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Lança-Banana', 0,30,2,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Coronel Milho', 12,60,8,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Nabossauro Bebê', 3,20,3,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Uvas Azedas', 4,20,4,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Mirtilartista', 6,30,3,2);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Lança-Banana', 0,30,2,2); -- 6
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Coronel Milho', 12,60,8,2); -- 7
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Nabossauro Bebê', 3,20,3,2); -- 8
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Uvas Azedas', 4,20,4,2); -- 9
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Mirtilartista', 6,30,3,2); -- 10
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Disparervilha', 2,10,1,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Ervilhadora', 10,40,5,3);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Disparervilha', 2,10,1,3); -- 11
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Ervilhadora', 10,40,5,3); -- 12
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatossauro', 10,50,6,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Repolho Boxeador', 4,10,1,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aneis de Cebola', 8,40,4,3);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Repolho Boxeador', 4,10,1,3); -- 13
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aneis de Cebola', 8,40,4,3); -- 14
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carambola Cadente', 5,20,5,4);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Boca-de-Dragão', 6,30,4,4);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gelervilha', 4,20,2,4);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Pitaya de Matéria-Escura', 12,60,8,4);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Typha', 6,20,3,4);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carambola Cadente', 5,20,5,4); -- 15
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Boca-de-Dragão', 6,30,4,4); -- 16
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gelervilha', 4,20,2,4); -- 17
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Pitaya de Matéria-Escura', 12,60,8,4); -- 18
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Typha', 6,20,3,4); -- 19
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Girassol', 2,10,1,5);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Girassol', 2,10,1,5); -- 20
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Flor Elétrica', 6,50,4,5);
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Babosassauro', 8,70,5,5);
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carnívora', 5,30,4,5);
