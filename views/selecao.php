@@ -8,6 +8,8 @@
     <title>Seleção de Pokemons</title>
 </head>
 <body>
+    <h1>Selecione seu time!</h1>
+    <p>Escolha 6 Pokemons para sua equipe:</p>
     
 </body>
 </html>
