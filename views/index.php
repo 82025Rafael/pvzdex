@@ -28,7 +28,7 @@
                     
 
     Aperte para começar <br><br>
-    <button type='button' class="botaoIni" href='menuPoke.php'> JOGAR </button>
+    <button type='button' class="botaoIni" href='selecao.php'> JOGAR </button>
     <br>
 
      <br> Se esse não é você, clique aqui 
