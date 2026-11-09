@@ -14,7 +14,7 @@ require_once '../config.php'; // conectando com o banco
 try{
 
     $usuario->setSenha($senha);
-    $usuario->setCorfav($cor_favorita);
+    $usuario->setCor($cor_favorita);
     $usuario->cadastroUsr();
 
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
