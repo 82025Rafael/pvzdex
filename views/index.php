@@ -1,7 +1,20 @@
 
-<?php   session_start();  
-    if($_SESSION['logado'] == false)
-        { header("location:login.php"); }  ?>
+<?php  
+ session_start();
+
+ if($_SESSION['logado'] == false)
+  { header("location:login.php"); }  
+        
+  require_once '../config.php';   
+        
+        $usuario = new usuario();
+        $usuario->setId((int) $_SESSION['id_usr']);
+        $usuario->load();
+        
+        
+        
+        
+        ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,7 +35,7 @@
 
  
 
-    <h3> Bem-vindo(a), <?= $_SESSION['nome_usr'];?>!! </h3> <br>
+    <h3> Bem-vindo(a), <?= $usuario->getNome();?>!! </h3> <br>
 
     
                     

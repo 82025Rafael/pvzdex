@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,11 @@
 <body>
 <div class="menuzin">
     <h1>Cadastro</h1>
-        <form action="..\models\cadastro_model.php" method="POST">
+        <form action="..\controllers\cadastro_controller.php" method="POST">
             <label ><h3> Nome </h3> </label>
             <input type="text" id="nome" name="nome_usr" required maxlenght="100">
 
-            <br><br>
+            <br> <?= $_SESSION['erroCadastro'] ?? '<br>'?>
             <label > <h3> Senha </h3> </label>
             <input type="password" id="senha" name="senha" required maxlenght="20">
 
@@ -24,7 +26,10 @@
             <input type="color" id="cor_favorita" name="cor">
 
             <br><br>
-            <input type="submit" class="botaoIni" value="Cadastrar">
+            <input type="submit" class="botaoIni" value="Cadastrar"><br>
+
+            <br> Já possui conta? Entre aqui! <br>
+            <a href='login.php' class = "botaoLogin">Login </a>
         </form>
 </div>
 </body>
