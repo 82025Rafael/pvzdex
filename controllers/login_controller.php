@@ -24,13 +24,9 @@ $usuario = $stmt->fetch();  //torna $usuario um vetor com os atributos no lugar 
 
 if ($usuario)
     {
-        $_SESSION['logado'] = true; // Definindo que ESTOU LOGADA e enfiando os dados do usuario na SEÇÃO
-        $_SESSION['id_usr'] = $usuario['id_usr'];
-        $_SESSION['nome_usr'] = $usuario['nome_usr'];
-        $_SESSION['cor_favorita'] = $_usuario['cor_favorita'];
-        $_SESSION['dinheiro'] = $_usuario['dinheiro'];
-
         unset($_SESSION['erroLogin']);
+        $_SESSION['logado'] = true;
+        $_SESSION['id_usr'] = $usuario['id_usr'];
         header("location:../views/index.php");
     }
 else

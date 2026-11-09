@@ -25,7 +25,7 @@ function connect(){
 }
 
 spl_autoload_register(function ($className) {
-    $file = __DIR__ . '/models/' . $className . '_model.php';
+    $file = __DIR__ . '/models/' . $className . '-model.php';
     if (file_exists($file)) {
         require $file; // ou require $file
     }
