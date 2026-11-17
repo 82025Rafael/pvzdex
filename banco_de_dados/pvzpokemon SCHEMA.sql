@@ -71,6 +71,7 @@ id_esp int primary key auto_increment,
 vida int not null,
 forca int not null,
 veloc int not null,
+foto varchar(200),
 
 id_tipo int not null,
 foreign key (id_tipo) references tipo(id_tipo)
@@ -189,25 +190,25 @@ insert into item(nome_item, preco_item, desc_item) values ('Telporte', 200, 'Evo
 
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Noz Obstáculo', 0,60,1,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cacto', 4,50,3,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Tricenourátops', 2,20,2,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Planterna', 6,30,3,1);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatamina', 0,10,1,1);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Noz Obstáculo', 0,60,1,1,'../imagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Cacto', 4,50,3,1, '../imagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Tricenourátops', 2,20,2,1, '../imagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Planterna', 6,30,3,1, '../imagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Batatamina', 0,10,1,1, '../imagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png');
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Lança-Banana', 0,30,2,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Coronel Milho', 12,60,8,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Nabossauro Bebê', 3,20,3,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Uvas Azedas', 4,20,4,2);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Mirtilartista', 6,30,3,2);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Lança-Banana', 0,30,2,2, '../imagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Coronel Milho', 12,60,8,2, '../imagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Nabossauro Bebê', 3,20,3,2, '../imagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Uvas Azedas', 4,20,4,2, '../imagensPVZ/monstrinhos_campo/Explosivo/uvas.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Mirtilartista', 6,30,3,2, '../imagensPVZ/monstrinhos_campo/Explosivo/HD_Bluesberry.png');
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Disparervilha', 2,10,1,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Ervilhadora', 10,40,5,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Batatossauro', 10,50,6,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Repolho Boxeador', 4,10,1,3);
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Aneis de Cebola', 8,40,4,3);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Disparervilha', 2,10,1,3, '../imagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Ervilhadora', 10,40,5,3, '../imagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Batatossauro', 10,50,6,3);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Repolho Boxeador', 4,10,1,3);
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Aneis de Cebola', 8,40,4,3);
 
 
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Carambola Cadente', 5,20,5,4);

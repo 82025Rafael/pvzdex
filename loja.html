@@ -1,11 +1,587 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja PVZ</title>
+    <title>Loja do Jogo</title>
+    <style>
+        body {
+            background-image: url('ImagensPVZ/Cenários/rux.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .shop-container {
+            padding: 20px;
+            width: 95%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .shop-container h2 {
+            text-align: center;
+            margin: 0;
+            color: #f8e9a1;
+            text-shadow: 2px 2px 4px #000;
+            letter-spacing: 2px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .shop-container h3 {
+            text-align: center;
+            margin: 0 0 15px 0;
+            color: #ffffff;
+            font-size: 18px;
+            text-shadow: 1px 1px 3px #000;
+            background-color: rgba(139, 90, 43, 0.8);
+            padding: 5px 20px;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 0 auto 15px auto;
+            border: 1px solid #ff00ff;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .arrow-btn {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            font-size: 26px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s, transform 0.2s;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .arrow-btn:hover {
+            background-color: #cc00cc;
+            transform: scale(1.1);
+        }
+
+        .pages-container {
+            flex-grow: 1;
+            overflow: visible; 
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 80px 15px; 
+        }
+
+        .shop-item {
+            background-color: rgba(42, 42, 42, 0.7);
+            border: 2px solid #8b5a2b;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            position: relative; 
+        }
+
+        .shop-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #ff00ff;
+            border-color: #ff00ff;
+            z-index: 10;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 105%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(20, 20, 20, 0.95);
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #ff00ff;
+            width: max-content;
+            max-width: 180px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.4;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, bottom 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #ff00ff transparent transparent transparent;
+        }
+
+        .shop-item:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: 115%;
+        }
+
+        .item-img {
+            width: 100%;
+            height: 90px;
+            object-fit: contain;
+            background-color: #111;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            padding: 4px;
+        }
+
+        .item-name {
+            font-size: 14px;
+            margin: 4px 0;
+            color: #fff;
+            min-height: 34px; 
+        }
+
+        .item-price {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .buy-btn {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .buy-btn:hover {
+            background-color: #cc00cc;
+        }
+
+        .page-indicator {
+            text-align: center;
+            font-size: 15px;
+            color: #f8e9a1;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 15px;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           ESTILOS DO TUTORIAL (MODAL)
+           ========================================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Fundo bem escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Fica acima de tudo */
+        }
+
+        .modal-content {
+            background-color: #2a2a2a;
+            border: 3px solid #ff00ff;
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.4);
+            color: #fff;
+        }
+
+        .modal-content h2 {
+            color: #f8e9a1;
+            margin-top: 0;
+            text-shadow: 2px 2px 4px #000;
+            font-size: 26px;
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .modal-content ul {
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .modal-content strong {
+            color: #00ff00; /* Verde neon */
+        }
+
+        .close-modal-btn {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .close-modal-btn:hover {
+            background-color: #cc00cc;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 900px) {
+            .page.active {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 60px 15px;
+            }
+        }
+        @media (max-width: 600px) {
+            .page.active {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .arrow-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Loja</h1>
+
+    <!-- =========================================
+         CAIXA DE TEXTO EXPLICATIVA (TUTORIAL)
+         ========================================= -->
+    <div id="tutorial-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Bem-vindo... Profissional da Educação do IFRS  🧙🏻‍♂️</h2>
+            <p>Aviso  que se você for visto aqui, o Tadachi irá demiti-lo, então tome cuidado!</p>
+            <p>Aqui você encontra tudo o que precisa para fortalecer seu time:</p>
+            <p>EU NÃO ME RESPONSABILIZO POR NENHUM DANO CAUSADO PELOS PRODUTOS!</p>
+           
+            <ul>
+                <li><strong>Itens de Cura:</strong> Restauram a vida e curam problemas de status dos seus monstros.</li>
+                <li><strong>Itens de Evolução:</strong> Podem evoluir monstros para coisas inimagináveis, não questione a nossa ética</li>
+            </ul>
+            
+            <button class="close-modal-btn" onclick="fecharTutorial()">Ebaa!!</button>
+
+            <button class="close-modal-btn" onclick="fecharTutorial()">Miolozz!</button>
+        </div>
+    </div>
+
+
+    <div class="shop-container">
+        <h2>🧙🏻‍♂️ Bazar do Rux 🧙🏻‍♂️</h2>
+        <h3 id="category-title">Itens de Cura</h3>
+        
+        <div class="carousel-wrapper">
+            <button class="arrow-btn" onclick="changePage(-1)">&#10094;</button>
+
+            <div class="pages-container">
+
+                <!-- PÁGINA 1: 10 Itens de Cura -->
+                <div class="page active">
+                    <div class="shop-item">
+                        <div class="tooltip">Cura status de Paralisia (Par).</div>
+                        <img src="ImagensPVZ/itens/itens de cura/Aloe.png" alt="Aloe" class="item-img">
+                        <h3 class="item-name">Aloe</h3>
+                        <p class="item-price">$ 60</p>
+                        <button class="buy-btn" onclick="comprarItem('Aloe', 60)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Restaura 20 HP.</div>
+                        <img src="ImagensPVZ/itens/itens de cura/Bacon.png" alt="Bacon" class="item-img">
+                        <h3 class="item-name">Bacon</h3>
+                        <p class="item-price">$ 15</p>
+                        <button class="buy-btn" onclick="comprarItem('Bacon', 15)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Cura status de Sono (Sno).</div>
+                        <img src="ImagensPVZ/itens/itens de cura/café.png" alt="Café" class="item-img">
+                        <h3 class="item-name">Café</h3>
+                        <p class="item-price">$ 30</p>
+                        <button class="buy-btn" onclick="comprarItem('Café', 30)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Revive o minion com metade da vida.</div>
+                        <img src="ImagensPVZ/itens/itens de cura/cenoura_do_poder.png" alt="Cenoura do Poder" class="item-img">
+                        <h3 class="item-name">Cenoura do Poder</h3>
+                        <p class="item-price">$ 80</p>
+                        <button class="buy-btn" onclick="comprarItem('Cenoura do Poder', 80)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Cura status de Paralisia (Par).</div>
+                        <img src="ImagensPVZ/itens/itens de cura/cura_de_paralisia.png" alt="Cura de Paralisia" class="item-img">
+                        <h3 class="item-name">Cura de Paralisia</h3>
+                        <p class="item-price">$ 20</p>
+                        <button class="buy-btn" onclick="comprarItem('Cura de Paralisia', 20)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Cura status de Queimadura (Qmd).</div>
+                        <img src="ImagensPVZ/itens/itens de cura/cura_de_queimadura.png" alt="Cura de Queimadura" class="item-img">
+                        <h3 class="item-name">Cura de Queimadura</h3>
+                        <p class="item-price">$ 20</p>
+                        <button class="buy-btn" onclick="comprarItem('Cura de Queimadura', 20)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Restaura 100% do HP e cura todos os status.</div>
+                        <img src="ImagensPVZ/itens/itens de cura/restauratudo.png" alt="RestauraTudo" class="item-img">
+                        <h3 class="item-name">RestauraTudo</h3>
+                        <p class="item-price">$ 120</p>
+                        <button class="buy-btn" onclick="comprarItem('RestauraTudo', 120)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Restaura 200 HP.</div>
+                        <img src="ImagensPVZ/itens/itens de cura/tacomagico.png" alt="Taco Mágico" class="item-img">
+                        <h3 class="item-name">Taco Mágico</h3>
+                        <p class="item-price">$ 90</p>
+                        <button class="buy-btn" onclick="comprarItem('Taco Mágico', 90)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Cura status de Envenenamento (Ven).</div>
+                        <img src="ImagensPVZ/itens/itens de cura/Vitamina_Z.png" alt="Vitamina Z" class="item-img">
+                        <h3 class="item-name">Vitamina Z</h3>
+                        <p class="item-price">$ 20</p>
+                        <button class="buy-btn" onclick="comprarItem('Vitamina Z', 20)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Restaura 50 HP.</div>
+                        <img src="ImagensPVZ/itens/itens de cura/waffle.png" alt="Waffle" class="item-img">
+                        <h3 class="item-name">Waffle</h3>
+                        <p class="item-price">$ 30</p>
+                        <button class="buy-btn" onclick="comprarItem('Waffle', 30)">Comprar</button>
+                    </div>
+                </div>
+                                  
+                <!-- PÁGINA 2: 2 Itens de Cura -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Cura status de Congelamento (Gel).</div>
+                        <img src="ImagensPVZ/itens/itens de cura/Hot_Sauce.png" alt="Hot Sauce" class="item-img">
+                        <h3 class="item-name">Hot Sauce</h3>
+                        <p class="item-price">$ 40</p>
+                        <button class="buy-btn" onclick="comprarItem('Hot Sauce', 40)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Restaura 100% do HP.</div>
+                        <img src="ImagensPVZ/itens/itens de cura/WaffleTaco.png" alt="Waffle Taco" class="item-img">
+                        <h3 class="item-name">Waffle Taco</h3>
+                        <p class="item-price">$ 130</p>
+                        <button class="buy-btn" onclick="comprarItem('Waffle Taco', 130)">Comprar</button>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 3: 10 Itens de Evolução -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Galinha → Galo de Fogo</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/pedra_de_fogo.png" alt="Pedra de fogo" class="item-img">
+                        <h3 class="item-name">Pedra de Fogo</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Pedra de Fogo', 200)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Disparervilha → Gelerilha</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/pedra_de_gelo.png" alt="Pedra de gelo" class="item-img">
+                        <h3 class="item-name">Pedra de Gelo</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Pedra de Gelo', 100)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Girassol → Flor Elétrica</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/arcoiris.png" alt="Arco-íris" class="item-img">
+                        <h3 class="item-name">Arco-íris</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Arco-íris', 250)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Item especial de evento.</div>
+                        <img src="ImagensPVZ/itens/doce.png" alt="Doce Zumbi" class="item-img">
+                        <h3 class="item-name">Doce Zumbi</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Doce Zumbi', 200)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Cabra → Planador Cabra 3000</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/Teleport_HD.png" alt="Teleport" class="item-img">
+                        <h3 class="item-name">Teleport</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Teleport', 200)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Zumbolha → Gigante Gasoso</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/super_fedor.png" alt="Super Fedor" class="item-img">
+                        <h3 class="item-name">Super Fedor</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Super Fedor', 300)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Nabo Bebê → Babosassauro</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/babosa.png" alt="babosa" class="item-img">
+                        <h3 class="item-name">Babosa</h3>
+                        <p class="item-price">$ 350</p>
+                        <button class="buy-btn" onclick="comprarItem('Babosa', 350)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Sumô → Aspirante a Herói</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/bandeira.png" alt="Bandeira" class="item-img">
+                        <h3 class="item-name">Bandeira</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Bandeira', 300)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Boca-de-Dragão → Pitaya</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/buraco_negro.png" alt="Buraco_negro" class="item-img">
+                        <h3 class="item-name">Buraco Negro</h3>
+                        <p class="item-price">$ 400</p>
+                        <button class="buy-btn" onclick="comprarItem('Buraco Negro', 400)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Gelerilha → Ervilhadora</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/capacete.png" alt="Capacete" class="item-img">
+                        <h3 class="item-name">Capacete</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Capacete', 300)">Comprar</button>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 4: 4 Itens de Evolução -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Uvas Azedas → Mirtilartista</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/saxofone.png" alt="Saxofone" class="item-img">
+                        <h3 class="item-name">Saxofone</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Saxofone', 250)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Paparazzumbi → Sumô</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/hamburguer.png" alt="Hamburguer" class="item-img">
+                        <h3 class="item-name">Hamburguer</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Hamburguer', 100)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Dançarino → Discotron 3000</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/Disco_bola.png" alt="Disco Bola" class="item-img">
+                        <h3 class="item-name">Disco Bola</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Disco Bola', 250)">Comprar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Evolui: Galinha → Mascote de time</div>
+                        <img src="ImagensPVZ/itens/itens de evolução/cutelo.png" alt="Cutelo" class="item-img">
+                        <h3 class="item-name">Cutelo</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Cutelo', 200)">Comprar</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="arrow-btn" onclick="changePage(1)">&#10095;</button>
+        </div>
+
+        <div class="page-indicator">
+            Página <span id="current-page">1</span> de 4
+        </div>
+    </div>
+
+    <script>
+        let currentPageIndex = 0;
+        const pages = document.querySelectorAll('.page');
+        const pageIndicator = document.getElementById('current-page');
+        const categoryTitle = document.getElementById('category-title');
+
+        // Função para fechar o tutorial
+        function fecharTutorial() {
+            document.getElementById('tutorial-modal').style.display = 'none';
+        }
+
+        function changePage(direction) {
+            pages[currentPageIndex].classList.remove('active');
+            currentPageIndex += direction;
+
+            if (currentPageIndex >= pages.length) {
+                currentPageIndex = 0;
+            } else if (currentPageIndex < 0) {
+                currentPageIndex = pages.length - 1;
+            }
+
+            pages[currentPageIndex].classList.add('active');
+            pageIndicator.innerText = currentPageIndex + 1;
+
+            if (currentPageIndex === 0 || currentPageIndex === 1) {
+                categoryTitle.innerText = "Itens de Cura";
+            } else {
+                categoryTitle.innerText = "Itens de Evolução";
+            }
+        }
+
+        function comprarItem(nome, preco) {
+            alert(`Você tentou comprar: ${nome}\nPreço: $${preco}`);
+        }
+    </script>
+
 </body>
 </html>
