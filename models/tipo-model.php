@@ -8,6 +8,8 @@ class tipo{
     private int $w1;
     private int $w2;
 
+    // GETTERS
+
     public function getNome(){
         return $this->nome_tipo;
     }
@@ -20,6 +22,10 @@ class tipo{
     public function getFraquezas(){
         return [$this->w1, $this->w2];
     }
+
+
+    // SETTERS 
+
     public function setNome(string $nome){
         $this->nome_tipo = $nome;
     } 

@@ -4,6 +4,10 @@ class condicao{
     private string $nome_cond;
     private string $efeito;
 
+
+    // GETTERS 
+
+    
     public function getId(){
         return $this->id_cond;
         }
@@ -13,6 +17,8 @@ class condicao{
     public function getEfeito(){
         return $this->efeito;
     }
+
+    // SETTERS
 
     public function setId(int $id_cond){
         $this->id_cond = $id_cond;
