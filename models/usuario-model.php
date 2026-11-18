@@ -144,7 +144,7 @@ public function pegarMeusPokemons() {
 }
 public function pegarMeuInventario() { 
     $pdo = connect();
-    $sql = "SELECT nome_item, quantidade_item FROM inventario 
+    $sql = "SELECT nome_item, quant_item FROM inventario 
     JOIN item ON inventario.id_item = item.id_item
     where id_usr = :id ";
     $stmt = $pdo->prepare($sql);

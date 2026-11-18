@@ -73,8 +73,6 @@ id_evo int,
 foto varchar(200),
 
 id_tipo int not null,
-foto varchar(200),
-
 foreign key (id_tipo) references tipo(id_tipo),
 foreign key (id_evo) references especie(id_esp)
 );
