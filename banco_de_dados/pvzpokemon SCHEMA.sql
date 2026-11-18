@@ -73,6 +73,7 @@ id_evo int,
 foto varchar(200),
 
 id_tipo int not null,
+foto varchar(200),
 foreign key (id_tipo) references tipo(id_tipo)
 );
 
@@ -263,7 +264,7 @@ update especie set id_evo = 36 where id_esp = 32; --  Zumbolha -> Gigante Gasoso
 update especie set id_evo = 39 where id_esp = 38; --  Dançarino -> Discotron 3000
 
 update especie set id_evo = 41 where id_esp = 35; --  Paparazzumbi -> Sumô
-update especie set id_evo = 42 where id_esp = 42; --  Sumô -> Aspirante a Herói
+update especie set id_evo = 42 where id_esp = 41; --  Sumô -> Aspirante a Herói
 
 update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
 update especie set id_evo = 48 where id_esp = 45; --  Galinha -> Mascote
