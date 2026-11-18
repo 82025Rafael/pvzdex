@@ -5,14 +5,12 @@ class pokemon {
 
    private string $nome;
    private int $vida_max;
-   private int $vida_atual = $this->vida_max;
-    
+   private int $vida_atual;
+   private int $forca;
     // ATAQUES
 
     private ataque $atk1;
     private ataque $atk2;
-    private ataque $atk3;
-    private ataque $atk4;
     
     // QUEM É ELE
     
@@ -40,12 +38,7 @@ class pokemon {
    public function  getAtk2() {
          return $this->atk2;
       }
-   public function getAtk3() {
-         return $this->atk3;
-      }
-   public function getAtk4() {
-         return $this->atk4;
-      }
+
    public function getEsp() {
          return $this->esp;
       }
@@ -76,27 +69,30 @@ class pokemon {
    public function  setAtk2(ataque $atk2) {
       $this->atk2 = $atk2;
    }
-   public function setAtk3(ataque $atk3) {
-      $this->atk3 = $atk3;
-   }
-   public function setAtk4(ataque $atk4) {
-      $this->atk4 = $atk4;
-   }
+
    public function setEsp(especie $esp) {
-      $this->id_esp = $id_esp;
+      $this->esp = esp;
    }
    public function setEvo(especie $evo) {
-      $this->id_evo = $id_evo;
+      $this->evo = $evo;
    }
 
-   public function insert(int $id_usr, string $nome_pkm, int $id_esp) // INSERIR NO BANCO COM ID DO USUARIO
+   public function insert() // INSERIR NO BANCO COM ID DO USUARIO
    {
    
    $pdo = connect();
 
-   $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, 'Paparazzumbi', 34, 11, 12 )";
+   $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, :nome, :esp, :atk1, :atk2)";
    $stmt = $pdo->prepare($sql);
-   $stmt->execute([':id' => $id_usr]);
+   $stmt->execute([
+      ':id'    =>    $this->id_usr,
+      ':nome'  =>    $this->nome_pkm,
+      ':esp'   =>    $this->esp->getId(),
+
+      ':atk1'  =>    $this->atk1->getId(),
+      ':atk2'  =>    $this->atk2->getId(),
+      
+      ]);
       
    }
 

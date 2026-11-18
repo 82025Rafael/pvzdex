@@ -43,22 +43,24 @@ class ataque{
     public function setNome($nome){
         $this->nome = $nome;
     }
-    public function setTipo($ipo){
-        $this->ipo = $ipo;
+    public function setTipo(tipo $tipo){
+        $this->ipo = $tipo;
     }
-    public function setMultDano($mult_dano){
+    public function setDano($dano){
         $this->mult_dano = $mult_dano;
     }
-    public function setPrioridade($priori){
+    public function setPriori($priori){
         $this->priori = $priori;
     }
     public function setDesc($desc){
         $this->desc = $desc;
     }
-    public function setCondicao($condicao){
-        $this->condicao = $condicao;
+    public function setCond($cond){
+        $this->condicao = $cond;
     }
-    public function setChanceCondicao($chance_condicao){
+    public function setChance($chance_cond){
         $this->chance_condicao = $chance_condicao;
     }
+
+
 }

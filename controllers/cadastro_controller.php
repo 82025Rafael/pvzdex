@@ -1,7 +1,7 @@
 <?php
 
 require_once '../config.php'; // conectando com o banco
-    
+
     $nome_usr = htmlspecialchars($_POST['nome_usr']);   
     $senha = htmlspecialchars($_POST['senha']);
     $cor_favorita = htmlspecialchars($_POST['cor']);
@@ -20,17 +20,18 @@ try{
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
 
 $id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
+$pokemon = new pokemon();
 
 //Insere Dispaervilha
+$pokemon->insert($id_usr,'Disparervilha', 11, 5, 6);
 
 //Insere Paparazzumbi
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, 'Paparazzumbi', 34, 11, 12 )";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $id_usr]);
+
+$pokemon->insert($id_usr,'Paparazzumbi', 35, 11, 20);
+
 //Insere Girassol
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id,  'Girassol', 20, 9, 10)";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $id_usr]);
+
+$pokemon->insert($id_usr,'Girassol', 21, 9, 10)
 //Redireciona para o index
 header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {

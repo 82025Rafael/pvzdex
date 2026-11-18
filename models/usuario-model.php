@@ -145,7 +145,7 @@ $stmt->execute([
     ':s' => $senha
 ]);
 
- $id_usr = $stmt->fetch(); 
+$id_usr = $stmt->fetch(); 
 return $id_usr;
 
 

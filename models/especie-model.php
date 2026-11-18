@@ -2,6 +2,7 @@
 class especie{
     private string $nome;
     private int $id;
+    private int $id_tipo;
     private int $vida;
     private int $forca;
     private int $veloc;
