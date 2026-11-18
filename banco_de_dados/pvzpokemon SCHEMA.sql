@@ -224,7 +224,7 @@ insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Cavaleiro d
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Químico Louco', 6,50,4,7); -- 31
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbolha', 4,50,3,7); -- 32
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbi Guarda-Sol', 6,60,4,7); -- 33
-insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbinho Leprechaun', 3,20,1,7); --34
+insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Zumbinho Leprechaun', 3,20,1,7); -- 34
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Paparazzumbi', 2,10,1,7); -- 35
 
 insert into especie(nome_esp, forca , vida, veloc, id_tipo) values ('Gigante Gasoso', 5,50,6,8); -- 36
