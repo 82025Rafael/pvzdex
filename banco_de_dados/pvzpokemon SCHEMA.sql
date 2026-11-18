@@ -64,13 +64,20 @@ foreign key (id_tipo) references tipo(id_tipo)
 );
 
 create table especie(
+
 nome_esp varchar(100) not null,
 id_esp int primary key auto_increment,
 vida int not null,
 forca int not null,
 veloc int not null,
 id_evo int,
+foto varchar(200),
+
 id_tipo int not null,
+foto varchar(200),
+
+foreign key (id_tipo) references tipo(id_tipo),
+foreign key (id_evo) references especie(id_esp)
 foto varchar(200) not null,
 foreign key (id_tipo) references tipo(id_tipo)
 );
@@ -93,7 +100,6 @@ vida_restante_pkm int not null,
 vida_total_pkm int not null,
 
 id_pkm int primary key auto_increment,
-id_evo int,
 
 foreign key (id_atk1) references ataque(id_atk),
 foreign key (id_atk2) references ataque(id_atk),
@@ -102,8 +108,7 @@ foreign key (id_atk4) references ataque(id_atk),
 
 
 foreign key (id_cond) references condicao(id_cond),
-foreign key (id_esp) references especie(id_esp),
-foreign key (id_evo) references especie(id_esp)
+foreign key (id_esp) references especie(id_esp)
 );
 
 create table inventario(

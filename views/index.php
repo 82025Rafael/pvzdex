@@ -21,7 +21,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plants vs Zombies</title>
+    <title>Plants Vs. Zombies</title>
     
     <link rel="stylesheet" href="menuIni.css">
     
@@ -30,8 +30,8 @@
 
 <div class = "menuzin"> 
     
-                    <h1>Plants Vs. Zombies</h1>
-                    <h2>Só que Pokémon</h2>
+                    <h1><img src='../ImagensPVZ/logo.png' width=100%></h1>
+                    <h2> <u> <i> Só que Pokémon </u> </i> </h2> <br>
 
  
 
@@ -41,7 +41,7 @@
                     
 
     Aperte para começar <br><br>
-    <a href='../selecao_controller.php'><button type='button' class="botaoIni"> JOGAR </button></a>
+    <a href='controllers\selecao_controller.php'><button type='button' class="botaoIni"> JOGAR </button></a>
     <br>
 
      <br> Se esse não é você, clique aqui 

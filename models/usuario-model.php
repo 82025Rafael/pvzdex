@@ -64,6 +64,24 @@ $pdo = connect();
 
 }
 
+public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
+
+$pdo = connect();
+$sql = "select nome_usr, cor_favorita, dinheiro from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    ':id' => $this->id_usr
+]);
+$usuario = $stmt->fetch(); // ENFIA TUDO NUM VETOR
+
+//var_dump($usuario);
+
+$this->setNome($usuario['nome_usr']); // SETANDO OQ FOI RECUPERADO
+$this->setCor($usuario['cor_favorita']);
+$this->setDinheiro($usuario['dinheiro']);
+
+}
+
 
 
 public function cadastroUsr(){ //FUNCAO DE CADASTRAR O USUARIO NO BANCO
@@ -81,9 +99,9 @@ public function cadastroUsr(){ //FUNCAO DE CADASTRAR O USUARIO NO BANCO
 
          $this->id_usr = $pdo->lastInsertId();
 
-}
+} // FIM CADASTRO ===========================================================================
 
-public function SeraQueExisteNome(){ // VERIFICAR SE O NOME DIGITADO JA EXISTE
+public function SeraQueExisteNome(){ // METODO VERIFICAR SE O NOME DIGITADO JA EXISTE
 
 session_start(); // RETOMAR SESSAO
 
@@ -111,29 +129,32 @@ catch(Exception $e){
 unset($_SESSION['erroCadastro']); // DESCARTA A EXCESSAO
 
 return false;
-}
+} // FIM METODO VERIFICADOR ===========================================================================
 
-public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
+public function login($nome_usr, $senha){
 
-$pdo = connect();
-$sql = "select nome_usr, cor_favorita, dinheiro from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
-$stmt = $pdo->prepare($sql);
+    $pdo =  connect();
+    session_start();
+
+ // SELECIONAR ID A PARTIR DE NOME E SENHA E VER SE ESTÁ CERTO
+$sql = "SELECT id_usr from usuario where nome_usr = :n and senha = :s"; // SQL SELECT tudo do usuario
+$stmt = $pdo->prepare($sql); // prepara e executa o SQL
 $stmt->execute([
-    ':id' => $this->id_usr
+
+    ':n' => $nome_usr, //pra evitar o SQL inject 
+    ':s' => $senha
 ]);
-$usuario = $stmt->fetch(); // ENFIA TUDO NUM VETOR
 
-//var_dump($usuario);
+ $id_usr = $stmt->fetch(); 
+return $id_usr;
 
-$this->setNome($usuario['nome_usr']); // SETANDO OQ FOI RECUPERADO
-$this->setCor($usuario['cor_favorita']);
-$this->setDinheiro($usuario['dinheiro']);
 
-}
-
-public function pegarMeusPokemons() { // RETORNA UM VETOR COM OS POKEMONS DO USUARIO
+} // FIM METODO LOGIN  ==============================================================================
+public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
     $pdo = connect();
-    $sql = "SELECT * FROM pokemon where id_usr = :id FOR JSON";
+    $sql = "SELECT nome_pkm, nome_esp, vida_restante_pkm, vida_total_pkm FROM pokemon 
+    JOIN especie ON pokemon.id_esp = especie.id_esp
+    where id_usr = :id ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_usr
