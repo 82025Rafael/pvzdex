@@ -41,7 +41,7 @@
                     
 
     Aperte para começar <br><br>
-    <a href='../controllers/selecao_controller.php'><button type='button' class="botaoIni"> JOGAR </button></a>
+    <a href='controllers\selecao_controller.php'><button type='button' class="botaoIni"> JOGAR </button></a>
     <br>
 
      <br> Se esse não é você, clique aqui 
