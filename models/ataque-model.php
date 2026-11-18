@@ -72,7 +72,7 @@ class ataque{
     public function load(){ // CARREGAR DADOS DO ATAQUE FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond where id_atk = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond from ataque where id_atk = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_tipo

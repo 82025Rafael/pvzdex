@@ -2,7 +2,7 @@
 require_once '../config.php';
 class pokemon {
     
-   private int $id_pkm
+   private int $id_pkm;
    private string $nome_pkm;
    private int $vida_atual;
    private int $atk1;
@@ -64,15 +64,15 @@ class pokemon {
    
    $pdo = connect();
 
-   $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1, id_atk2) values (:id, :nome, :esp, :atk1, :atk2)";
+   $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, vida_atual, id_atk1, id_atk2) values (:id, :nome, :esp, :vat, :atk1, :atk2)";
    $stmt = $pdo->prepare($sql);
    $stmt->execute([
       ':id'    =>    $this->id_usr,
       ':nome'  =>    $this->nome_pkm,
-      ':esp'   =>    $this->esp->getId(),
-
-      ':atk1'  =>    $this->atk1->getId(),
-      ':atk2'  =>    $this->atk2->getId()
+      ':esp'   =>    $this->id_esp,
+      ':vat'   =>    $this->vida_atual,
+      ':atk1'  =>    $this->id_atk1,
+      ':atk2'  =>    $this->id_atk2
       
       ]);
       
@@ -81,7 +81,7 @@ class pokemon {
    public function load(){ // CARREGAR DADOS DO POKEMON FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_pkm, vida_atual, id_esp, id_evo, id_atk1, id_atk2 where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_pkm, vida_atual, id_esp, id_evo, id_atk1, id_atk2 from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_tipo

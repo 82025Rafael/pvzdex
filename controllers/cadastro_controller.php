@@ -21,17 +21,49 @@ try{
 
 $id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
 $pokemon = new pokemon();
+$especie = new especie();
 
 //Insere Dispaervilha
-$pokemon->insert($id_usr,'Disparervilha', 11, 5, 6);
+
+$pokemon->setUsr($id_usr);
+
+$especie->setId(11);
+$especie->load();
+
+$pokemon->setEsp($especie->getId());
+$pokemon->setNome($especie->getNome());
+$pokemon->setAtk1(5);
+$pokemon->setAtk2(6);
+$pokemon->setVida($especie->getVida());
+
+$pokemon->insert();
 
 //Insere Paparazzumbi
 
-$pokemon->insert($id_usr,'Paparazzumbi', 35, 11, 20);
+
+$especie->setId(35);
+$especie->load();
+
+$pokemon->setEsp($especie->getId());
+$pokemon->setNome($especie->getNome());
+$pokemon->setAtk1(11);
+$pokemon->setAtk2(20);
+$pokemon->setVida($especie->getVida());
+
+$pokemon->insert();
 
 //Insere Girassol
 
-$pokemon->insert($id_usr,'Girassol', 21, 9, 10)
+$especie->setId(21);
+$especie->load();
+
+$pokemon->setEsp($especie->getId());
+$pokemon->setNome($especie->getNome());
+$pokemon->setAtk1(9);
+$pokemon->setAtk2(10);
+$pokemon->setVida($especie->getVida());
+
+$pokemon->insert();
 //Redireciona para o index
 header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {

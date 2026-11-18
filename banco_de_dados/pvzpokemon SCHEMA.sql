@@ -149,7 +149,7 @@ insert into condicao(nome_cond, efeito) values ('Envenenado', 'Perde 10% vida Ma
 insert into condicao(nome_cond, efeito) values ('Paralizado', 'Vel - 50%. 30% de chance de nao se mover'); -- 3
 insert into condicao(nome_cond, efeito) values ('Adormecido', 'Nao se move. 30% de chance de acordar no fim. incrementa +15'); -- 4
 insert into condicao(nome_cond, efeito) values ('Congelado', 'Nao se move. Some ao tomar um total de 20% da vida. Uso unico'); -- 5
---ITENS DE CURA
+-- ITENS DE CURA
 insert into item(nome_item, preco_item, desc_item, foto) values ('Bacon', 15, 'Cura 6 de vida', '../ImagensPVZ/itens/itens de cura/Bacon.png'); -- 1
 insert into item(nome_item, preco_item, desc_item, foto) values ('Waffle', 30, 'Cura 12 de vida', '../ImagensPVZ/itens/itens de cura/waffle.png'); -- 2
 insert into item(nome_item, preco_item, desc_item, foto) values ('Taco', 90, 'Cura 45 de vida', '../ImagensPVZ/itens/itens de cura/tacomagico.png'); -- 3
@@ -162,7 +162,7 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Café', 20, 'C
 insert into item(nome_item, preco_item, desc_item, foto) values ('Aloe', 60, 'Cura Tudo', '../ImagensPVZ/itens/itens de cura/Aloe.png'); -- 10
 insert into item(nome_item, preco_item, desc_item, foto) values ('WaffleTaco', 120, 'Cura Tudo e 100% de vida', '../ImagensPVZ/itens/itens de cura/WaffleTaco.png'); -- 11
 insert into item(nome_item, preco_item, desc_item, foto) values ('Cenoura do Poder', 80, 'Revive com 50% de vida', '../ImagensPVZ/itens/itens de cura/cenoura_do_poder.png'); -- 12
---ITENS EVOLUÇÃO
+-- ITENS EVOLUÇÃO
 insert into item(nome_item, preco_item, desc_item, foto) values ('Pedra de Gelo', 100, 'Evolui Disparervilha para Gelervilha', '../ImagensPVZ/itens/itens de evolução/pedra_de_gelo.png'); -- 13
 insert into item(nome_item, preco_item, desc_item, foto) values ('Capacete', 300, 'Evolui Gelervilha para Ervilhadora', '../ImagensPVZ/itens/itens de evolução/capacete.png'); -- 14
 insert into item(nome_item, preco_item, desc_item, foto) values ('Saxofone', 250, 'Evolui Uvas Azedas para Mirtilartista', '../ImagensPVZ/itens/itens de evolução/saxofone.png'); -- 15
@@ -220,25 +220,25 @@ insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('P
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Brontaço', 10,50,5,6, '../ImagensPVZ/monstrinhos_campo/feroz/Montobronto.png'); -- 28
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Assombrado', 4,10,2,6, '../ImagensPVZ/monstrinhos_campo/feroz/zumbifantasma.png'); -- 29
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Cavaleiro do Golfinho', 6,20,2,6, '../ImagensPVZ/monstrinhos_campo/feroz/zumbigolfinho.png'); -- 30
---Miolástico
+-- Miolástico
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Químico Louco', 6,50,4,7, '../ImagensPVZ/monstrinhos_campo/miolástico/cientista.png'); -- 31
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbolha', 4,50,3,7, '../ImagensPVZ/monstrinhos_campo/miolástico/Zomblob.png'); -- 32
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Guarda-Sol', 6,60,4,7, '../ImagensPVZ/monstrinhos_campo/miolástico/zumbiguardasol.png'); -- 33
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbinho Leprechaun', 3,20,1,7, '../ImagensPVZ/monstrinhos_campo/miolástico/leprechau.png'); -- 34
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Paparazzumbi', 2,10,1,7, '../ImagensPVZ/monstrinhos_campo/miolástico/Paparazzi.png'); -- 35
---DOIDÕES
+-- DOIDÕES
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Gigante Gasoso', 5,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbigigantetóxico.png'); -- 36
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Soldado', 6,40,5,8, '../ImagensPVZ/monstrinhos_campo/doidões/soldado.png'); -- 37
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Dançarino', 6,10,3,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbidodisco.png'); -- 38
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Discotron 3000', 10,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/DiscoTron3000.png'); -- 39
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Valquíria', 0,60,4,8, '../ImagensPVZ/monstrinhos_campo/doidões/valkiria.png'); -- 40
---VIGOROSO
+-- VIGOROSO
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Sumô', 4,30,2,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbisumo.png'); -- 41
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Aspirante a Herói', 12,10,7,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/devastador.png'); -- 42
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('All-Star Cósmico', 4,20,3,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/allstarcosmico.png'); -- 43
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Faraó Imortal', 8,60,6,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/faraó.png'); -- 44
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Mascote de Time', 3,40,3,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbinhogalinha.png'); -- 45
---FURTIVOS
+-- FURTIVOS
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbinho Salsicha', 4,20,2,10, '../ImagensPVZ/monstrinhos_campo/furtivos/zumbinhosalcinha.png'); -- 46
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Galinha Zumbi', 4,20,1,10, '../ImagensPVZ/monstrinhos_campo/furtivos/galinha.png'); -- 47
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Galo de Fogo', 6,10,4,10, '../ImagensPVZ/monstrinhos_campo/furtivos/galodefogo.png'); -- 48

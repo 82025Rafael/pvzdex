@@ -19,7 +19,7 @@ class especie{
         return $this->nome_esp;
     }
     public function getId() {
-        return $this->id;
+        return $this->id_esp;
     }
 
     public function getEvo() {
@@ -31,7 +31,7 @@ class especie{
     }
 
     public function getVida() {
-        return $this->vida;
+        return $this->vida_max;
     }
     public function getForca() {
         return $this->forca;
@@ -40,7 +40,7 @@ class especie{
         return $this->veloc;
     }
 
-    public funtion getFoto(){
+    public function getFoto(){
         return $this->foto;
     }
     
@@ -82,10 +82,10 @@ class especie{
      public function load(){ // CARREGAR DADOS DA ESPECIE FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_esp, id_tipo, id_evo, vida_max, forca, veloc, foto where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_esp, id_tipo, id_evo, vida_max, forca, veloc, foto from especie where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':id' => $this->id_tipo
+        ':id' => $this->id_esp
     ]);
     $esp = $stmt->fetch(); // ENFIA TUDO NUM VETOR
 
