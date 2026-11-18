@@ -16,6 +16,7 @@ class pokemon {
     //id da evolução
     private especie $id_evo; 
    
+    //   GETTERS E SETTERS
    public function getNome() {
         return $this->nome;  
     }

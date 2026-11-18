@@ -131,9 +131,11 @@ $this->setDinheiro($usuario['dinheiro']);
 
 }
 
-public function pegarMeusPokemons() { // RETORNA UM VETOR COM OS POKEMONS DO USUARIO
+public function pegarMeusPokemons() { 
     $pdo = connect();
-    $sql = "SELECT * FROM pokemon where id_usr = :id FOR JSON";
+    $sql = "SELECT nome_pkm, nome_esp, vida_restante_pkm, vida_total_pkm FROM pokemon 
+    JOIN especie ON pokemon.id_esp = especie.id_esp
+    where id_usr = :id ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_usr
