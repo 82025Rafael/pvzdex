@@ -1,4 +1,21 @@
 
+<?php  
+ session_start();
+
+ if($_SESSION['logado'] == false)
+  { header("location:login.php"); }  
+        
+  require_once '../config.php';   
+        
+        $usuario = new usuario();
+        $usuario->setId((int) $_SESSION['id_usr']);
+        $usuario->load();
+        
+        
+        
+        
+        ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,32 +23,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plants vs Zombies</title>
     
+    <link rel="stylesheet" href="menuIni.css">
+    
 </head>
 <body>
-    <h1>Bem vindo ao jogo!</h1>
 
-    <?php
+<div class = "menuzin"> 
     
-session_start();
+                    <h1>Plants Vs. Zombies</h1>
+                    <h2>Só que Pokémon</h2>
 
-if($_SESSION['logado'] == true)
-    { echo "
+ 
 
-    Aperte para começar <br>
-    <button type='button' href='menuPoke.php'> JOGAR </button>
-    <br>
-    <br>
+    <h3> Bem-vindo(a), <?= $usuario->getNome();?>!! </h3> <br>
 
-    Aperte para trocar de sessão <br> 
-    <button type='button'> <a href='login.php' > LOGIN </a> </button>
     
-    ";
-    }
-else{
-    echo "Aperte para entrar na sessão <br> <button type='button'> <a href='login.php' > LOGIN </a> </button>";}
+                    
 
+    Aperte para começar <br><br>
+    <button type='button' class="botaoIni" href='selecao.php'> JOGAR </button>
+    <br>
 
-    ?>
+     <br> Se esse não é você, clique aqui 
+   <a href='login.php' class = "botaoLogin">Trocar de sessão </a>
+
+</div>
+  
 </body>
 </html>
 
