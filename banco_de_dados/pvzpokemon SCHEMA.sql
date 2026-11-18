@@ -67,19 +67,19 @@ create table especie(
 
 nome_esp varchar(100) not null,
 id_esp int primary key auto_increment,
-vida int not null,
+vida_max int not null,
 forca int not null,
 veloc int not null,
+
 id_evo int,
+
 foto varchar(200),
 
 id_tipo int not null,
-foto varchar(200),
+
 
 foreign key (id_tipo) references tipo(id_tipo),
 foreign key (id_evo) references especie(id_esp)
-foto varchar(200) not null,
-foreign key (id_tipo) references tipo(id_tipo)
 );
 
 create table pokemon(
@@ -94,9 +94,7 @@ id_atk2 int,
 
 id_cond int,
 
-vida_restante_pkm int not null,
-vida_total_pkm int not null,
-
+vida_atual int not null,
 id_pkm int primary key auto_increment,
 
 foreign key (id_atk1) references ataque(id_atk),
@@ -182,70 +180,70 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Telporte', 200
 
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Noz Obstáculo', 0,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Cacto', 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Tricenourátops', 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
-insert into especie(nome_esp, forca , vida, veloc, id_tipo,foto) values ('Planterna', 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern.png'); -- 4
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Batatamina', 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato.png'); -- 5
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Noz Obstáculo', 0,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Cacto', 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Tricenourátops', 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern.png'); -- 4
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato.png'); -- 5
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Lança-Banana', 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Coronel Milho', 12,60,8,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png'); -- 7
-insert into especie(nome_esp, forca , vida, veloc, id_tipo,foto) values ('Nabossauro Bebê', 3,20,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png'); -- 8
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Uvas Azedas', 4,20,4,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png'); -- 9
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Mirtilartista', 6,30,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Bluesberry.png'); -- 10
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Coronel Milho', 12,60,8,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png'); -- 7
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo,foto) values ('Nabossauro Bebê', 3,20,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png'); -- 8
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Uvas Azedas', 4,20,4,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png'); -- 9
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Mirtilartista', 6,30,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Bluesberry.png'); -- 10
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Disparervilha', 2,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png'); -- 11
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Ervilhadora', 10,40,5,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png'); -- 12
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Batatossauro', 10,50,6,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Tater_titan.png'); -- 13
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Repolho Boxeador', 4,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Hd_bonk.png'); -- 14
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Aneis de Cebola', 8,40,4,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Onion_Rings_HD.png'); -- 15
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Disparervilha', 2,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png'); -- 11
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Ervilhadora', 10,40,5,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png'); -- 12
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Batatossauro', 10,50,6,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Tater_titan.png'); -- 13
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Repolho Boxeador', 4,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Hd_bonk.png'); -- 14
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Aneis de Cebola', 8,40,4,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Onion_Rings_HD.png'); -- 15
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Carambola Cadente', 5,20,5,4, '../ImagensPVZ/monstrinhos_campo/Esperto/Shooting_Starfruit_HD.png'); -- 16
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Boca-de-Dragão', 6,30,4,4, '../ImagensPVZ/monstrinhos_campo/Esperto/SnapdragonPvZH.png'); -- 17
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Gelervilha', 4,20,2,4, '../ImagensPVZ/monstrinhos_campo/Esperto/SnowpeaHD.png'); -- 18
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Pitaya de Matéria-Escura', 12,60,8,4, '../ImagensPVZ/monstrinhos_campo/Esperto/Deep_Space_Dragonfruit_HD.png'); -- 19
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Typha', 6,20,3,4, '../ImagensPVZ/monstrinhos_campo/Esperto/HD_Cattail_(PvZH).png'); -- 20
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Carambola Cadente', 5,20,5,4, '../ImagensPVZ/monstrinhos_campo/Esperto/Shooting_Starfruit_HD.png'); -- 16
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Boca-de-Dragão', 6,30,4,4, '../ImagensPVZ/monstrinhos_campo/Esperto/SnapdragonPvZH.png'); -- 17
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Gelervilha', 4,20,2,4, '../ImagensPVZ/monstrinhos_campo/Esperto/SnowpeaHD.png'); -- 18
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Pitaya de Matéria-Escura', 12,60,8,4, '../ImagensPVZ/monstrinhos_campo/Esperto/Deep_Space_Dragonfruit_HD.png'); -- 19
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Typha', 6,20,3,4, '../ImagensPVZ/monstrinhos_campo/Esperto/HD_Cattail_(PvZH).png'); -- 20
 
 
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Girassol', 2,10,1,5, '../ImagensPVZ/monstrinhos_campo/Solar/Sunflower.png'); -- 21
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Flor Elétrica', 6,50,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Power_Flower.png'); -- 22
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Babosassauro', 8,70,5,5, '../ImagensPVZ/monstrinhos_campo/Solar/Aloesauru.png'); -- 23
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Carnívora', 5,30,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Chomper.png'); -- 24
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zoiudo', 4,10,2,5, '../ImagensPVZ/monstrinhos_campo/Solar/EyeSpore.png'); -- 25
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Girassol', 2,10,1,5, '../ImagensPVZ/monstrinhos_campo/Solar/Sunflower.png'); -- 21
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Flor Elétrica', 6,50,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Power_Flower.png'); -- 22
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Babosassauro', 8,70,5,5, '../ImagensPVZ/monstrinhos_campo/Solar/Aloesauru.png'); -- 23
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Carnívora', 5,30,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Chomper.png'); -- 24
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zoiudo', 4,10,2,5, '../ImagensPVZ/monstrinhos_campo/Solar/EyeSpore.png'); -- 25
 
 -- feroz
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Cabra', 2,10,0,6, '../ImagensPVZ/monstrinhos_campo/feroz/cabra.png'); -- 26
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Planador Cabra 3000', 3,30,3,6, '../ImagensPVZ/monstrinhos_campo/feroz/cabrafuturo.png'); -- 27
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Brontaço', 10,50,5,6, '../ImagensPVZ/monstrinhos_campo/feroz/Montobronto.png'); -- 28
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbi Assombrado', 4,10,2,6, '../ImagensPVZ/monstrinhos_campo/feroz/zumbifantasma.png'); -- 29
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Cavaleiro do Golfinho', 6,20,2,6, '../ImagensPVZ/monstrinhos_campo/feroz/zumbigolfinho.png'); -- 30
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Cabra', 2,10,0,6, '../ImagensPVZ/monstrinhos_campo/feroz/cabra.png'); -- 26
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Planador Cabra 3000', 3,30,3,6, '../ImagensPVZ/monstrinhos_campo/feroz/cabrafuturo.png'); -- 27
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Brontaço', 10,50,5,6, '../ImagensPVZ/monstrinhos_campo/feroz/Montobronto.png'); -- 28
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Assombrado', 4,10,2,6, '../ImagensPVZ/monstrinhos_campo/feroz/zumbifantasma.png'); -- 29
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Cavaleiro do Golfinho', 6,20,2,6, '../ImagensPVZ/monstrinhos_campo/feroz/zumbigolfinho.png'); -- 30
 --Miolástico
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Químico Louco', 6,50,4,7, '../ImagensPVZ/monstrinhos_campo/miolástico/cientista.png'); -- 31
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbolha', 4,50,3,7, '../ImagensPVZ/monstrinhos_campo/miolástico/Zomblob.png'); -- 32
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbi Guarda-Sol', 6,60,4,7, '../ImagensPVZ/monstrinhos_campo/miolástico/zumbiguardasol.png'); -- 33
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbinho Leprechaun', 3,20,1,7, '../ImagensPVZ/monstrinhos_campo/miolástico/leprechau.png'); -- 34
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Paparazzumbi', 2,10,1,7, '../ImagensPVZ/monstrinhos_campo/miolástico/Paparazzi.png'); -- 35
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Químico Louco', 6,50,4,7, '../ImagensPVZ/monstrinhos_campo/miolástico/cientista.png'); -- 31
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbolha', 4,50,3,7, '../ImagensPVZ/monstrinhos_campo/miolástico/Zomblob.png'); -- 32
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Guarda-Sol', 6,60,4,7, '../ImagensPVZ/monstrinhos_campo/miolástico/zumbiguardasol.png'); -- 33
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbinho Leprechaun', 3,20,1,7, '../ImagensPVZ/monstrinhos_campo/miolástico/leprechau.png'); -- 34
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Paparazzumbi', 2,10,1,7, '../ImagensPVZ/monstrinhos_campo/miolástico/Paparazzi.png'); -- 35
 --DOIDÕES
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Gigante Gasoso', 5,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbigigantetóxico.png'); -- 36
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbi Soldado', 6,40,5,8, '../ImagensPVZ/monstrinhos_campo/doidões/soldado.png'); -- 37
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbi Dançarino', 6,10,3,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbidodisco.png'); -- 38
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Discotron 3000', 10,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/DiscoTron3000.png'); -- 39
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Valquíria', 0,60,4,8, '../ImagensPVZ/monstrinhos_campo/doidões/valkiria.png'); -- 40
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Gigante Gasoso', 5,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbigigantetóxico.png'); -- 36
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Soldado', 6,40,5,8, '../ImagensPVZ/monstrinhos_campo/doidões/soldado.png'); -- 37
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Dançarino', 6,10,3,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbidodisco.png'); -- 38
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Discotron 3000', 10,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/DiscoTron3000.png'); -- 39
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Valquíria', 0,60,4,8, '../ImagensPVZ/monstrinhos_campo/doidões/valkiria.png'); -- 40
 --VIGOROSO
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbi Sumô', 4,30,2,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbisumo.png'); -- 41
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Aspirante a Herói', 12,10,7,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/devastador.png'); -- 42
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('All-Star Cósmico', 4,20,3,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/allstarcosmico.png'); -- 43
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Faraó Imortal', 8,60,6,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/faraó.png'); -- 44
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbi Mascote de Time', 3,40,3,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbinhogalinha.png'); -- 45
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Sumô', 4,30,2,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbisumo.png'); -- 41
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Aspirante a Herói', 12,10,7,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/devastador.png'); -- 42
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('All-Star Cósmico', 4,20,3,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/allstarcosmico.png'); -- 43
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Faraó Imortal', 8,60,6,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/faraó.png'); -- 44
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Mascote de Time', 3,40,3,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbinhogalinha.png'); -- 45
 --FURTIVOS
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbinho Salsicha', 4,20,2,10, '../ImagensPVZ/monstrinhos_campo/furtivos/zumbinhosalcinha.png'); -- 46
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Galinha Zumbi', 4,20,1,10, '../ImagensPVZ/monstrinhos_campo/furtivos/galinha.png'); -- 47
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Galo de Fogo', 6,10,4,10, '../ImagensPVZ/monstrinhos_campo/furtivos/galodefogo.png'); -- 48
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Yeti Criogênico', 6,40,5,10, '../ImagensPVZ/monstrinhos_campo/furtivos/zumbidegelo.png'); -- 49
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Zumbô SubTubarãoTrônico', 10,50,6,10, '../ImagensPVZ/monstrinhos_campo/furtivos/HDSHARK.png'); -- 50
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbinho Salsicha', 4,20,2,10, '../ImagensPVZ/monstrinhos_campo/furtivos/zumbinhosalcinha.png'); -- 46
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Galinha Zumbi', 4,20,1,10, '../ImagensPVZ/monstrinhos_campo/furtivos/galinha.png'); -- 47
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Galo de Fogo', 6,10,4,10, '../ImagensPVZ/monstrinhos_campo/furtivos/galodefogo.png'); -- 48
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Yeti Criogênico', 6,40,5,10, '../ImagensPVZ/monstrinhos_campo/furtivos/zumbidegelo.png'); -- 49
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Zumbô SubTubarãoTrônico', 10,50,6,10, '../ImagensPVZ/monstrinhos_campo/furtivos/HDSHARK.png'); -- 50
 
 update especie set id_evo = 10 where id_esp = 9; -- Uvas Azedas -> Mirtilartista
 
