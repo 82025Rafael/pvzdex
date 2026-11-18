@@ -79,7 +79,7 @@ public function cadastroUsr(){ //FUNCAO DE CADASTRAR O USUARIO NO BANCO
             ':c' => $this->cor_favorita
          ]);
 
-         $this->$id_usr = $pdo->lastInsertId();
+         $this->id_usr = $pdo->lastInsertId();
 
 }
 
@@ -139,4 +139,5 @@ public function pegarMeusPokemons() { // RETORNA UM VETOR COM OS POKEMONS DO USU
         ':id' => $this->id_usr
     ]);
     return $stmt->fetchAll();
+}
 }
