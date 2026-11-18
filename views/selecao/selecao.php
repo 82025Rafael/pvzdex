@@ -2,6 +2,7 @@
    session_start(); 
     $pokemons = $_SESSION['pokemons'] ?? []; // Pega os pokemons da sessão, se existir
     $inventario = $_SESSION['inventario'] ?? []; // Pega o inventario da sessão, se existir
+    echo $_SESSION['pokemons']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,28 +17,35 @@
 
     <div>Equipe selecionada</div>
     <div id="inventario">
-    <div>
-        <?php 
-        foreach ($inventario as $item) {
-            echo "<div class='item-card'>";
-            echo "<h3>{$item['nome_item']}</h3>";
-            echo "<p>Quantidade: {$item['quantidade_item']}</p>";
+        <?php
+        if (!empty($inventario)) {
+            foreach ($inventario as $item) {
+                $nome = $item['nome_item'] ?? 'Item';
+                $quantidade = $item['quantidade_item'] ?? 0;
+
+                echo "<div class='item-card'>";
+                echo "<h3>" . htmlspecialchars((string) $nome) . "</h3>";
+                echo "<p>Quantidade: " . htmlspecialchars((string) $quantidade) . "</p>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>Nenhum item no inventário.</p>";
+        }
+        ?>
+    </div>
+    <?php
+    if (!empty($pokemons)) {
+        foreach ($pokemons as $pokemon) {
+            echo "<div class='pokemon-card'>";
+            echo "<h3>" . htmlspecialchars((string) ($pokemon['nome_pkm'] ?? '')) . "</h3>";
+            echo "<p>Espécie: " . htmlspecialchars((string) ($pokemon['nome_esp'] ?? '')) . "</p>";
+            echo "<p>Vida: " . htmlspecialchars((string) ($pokemon['vida_restante_pkm'] ?? 0)) . "/" . htmlspecialchars((string) ($pokemon['vida_total_pkm'] ?? 0)) . "</p>";
             echo "</div>";
+        }
+    } else {
+        echo "<p>Nenhum Pokémon encontrado na sessão.</p>";
     }
-    ?></div>    
-</div>
-    <div id="pokemons">
-        <div>
-    <?php 
-    foreach ($pokemons as $pokemon) {
-    echo "<div class='pokemon-card'>"; 
-    echo "<h3>{$pokemon['nome_pkm']}</h3>";
-    echo "<p>Espécie: {$pokemon['nome_esp']}</p>";
-    echo "<p>Vida: {$pokemon['vida_restante_pkm']}/{$pokemon['vida_total_pkm']}</p>";
-    echo "</div>";
-    }?>
-    </div>
-    </div>
+    ?>
 
 </body>
 </html>

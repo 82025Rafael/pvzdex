@@ -2,7 +2,7 @@
 require_once '../config.php'; // conectando com o banco
 
 
-class usuario {
+class Usuario {
 
 private string $nome_usr;
 private string $senha;

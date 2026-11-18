@@ -3,7 +3,7 @@ require_once '../config.php'; // conecta com o banco
 session_start();
 
 $id_usr = $_SESSION['id_usr']; // pega o id do usuario logado
-$usuario = new Usuario(); // Cria um instancia da classe Usuario
+$usuario = new usuario(); // Cria um instancia da classe Usuario
 $usuario->setId($id_usr); // seta o id do usuario
 
 $_SESSION['pokemons'] = $usuario->PegarMeusPokemons();
