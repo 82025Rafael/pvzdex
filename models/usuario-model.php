@@ -27,7 +27,7 @@ public function getCor()
 public function getDinheiro()
 {return $this->dinheiro;}
 
-public function getIDusr()
+public function getID()
 {return $this->id_usr;}
 
 // SETTERS
@@ -48,7 +48,7 @@ public function setDinheiro(string $dinheiro)
 {$this->dinheiro = $dinheiro;}
 
 
-public function updateBD()
+public function updateBD() // ATUALIZAR NO BANCO DE DADOS
 {
 $pdo = connect();
     $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d where id_usr = :id"; 
@@ -62,7 +62,7 @@ $pdo = connect();
             ':id' => $this->$id_usr
          ]);
 
-}
+} // ======================================================================================================
 
 public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
 
@@ -80,7 +80,7 @@ $this->setNome($usuario['nome_usr']); // SETANDO OQ FOI RECUPERADO
 $this->setCor($usuario['cor_favorita']);
 $this->setDinheiro($usuario['dinheiro']);
 
-}
+} // ======================================================================================================
 
 
 

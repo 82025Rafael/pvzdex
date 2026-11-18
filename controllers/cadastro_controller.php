@@ -18,18 +18,11 @@ try{
     $usuario->cadastroUsr();
 
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
-$sql = "Select id_usr from usuario where nome_usr = :n"; // Select do id do usuario
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
-    ':n' => $nome_usr
-]);
-$id_usr = $stmt->fetch(PDO::FETCH_ASSOC); // Retorna o id do usuario como array associativo
-$id_usr = $id_usr['id_usr']; // extrai apenas o valor do id
+
+$id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
 
 //Insere Dispaervilha
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, 'Disparervilha', 11, 5, 6 )";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $id_usr]);
+
 //Insere Paparazzumbi
 $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, 'Paparazzumbi', 34, 11, 12 )";
 $stmt = $pdo->prepare($sql);
