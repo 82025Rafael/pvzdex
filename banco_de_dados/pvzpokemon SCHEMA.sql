@@ -206,7 +206,7 @@ insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Mirti
 
 insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Disparervilha', 2,10,1,3, '../imagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png');
 insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Ervilhadora', 10,40,5,3, '../imagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png');
-insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Batatossauro', 10,50,6,3, '');
+insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Batatossauro', 10,50,6,3, '../home/rrafael/pvzdex/ImagensPVZ/monstrinhos_campo/Crescida/Tater_titan.png');
 insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Repolho Boxeador', 4,10,1,3);
 insert into especie(nome_esp, forca , vida, veloc, id_tipo, foto) values ('Aneis de Cebola', 8,40,4,3);
 
