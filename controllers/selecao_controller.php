@@ -7,11 +7,6 @@ $usuario = new Usuario(); // Cria um instancia da classe Usuario
 $usuario->setId($id_usr); // seta o id do usuario
 
 $_SESSION['pokemons'] = $usuario->PegarMeusPokemons();
+$_SESSION['inventario'] = $usuario->pegarMeuInventario();
 
-foreach ($_SESSION['pokemons'] as $pokemon) {
-    echo "<div class='pokemon-card'>"; 
-    echo "<h3>{$pokemon['nome_pkm']}</h3>";
-    echo "<p>Espécie: {$pokemon['nome_esp']}</p>";
-    echo "<p>Vida: {$pokemon['vida_restante_pkm']}/{$pokemon['vida_total_pkm']}</p>";
-    echo "</div>";
-}
+header("location:../views/selecao/selecao.php");
