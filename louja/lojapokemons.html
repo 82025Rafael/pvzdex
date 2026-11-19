@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazar do Rux - Minions</title>
+    <link rel="stylesheet" href="lojaCSS.css">
+</head>
+<body class="tema-pokemons">
+
+    <a href="lojainicial.html" class="back-btn">⬅ Voltar</a>
+
+    <div class="shop-container">
+        <h2> Monstros do Rux </h2>
+        <h3 id="category-title">Plantas - Explosivo & Crescida</h3>
+        
+        <div class="carousel-wrapper">
+            <button class="arrow-btn" onclick="changePage(-1)">&#10094;</button>
+
+            <div class="pages-container">
+
+                <!-- PÁGINA 1 -->
+                <div class="page active">
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Explosivo<br>ATK: 4 | HP: 20 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png" alt="Uvas Azedas" class="item-img">
+                        <h3 class="item-name">Uvas Azedas</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Uvas Azedas', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Explosivo<br>ATK: 0 | HP: 30 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png" alt="Lança-Banana" class="item-img">
+                        <h3 class="item-name">Lança-Banana</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Lança-Banana', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Explosivo<br>ATK: 6 | HP: 30 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Bluesberry.png" alt="Mirtilartista" class="item-img">
+                        <h3 class="item-name">Mirtilartista</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Mirtilartista', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Explosivo<br>ATK: 12 | HP: 60 | Custo: 8</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png" alt="Coronel Milho" class="item-img">
+                        <h3 class="item-name">Coronel Milho</h3>
+                        <p class="item-price">$ 400</p>
+                        <button class="buy-btn" onclick="comprarItem('Coronel Milho', 400)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Explosivo<br>ATK: 2 | HP: 20 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png" alt="Nabossauro Bebê" class="item-img">
+                        <h3 class="item-name">Nabossauro Bebê</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Nabossauro Bebê', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Crescida<br>ATK: 2 | HP: 10 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png" alt="Disparervilha" class="item-img">
+                        <h3 class="item-name">Disparervilha</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Disparervilha', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Crescida<br>ATK: 10 | HP: 40 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png" alt="Ervilhadora" class="item-img">
+                        <h3 class="item-name">Ervilhadora</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Ervilhadora', 300)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Crescida<br>ATK: 10 | HP: 50 | Custo: 6</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Crescida/Tater_titan.png" alt="Batatossauro" class="item-img">
+                        <h3 class="item-name">Batatossauro</h3>
+                        <p class="item-price">$ 350</p>
+                        <button class="buy-btn" onclick="comprarItem('Batatossauro', 350)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Crescida<br>ATK: 4 | HP: 10 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Crescida/Hd_bonk.png" alt="Repolho Boxeador" class="item-img">
+                        <h3 class="item-name">Repolho Boxeador</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Repolho Boxeador', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Crescida<br>ATK: 8 | HP: 40 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Crescida/Onion_Rings_HD.png" alt="Aneis de Cebola" class="item-img">
+                        <h3 class="item-name">Aneis de Cebola</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Aneis de Cebola', 250)">Recrutar</button>
+                    </div>
+                </div>
+                                  
+                <!-- PÁGINA 2 -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Esperto<br>ATK: 4 | HP: 20 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Esperto/Shooting_Starfruit_HD.png" alt="Carambola Cadente" class="item-img">
+                        <h3 class="item-name">Carambola Cadente</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Carambola Cadente', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Esperto<br>ATK: 6 | HP: 30 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Esperto/SnapdragonPvZH.png" alt="Boca-De-Dragão" class="item-img">
+                        <h3 class="item-name">Boca-De-Dragão</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Boca-De-Dragão', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Esperto<br>ATK: 4 | HP: 20 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Esperto/SnowpeaHD.png" alt="Gelerilha" class="item-img">
+                        <h3 class="item-name">Gelerilha</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Gelerilha', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Esperto<br>ATK: 12 | HP: 60 | Custo: 8</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Esperto/Deep_Space_Dragonfruit_HD.png" alt="Pitaya de Matéria-Escura" class="item-img">
+                        <h3 class="item-name">Pitaya de Matéria-Escura</h3>
+                        <p class="item-price">$ 400</p>
+                        <button class="buy-btn" onclick="comprarItem('Pitaya de Matéria-Escura', 400)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Esperto<br>ATK: 6 | HP: 20 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Esperto/HD_Cattail_(PvZH).png" alt="Typha" class="item-img">
+                        <h3 class="item-name">Typha</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Typha', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Protetor<br>ATK: 2 | HP: 60 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png" alt="Noz Obstáculo" class="item-img">
+                        <h3 class="item-name">Noz Obstáculo</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Noz Obstáculo', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Protetor<br>ATK: 4 | HP: 50 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png" alt="Cacto" class="item-img">
+                        <h3 class="item-name">Cacto</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Cacto', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Protetor<br>ATK: 2 | HP: 20 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png" alt="Tricenourátops" class="item-img">
+                        <h3 class="item-name">Tricenourátops</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Tricenourátops', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Protetor<br>ATK: 6 | HP: 30 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png" alt="Planterna" class="item-img">
+                        <h3 class="item-name">Planterna</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Planterna', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Protetor<br>ATK: 0 | HP: 10 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png" alt="Batatamina" class="item-img">
+                        <h3 class="item-name">Batatamina</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Batatamina', 100)">Recrutar</button>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 3 -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Solar<br>ATK: 2 | HP: 10 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Solar/Sunflower.png" alt="Girassol" class="item-img">
+                        <h3 class="item-name">Girassol</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Girassol', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Solar<br>ATK: 6 | HP: 50 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Solar/Power_Flower.png" alt="Flor Elétrica" class="item-img">
+                        <h3 class="item-name">Flor Elétrica</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Flor Elétrica', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Solar<br>ATK: 8 | HP: 70 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Solar/Aloesauru.png" alt="Babosassauro" class="item-img">
+                        <h3 class="item-name">Babosassauro</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Babosassauro', 300)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Solar<br>ATK: 4 | HP: 30 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Solar/Chomper.png" alt="Carnivora" class="item-img">
+                        <h3 class="item-name">Carnivora</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Carnivora', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Solar<br>ATK: 4 | HP: 10 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/Solar/EyeSpore.png" alt="Zoiudo" class="item-img">
+                        <h3 class="item-name">Zoiudo</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Zoiudo', 150)">Recrutar</button>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 4 -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Miolástico<br>ATK: 6 | HP: 50 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/miolástico/cientista.png" alt="Quimico Louco" class="item-img">
+                        <h3 class="item-name">Quimico Louco</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Quimico Louco', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Miolástico<br>ATK: 4 | HP: 50 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/miolástico/Zomblob.png" alt="Zumbolha" class="item-img">
+                        <h3 class="item-name">Zumbolha</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbolha', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Miolástico<br>ATK: 6 | HP: 60 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/miolástico/zumbiguardasol.png" alt="Zumbi Guarda-Sol" class="item-img">
+                        <h3 class="item-name">Zumbi Guarda-Sol</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbi Guarda-Sol', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Miolástico<br>ATK: 4 | HP: 20 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/miolástico/leprechau.png" alt="Zumbinho Leprechaun" class="item-img">
+                        <h3 class="item-name">Zumbinho Leprechaun</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbinho Leprechaun', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Miolástico<br>ATK: 2 | HP: 10 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/miolástico/Paparazzi.png" alt="Paparazzumbi" class="item-img">
+                        <h3 class="item-name">Paparazzumbi</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Paparazzumbi', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Doidão<br>ATK: 5 | HP: 50 | Custo: 6</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/doidões/zumbigigantetóxico.png" alt="Gigante Gasoso" class="item-img">
+                        <h3 class="item-name">Gigante Gasoso</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Gigante Gasoso', 300)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Doidão<br>ATK: 6 | HP: 40 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/doidões/soldado.png" alt="Zumbi Soldado" class="item-img">
+                        <h3 class="item-name">Zumbi Soldado</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbi Soldado', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Doidão<br>ATK: 6 | HP: 10 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/doidões/zumbidodisco.png" alt="Zumbi Dançarino" class="item-img">
+                        <h3 class="item-name">Zumbi Dançarino</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbi Dançarino', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Doidão<br>ATK: 10 | HP: 50 | Custo: 6</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/doidões/DiscoTron3000.png" alt="Discotron 3000" class="item-img">
+                        <h3 class="item-name">Discotron 3000</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Discotron 3000', 300)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Doidão<br>ATK: 0 | HP: 60 | Custo: 4</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/doidões/valkiria.png" alt="Valquiria" class="item-img">
+                        <h3 class="item-name">Valquiria</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Valquiria', 250)">Recrutar</button>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 5 -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Feroz<br>ATK: 2 | HP: 10 | Custo: 0</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/feroz/cabra.png" alt="Cabra" class="item-img">
+                        <h3 class="item-name">Cabra</h3>
+                        <p class="item-price">$ 50</p>
+                        <button class="buy-btn" onclick="comprarItem('Cabra', 50)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Feroz<br>ATK: 2 | HP: 30 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/feroz/cabrafuturo.png" alt="Planador Cabra 3000" class="item-img">
+                        <h3 class="item-name">Planador Cabra 3000</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Planador Cabra 3000', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Feroz<br>ATK: 10 | HP: 50 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/feroz/Montobronto.png" alt="Brontaco" class="item-img">
+                        <h3 class="item-name">Brontaço</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Brontaco', 300)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Feroz<br>ATK: 4 | HP: 10 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/feroz/zumbifantasma.png" alt="Zumbi Assombrado" class="item-img">
+                        <h3 class="item-name">Zumbi Assombrado</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbi Assombrado', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Feroz<br>ATK: 6 | HP: 20 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/feroz/zumbigolfinho.png" alt="Cavaleiro do Golfinho" class="item-img">
+                        <h3 class="item-name">Cavaleiro do Golfinho</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Cavaleiro do Golfinho', 150)">Recrutar</button>
+                    </div>
+
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Furtivo<br>ATK: 4 | HP: 20 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/furtivos/zumbinhosalcinha.png" alt="Zumbinho Salsicha" class="item-img">
+                        <h3 class="item-name">Zumbinho Salsicha</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbinho Salsicha', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Furtivo<br>ATK: 4 | HP: 20 | Custo: 1</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/furtivos/galinha.png" alt="Galinha Zumbi" class="item-img">
+                        <h3 class="item-name">Galinha Zumbi</h3>
+                        <p class="item-price">$ 100</p>
+                        <button class="buy-btn" onclick="comprarItem('Galinha Zumbi', 100)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Furtivo<br>ATK: 6 | HP: 10 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/furtivos/galodefogo.png" alt="Galo de Fogo" class="item-img">
+                        <h3 class="item-name">Galo de Fogo</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Galo de Fogo', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Furtivo<br>ATK: 6 | HP: 40 | Custo: 5</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/furtivos/zumbidegelo.png" alt="Yeti Criogênico" class="item-img">
+                        <h3 class="item-name">Yeti Criogênico</h3>
+                        <p class="item-price">$ 250</p>
+                        <button class="buy-btn" onclick="comprarItem('Yeti Criogênico', 250)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Furtivo<br>ATK: 10 | HP: 50 | Custo: 6</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/furtivos/HDSHARK.png" alt="Zumbô SubTubarôotrônico" class="item-img">
+                        <h3 class="item-name">Zumbô SubTubarôotrônico</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbô SubTubarôotrônico', 300)">Recrutar</button>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 6 -->
+                <div class="page">
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Vigoroso<br>ATK: 12 | HP: 10 | Custo: 7</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/vigoroso/devastador.png" alt="Aspirante a Herói" class="item-img">
+                        <h3 class="item-name">Aspirante a Herói</h3>
+                        <p class="item-price">$ 350</p>
+                        <button class="buy-btn" onclick="comprarItem('Aspirante a Herói', 350)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Vigoroso<br>ATK: 4 | HP: 30 | Custo: 2</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/vigoroso/zumbisumo.png" alt="Zumbi Sumô" class="item-img">
+                        <h3 class="item-name">Zumbi Sumô</h3>
+                        <p class="item-price">$ 150</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbi Sumô', 150)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Vigoroso<br>ATK: 4 | HP: 20 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/vigoroso/allstarcosmico.png" alt="All-Star Cósmico" class="item-img">
+                        <h3 class="item-name">All-Star Cósmico</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('All-Star Cósmico', 200)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Vigoroso<br>ATK: 8 | HP: 60 | Custo: 6</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/vigoroso/faraó.png" alt="Faraó Imortal" class="item-img">
+                        <h3 class="item-name">Faraó Imortal</h3>
+                        <p class="item-price">$ 300</p>
+                        <button class="buy-btn" onclick="comprarItem('Faraó Imortal', 300)">Recrutar</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="tooltip">Tipo: Vigoroso<br>ATK: 2 | HP: 40 | Custo: 3</div>
+                        <img src="../ImagensPVZ/monstrinhos_campo/vigoroso/zumbinhogalinha.png" alt="Zumbi Mascote de Time" class="item-img">
+                        <h3 class="item-name">Zumbi Mascote de Time</h3>
+                        <p class="item-price">$ 200</p>
+                        <button class="buy-btn" onclick="comprarItem('Zumbi Mascote de Time', 200)">Recrutar</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="arrow-btn" onclick="changePage(1)">&#10095;</button>
+        </div>
+
+        <div class="page-indicator">
+            Página <span id="current-page">1</span> de 6
+        </div>
+    </div>
+
+    <script>
+        let currentPageIndex = 0;
+        const pages = document.querySelectorAll('.page');
+        const pageIndicator = document.getElementById('current-page');
+        const categoryTitle = document.getElementById('category-title');
+        
+        const titles = [
+            "Plantas - Explosivo & Crescida",
+            "Plantas - Esperto & Protetor",
+            "Plantas - Solar",
+            "Zumbis - Miolástico & Doidão",
+            "Zumbis - Feroz & Furtivo",
+            "Zumbis - Vigoroso"
+        ];
+
+        function changePage(direction) {
+            pages[currentPageIndex].classList.remove('active');
+            currentPageIndex += direction;
+
+            if (currentPageIndex >= pages.length) {
+                currentPageIndex = 0;
+            } else if (currentPageIndex < 0) {
+                currentPageIndex = pages.length - 1;
+            }
+
+            pages[currentPageIndex].classList.add('active');
+            pageIndicator.innerText = currentPageIndex + 1;
+            
+            categoryTitle.innerText = titles[currentPageIndex];
+        }
+
+        function comprarItem(nome, preco) {
+            alert(`Você recrutou: ${nome}\nCusto: $${preco}`);
+        }
+    </script>
+</body>
+</html>
