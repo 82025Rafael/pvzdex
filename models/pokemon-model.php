@@ -76,7 +76,7 @@ class pokemon {
       
       ]);
       
-   }
+   } // FIM METODO INSERT =======================================================================================
 
    public function load(){ // CARREGAR DADOS DO POKEMON FROM BANCO
 

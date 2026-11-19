@@ -23,7 +23,7 @@ $id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
 $pokemon = new pokemon();
 $especie = new especie();
 
-//Insere Dispaervilha
+//Insere Disparervilha
 
 $pokemon->setUsr($id_usr);
 

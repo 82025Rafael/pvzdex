@@ -7,7 +7,6 @@ private int $id_item;
 private int $preco_item;
 private string $desc_item;
 private string $foto;
-private int $id_usr;
 
 // GETTERS
 
@@ -30,6 +29,10 @@ public function getDesc()
 public function getFoto()
 {return $this->foto;}
 
+public function getUsr()
+{return $this->id_usr;}
+
+
 // SETTERS
 
 public function setNome(string $nome_item)
@@ -51,6 +54,9 @@ public function setDesc(string $desc_item)
 public function setFoto(string $foto)
 {$this->foto = $foto;}
 
+public function setUsr(int $id_usr)
+{$this->id_usr = $id_usr;}
+
 
  public function load(){ // CARREGAR DADOS DO ITEM FROM BANCO
 
@@ -69,9 +75,8 @@ public function setFoto(string $foto)
     $this->setDesc($item['desc_item']);
     $this->setFoto($item['foto']); 
 
-
-
     } // ======================================================================================================
+
 }
 
 
