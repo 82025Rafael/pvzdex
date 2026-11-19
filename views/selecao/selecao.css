@@ -1,6 +1,8 @@
 .pokemon-card{
     background-color: lightgray;
+
 }
 #pokemons #inventario {
-    background-color: darkgray;
+    background-color: rgb(255, 0, 0);
+    border: 1px solid black;
 }

@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Pokemons</title>
+    <link rel="stylesheet" href="selecao.css">
 </head>
 <body>
     <h1>Selecione seu time!</h1>
@@ -43,7 +44,7 @@
                 echo "</div>";
             }
         } else {
-            echo "<p>Nenhum item no inventário.</p>";
+            echo "<p >Nenhum item no inventário.</p>";
         }
         ?>
     </div>
