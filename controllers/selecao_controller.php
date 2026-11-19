@@ -9,17 +9,7 @@ $usuario->load();
 
 $especie = new especie();
 
-$pokemons = $usuario->PegarMeusPokemons();
+$_SESSION['pokemons'] = $usuario->PegarMeusPokemons();
+$_SESSION['inventario'] = $usuario->pegarMeuInventario();
 
-foreach ($pokemons as $pokemon) {
-
-    $especie->setId($pokemon['id_esp']);
-    $especie->load();
-
-    echo "<div style='background-color:{$usuario->getCor()}'>"; 
-    echo "<h3>{$pokemon['nome_pkm']}</h3>";
-    echo "<p>Espécie: {$especie->getNome()}</p>";
-    echo"<p>Vida: {$pokemon['vida_atual']}/{$especie->getVida()}</p>";
-    echo "</div>";
-   
-}
+header("location:../views/selecao/selecao.php");

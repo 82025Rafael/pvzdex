@@ -168,4 +168,6 @@ public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO CO
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-}   
+
+
+}
