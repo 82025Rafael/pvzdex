@@ -152,7 +152,10 @@ return $usr['id_usr'];
 } // FIM METODO LOGIN  ==============================================================================
 public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
     $pdo = connect();
-    $sql = "SELECT nome_pkm, id_esp, vida_atual FROM pokemon where id_usr = :id ";
+    $sql = "SELECT nome_pkm, nome_esp, vida_atual, vida_max, foto 
+    FROM pokemon 
+    JOIN especie on pokemon.id_esp = especie.id_esp
+    where id_usr = :id ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_usr

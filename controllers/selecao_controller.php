@@ -9,7 +9,7 @@ $usuario->load();
 
 $especie = new especie();
 
-$_SESSION['pokemons'] = $usuario->PegarMeusPokemons();
+$_SESSION['pokemons'] = ;
 $_SESSION['inventario'] = $usuario->pegarMeuInventario();
 
 header("location:../views/selecao/selecao.php");
