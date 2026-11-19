@@ -7,7 +7,8 @@ nome_usr varchar(100) not null unique,
 id_usr int auto_increment primary key,
 senha varchar(20) not null,
 cor_favorita char(7) default '#00bfff',
-dinheiro int default 500
+dinheiro int default 500,
+foto varchar(200)
 
 );
 
@@ -111,9 +112,11 @@ id_usr int not null,
 id_item int not null,
 quant_item int not null,
 
+
+primary key (id_usr, id_item),
 foreign key (id_usr) references usuario(id_usr),
 foreign key (id_item) references item(id_item)
-constraint usuario_item primary key (id_usr, id_item) 
+
 
 );
 
