@@ -7,6 +7,7 @@ private int $id_item;
 private int $preco_item;
 private string $desc_item;
 private string $foto;
+private int $id_usr;
 
 // GETTERS
 
@@ -54,7 +55,7 @@ public function setFoto(string $foto)
  public function load(){ // CARREGAR DADOS DO ITEM FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_item, preco_item, desc_item, foto from item where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_item, preco_item, desc_item, foto, id_usr join inventario v on item.id_item = v.id_item from item where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_esp
