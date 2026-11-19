@@ -1,5 +1,5 @@
 <?php
-class especie{
+class Especie{
     private string $nome_esp;
     private int $id_esp;
 

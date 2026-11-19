@@ -22,7 +22,7 @@ $_SESSION['id_usr'] = '';
 <div class="menuzin">
 
     <form action="../controllers/login_controller.php" method="POST">
-     <h1>Login</h1> <br>
+     <h1 style= "text-decoration:underline">Login</h1> <br>
         <label><h2>Usuário </h2></label>
         <input type="text" id="nome_usr" name="nome_usr" required>
                 <br><br>

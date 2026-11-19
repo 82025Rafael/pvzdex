@@ -2,12 +2,13 @@
 * {
   margin: 0;
   padding: 0;
+  font-family:"Comic Sans MS";
 }
 
 body{
 
     height: 100vh;
-    width: 100vw;
+    width: 99vw;
 background-image:url("../imagensPVZ/Cenários/teladetitulo.png");
 background-attachment: fixed;
 background-size: cover;
@@ -15,6 +16,14 @@ display: flex;
 justify-content:center;
 align-items: center;
 font-family: "ink"
+
+}
+
+
+.fotoPerfil{
+
+border: 3px solid white;
+border-radius: 100%;
 
 }
 
@@ -29,8 +38,9 @@ font-family: "ink"
 
     
     width:30%;
-    height:50%;
-   
+    height:auto;
+    padding: 2%;
+
     border-radius:5%;
 
 }
@@ -77,5 +87,10 @@ input{
     border-width:5%;
     font-size:130%;
     color:white;
+
+}
+
+input.inputFoto{ font-size:70%;;
+
 
 }

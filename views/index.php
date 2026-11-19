@@ -36,6 +36,7 @@
  
 
     <h3> Bem-vindo(a), <?= $usuario->getNome();?>!! </h3> <br>
+    <img class = "fotoPerfil" src='<?=$usuario->getFoto();?>' width = 250vw height = 250vh> <br>
 
     
                     

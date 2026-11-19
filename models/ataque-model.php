@@ -1,5 +1,5 @@
 <?php
-class ataque{
+class Ataque{
 
     private int $id_atk;
     private string $nome;

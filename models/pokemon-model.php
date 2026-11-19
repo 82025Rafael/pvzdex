@@ -1,6 +1,6 @@
 <?php
 require_once '../config.php';
-class pokemon {
+class Pokemon {
     
    private int $id_pkm;
    private string $nome_pkm;

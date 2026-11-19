@@ -1,6 +1,7 @@
 <?php
 
 require_once '../config.php'; // conectando com o banco
+session_start();
 
     $nome_usr = htmlspecialchars($_POST['nome_usr']);   
     $senha = htmlspecialchars($_POST['senha']);
@@ -9,8 +10,67 @@ require_once '../config.php'; // conectando com o banco
     $usuario = new usuario(); // CRIANDO CLASSE DO USUARIO
     $usuario->setNome($nome_usr);
 
-    if($usuario->SeraQueExisteNome())
-        {header('location:../views/cadastro.php');}
+    if($usuario->SeraQueExisteNome()) // ESSE USUARIO JA EXISTE COM ESSE NOME????
+        {header('location:../views/cadastro.php');
+        exit;}
+
+
+ $destino = "../uploads/"; // PRA ONDE AS FOTOS VAO SER UPADAS
+    if (!is_dir($destino)) // SERA QUE EXISTE O DESTINO?
+        {mkdir($destino, 0777, true);} // CRIA
+
+    if(isset($_FILES["arquivo"])){ // FEZ UPLOAD?
+    $arquivo = $_FILES["arquivo"];
+
+    $arquivo;
+     ; // AONDE ELE ESTARÁ NO FIM
+    $extensao = strtolower(pathinfo($arquivo["name"], PATHINFO_EXTENSION)); // 
+
+    $NomeArquivo = uniqid() . "." . $extensao;
+    $caminho = $destino . $NomeArquivo;
+
+    $tamMax = 4 * 1024 * 1024; // 4 MB
+
+    try{
+        if($arquivo["size"] > $tamMax)
+        throw new Exception("Arquivo Muito Grande!");
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['erroCadastro'] = $e->getMessage();
+        header("location:../views/cadastro.php");
+        exit;
+    }
+    
+    $extensoesPermitidas = ["png", "jpg", "gif"];
+
+    try{
+
+    if(in_array($extensao, $extensoesPermitidas))
+        {
+          move_uploaded_file($arquivo['tmp_name'], $caminho);
+
+        }
+    else{
+        throw new Exception("Tipo de arquivo inválido");
+       
+    }    
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['erroCadastro'] = $e->getMessage();
+        header("location:../views/cadastro.php");
+         exit;
+    }
+     // VOLTANDO A EXCESSAO
+   
+    
+    }
+
+    $usuario->setFoto($caminho);
+
+
+
 try{
 
     $usuario->setSenha($senha);
@@ -20,8 +80,8 @@ try{
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
 
 $id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
-$pokemon = new pokemon();
-$especie = new especie();
+$pokemon = new Pokemon();
+$especie = new Especie();
 
 //Insere Disparervilha
 

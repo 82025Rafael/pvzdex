@@ -1,5 +1,5 @@
 <?php
-class condicao{
+class Condicao{
     private int $id_cond;
     private string $nome_cond;
     private string $efeito;
