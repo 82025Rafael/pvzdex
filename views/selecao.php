@@ -1,4 +1,4 @@
-<?php require_once '../selecao_controller.php';?>
+<?php require_once '../config.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,10 @@
     <div>Itens de cura</div>
     <div>Itens de evolução</div>    
     <div>Pokemons do usuario</div>
+
+    <?php $item = new item(); $item->setId(2); $item->load();?> 
+
+    <img src=<?=$item->getFoto();?>
 
 </body>
 </html>

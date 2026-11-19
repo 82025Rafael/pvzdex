@@ -55,10 +55,10 @@ public function setFoto(string $foto)
  public function load(){ // CARREGAR DADOS DO ITEM FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_item, preco_item, desc_item, foto, id_usr join inventario v on item.id_item = v.id_item from item where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_item, preco_item, desc_item, foto, id_usr from item left join inventario v on item.id_item = v.id_item where item.id_item = :id" ; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':id' => $this->id_esp
+        ':id' => $this->id_item
     ]);
     $item = $stmt->fetch(); // ENFIA TUDO NUM VETOR
 
@@ -76,7 +76,4 @@ public function setFoto(string $foto)
 
 
 
-
-
-}
 ?>
