@@ -1,7 +1,7 @@
 <?php
 
 require_once '../config.php'; // conectando com o banco
-    
+
     $nome_usr = htmlspecialchars($_POST['nome_usr']);   
     $senha = htmlspecialchars($_POST['senha']);
     $cor_favorita = htmlspecialchars($_POST['cor']);
@@ -18,26 +18,52 @@ try{
     $usuario->cadastroUsr();
 
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
-$sql = "Select id_usr from usuario where nome_usr = :n"; // Select do id do usuario
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
-    ':n' => $nome_usr
-]);
-$id_usr = $stmt->fetch(PDO::FETCH_ASSOC); // Retorna o id do usuario como array associativo
-$id_usr = $id_usr['id_usr']; // extrai apenas o valor do id
 
-//Insere Dispaervilha
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, 'Disparervilha', 11, 5, 6 )";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $id_usr]);
+$id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
+$pokemon = new pokemon();
+$especie = new especie();
+
+//Insere Disparervilha
+
+$pokemon->setUsr($id_usr);
+
+$especie->setId(11);
+$especie->load();
+
+$pokemon->setEsp($especie->getId());
+$pokemon->setNome($especie->getNome());
+$pokemon->setAtk1(5);
+$pokemon->setAtk2(6);
+$pokemon->setVida($especie->getVida());
+
+$pokemon->insert();
+
 //Insere Paparazzumbi
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id, 'Paparazzumbi', 34, 11, 12 )";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $id_usr]);
+
+
+$especie->setId(35);
+$especie->load();
+
+$pokemon->setEsp($especie->getId());
+$pokemon->setNome($especie->getNome());
+$pokemon->setAtk1(11);
+$pokemon->setAtk2(20);
+$pokemon->setVida($especie->getVida());
+
+$pokemon->insert();
+
 //Insere Girassol
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1,id_atk2) values (:id,  'Girassol', 20, 9, 10)";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $id_usr]);
+
+$especie->setId(21);
+$especie->load();
+
+$pokemon->setEsp($especie->getId());
+$pokemon->setNome($especie->getNome());
+$pokemon->setAtk1(9);
+$pokemon->setAtk2(10);
+$pokemon->setVida($especie->getVida());
+
+$pokemon->insert();
 //Redireciona para o index
 header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {

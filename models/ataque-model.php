@@ -1,16 +1,20 @@
 <?php
 class ataque{
+
     private int $id_atk;
     private string $nome;
 
-    private tipo $ipo;
+    private int $id_tipo;
 
     private float $mult_dano;
     private int $priori;    //prioridade do ataque, quanto menor, mas rapido ele é
     private string $desc;   //descrição do ataque
     
-    private condicao $condicao;
+    private int $id_cond;
     private float $chance_condicao;
+
+
+    // GETTERS
 
     public function getId(){
         return $this->id_atk;
@@ -21,44 +25,70 @@ class ataque{
     public function getTipo(){
         return $this->ipo;
     }
-    public function getMultDano(){
+    public function getDano(){
         return $this->mult_dano;
     }
-    public function getPrioridade(){
+    public function getPriori(){
         return $this->priori;
     }
     public function getDesc(){
         return $this->desc;
     }
-    public function getCondicao(){
+    public function getCond(){
         return $this->condicao;
     }
-    public function getChanceCondicao(){
+    public function getChance(){
         return $this->chance_condicao;
     }
 
-    public function setId($id_atk){
+
+    // SETTERS
+
+    public function setId(int $id_atk){
         $this->id_atk = $id_atk;
     }
-    public function setNome($nome){
+    public function setNome(string $nome){
         $this->nome = $nome;
     }
-    public function setTipo($ipo){
-        $this->ipo = $ipo;
+    public function setTipo(int $id_tipo){
+        $this->ipo = $id_tipo;
     }
-    public function setMultDano($mult_dano){
+    public function setDano(float $mult_dano){
         $this->mult_dano = $mult_dano;
     }
-    public function setPrioridade($priori){
+    public function setPriori(int $priori){
         $this->priori = $priori;
     }
-    public function setDesc($desc){
+    public function setDesc(string $desc){
         $this->desc = $desc;
     }
-    public function setCondicao($condicao){
-        $this->condicao = $condicao;
+    public function setCond(int $id_cond){
+        $this->condicao = $id_cond;
     }
-    public function setChanceCondicao($chance_condicao){
+    public function setChance($chance_cond){
         $this->chance_condicao = $chance_condicao;
     }
+
+    public function load(){ // CARREGAR DADOS DO ATAQUE FROM BANCO
+
+    $pdo = connect();
+    $sql = "select nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond from ataque where id_atk = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':id' => $this->id_tipo
+    ]);
+    $atk = $stmt->fetch(); // ENFIA TUDO NUM VETOR
+
+    //var_dump($atk);
+    
+    $this->setNome($atk['nome_atk']); // SETANDO OQ FOI RECUPERADO
+    $this->setTipo($atk['id_tipo']); 
+    $this->setDano($atk['mult_dano']); 
+    $this->setPriori($atk['priori']); 
+    $this->setDesc($atk['desc_atk']);
+    $this->setCond($atk['id_cond']);
+    $this->setChance($atk['chance_cond']); 
+
+    } // ======================================================================================================
+
 }
