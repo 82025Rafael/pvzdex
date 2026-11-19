@@ -6,12 +6,13 @@
     <title>Bazar do Rux - Itens</title>
     <link rel="stylesheet" href="lojaCSS.css">
 </head>
-<body>
+<!-- Adicionado a classe tema-pokemons para herdar a moldura e o botão dourado -->
+<body class="tema-pokemons">
 
     <a href="lojainicial.html" class="back-btn">⬅ Voltar</a>
 
     <div class="shop-container">
-        <h2>🧪 Itens do Rux 🌻</h2>
+        <h2> Itens do Rux </h2>
         <h3 id="category-title">Itens de Cura</h3>
         
         <div class="carousel-wrapper">
@@ -255,6 +256,27 @@
         function comprarItem(nome, preco) {
             alert(`Você tentou comprar: ${nome}\nPreço: $${preco}`);
         }
+
+        // Navegação pelas setas do teclado (← página anterior | → próxima página).
+        document.addEventListener('keydown', function (event) {
+            const elemento = event.target;
+            const digitando = elemento && (
+                elemento.isContentEditable ||
+                ['INPUT', 'TEXTAREA', 'SELECT'].includes(elemento.tagName)
+            );
+
+            if (digitando || event.altKey || event.ctrlKey || event.metaKey) {
+                return;
+            }
+
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                changePage(-1);
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                changePage(1);
+            }
+        });
     </script>
 </body>
 </html>

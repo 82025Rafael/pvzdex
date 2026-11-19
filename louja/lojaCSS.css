@@ -4,14 +4,10 @@
    VARIÁVEIS DE TEMA (CORES)
    ========================================= */
 :root {
-    /* Tema Padrão (Itens - Rosa) */
-    
     --cor-preco: #00ff00;
 }
 
 body.tema-pokemons {
-    /* Tema Pokémons (Verde) */
-
     --cor-preco: #f8e9a1;
 }
 
@@ -37,23 +33,29 @@ body {
    BALÃO DE FALA (MENU INICIAL)
    ========================================= */
 .pixel-bubble {
-    position: relative;
+    position: absolute; 
+    top: 10px;
+    right: 5%;
+    left: auto;
+    transform: none; 
     background-color: #ffffff;
-    border: 5px solid #000000;
+    border: 4px solid #000000;
     border-radius: 12px; 
-    padding: 30px 40px 40px 40px;
-    width: 90%;
-    max-width: 650px;
+    padding: 15px 30px 25px 30px;
+    width: 65%;
+    max-width: 900px;   
     text-align: center;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.8), inset -4px -4px 0px rgba(0,0,0,0.1);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.8), inset -4px -4px 0px rgba(0,0,0,0.1);
     color: #000;
+    z-index: 10;
 }
 
 .pixel-bubble::after {
     content: '';
     position: absolute;
     bottom: -25px;
-    left: 60px;
+    left: 15%;
+    margin-left: -20px; 
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
@@ -65,8 +67,9 @@ body {
 .pixel-bubble::before {
     content: '';
     position: absolute;
-    bottom: -34px;
-    left: 56px;
+    bottom: -31px;
+    left: 15%;
+    margin-left: -24px; 
     width: 0;
     height: 0;
     border-left: 24px solid transparent;
@@ -74,39 +77,6 @@ body {
     border-top: 30px solid #000000;
     z-index: 1;
 }
-
-.pixel-bubble h2 {
-    font-family: 'VT323', monospace;
-    font-size: 34px;
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #ff00ff;
-    text-shadow: 1px 1px 0px #000;
-    letter-spacing: 1px;
-}
-
-.pixel-bubble p {
-    font-size: 17px;
-    line-height: 1.4;
-    margin-bottom: 15px;
-    color: #222; 
-    font-weight: 600;
-}
-
-.pixel-bubble ul {
-    text-align: left;
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 0 auto 25px auto;
-    padding-left: 20px;
-    max-width: 90%;
-    color: #333;
-    font-weight: 500;
-}
-
-.pixel-bubble li { margin-bottom: 8px; }
-.pixel-bubble strong { color: #d900d9; }
-
 
 /* =========================================
    BOTÕES DO MENU INICIAL
@@ -147,17 +117,36 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: #8b5a2b;
+    background-color: #2b8b33;
     color: white;
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
-    border: 2px solid #5c3a21;
+    border: 2px solid #215c26;
     transition: 0.3s;
     z-index: 1000;
 }
-.back-btn:hover { background-color: #5c3a21; }
+.back-btn:hover { background-color: #215c33; }
+
+/* NOVO: CAIXA DE DINHEIRO */
+.money-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #f8e9a1; /* Cor dourada */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #d2b65c; /* Borda dourada */
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
 .shop-container {
     padding: 20px;
@@ -181,19 +170,18 @@ body {
     margin: 0 auto;
 }
 
-/* SUBTÍTULO CORRIGIDO (Fundo transparente igual ao título) */
-.shop-container h3 {
+.shop-container > h3 {
     text-align: center;
     margin: 0 0 15px 0;
     color: #ffffff;
     font-size: 18px;
     text-shadow: 1px 1px 3px #000;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo preto transparente */
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 20px;
     border-radius: 20px;
     width: fit-content;
     margin: 0 auto 15px auto;
-    border: 1px solid var(--cor-tema); /* Mantém a borda colorida */
+    border: 1px solid var(--cor-tema);
 }
 
 .carousel-wrapper {
@@ -204,13 +192,14 @@ body {
 }
 
 /* =========================================
-   BOTÕES DE SETA (MÃO DO ZUMBI)
+   BOTÕES DE SETA (MÃO DO ZUMBI) - CORRIGIDO
    ========================================= */
 .arrow-btn {
     background-color: transparent;
     border: none;
-    width: 240px; 
-    height: 240px;
+    width: 150px; 
+    height: 75px;
+    flex: 0 0 150px;
     background-image: url('../ImagensPVZ/Cenários/maozumbiesquerda.png'); 
     background-size: contain;
     background-repeat: no-repeat;
@@ -225,7 +214,6 @@ body {
     transform: scale(1.1);
 }
 
-/* ESPELHA A MÃO PARA A DIREITA */
 #next-btn {
     transform: scaleX(-1); 
 }
@@ -237,14 +225,20 @@ body {
 .pages-container {
     flex-grow: 1;
     overflow: visible; 
+    min-height: 650px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .page { display: none; }
 
 .page.active {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 80px 15px; 
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 80px 15px;
+    align-items: stretch;
+    align-content: start; 
 }
 
 .page-indicator {
@@ -262,6 +256,9 @@ body {
    CARDS DOS PRODUTOS E TOOLTIPS
    ========================================= */
 .shop-item {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
     background-color: rgba(42, 42, 42, 0.8);
     border: 2px solid var(--cor-tema);
     border-radius: 8px;
@@ -323,6 +320,10 @@ body {
 }
 
 .item-img {
+    box-sizing: border-box;
+    display: block;
+    max-width: 100%;
+    min-width: 0;
     width: 100%;
     height: 90px;
     object-fit: contain;
@@ -332,14 +333,22 @@ body {
     padding: 4px;
 }
 
-/* REMOVIDO O FUNDO DAS CAIXAS DE NOME */
 .item-name {
-    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 5px 6px;
     margin: 4px 0;
+    font-size: 16px;
+    line-height: 1.25;
     color: #fff;
-    min-height: 34px; 
-    background-color: transparent; /* Garante que não tem fundo */
-    border: none;
+    min-height: 34px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--cor-tema);
+    border-radius: 20px;
 }
 
 .item-price {
@@ -368,30 +377,147 @@ body {
 }
 
 /* =========================================
-   RESPONSIVIDADE
+   AJUSTES EXCLUSIVOS DA LOJA DE POKÉMONS
+   ========================================= */
+body.tema-pokemons .shop-container {
+    width: 96%;
+    max-width: 1500px;
+    box-sizing: border-box;
+}
+
+body.tema-pokemons .pages-container {
+    min-width: 0;
+}
+
+body.tema-pokemons .page.active {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 70px;
+}
+
+body.tema-pokemons .item-name {
+    width: 100%;
+    min-height: 42px;
+    padding: 6px 5px;
+    font-size: 15px;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
+}
+
+body.tema-pokemons .buy-btn {
+    background-color: #426b28;
+    color: #ffffff;
+    border: 1px solid #d2b65c;
+    border-radius: 6px;
+    padding: 9px 8px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: background-color 0.2s ease, color 0.2s ease,
+                border-color 0.2s ease, box-shadow 0.2s ease,
+                transform 0.2s ease;
+}
+
+body.tema-pokemons .buy-btn:hover,
+body.tema-pokemons .buy-btn:focus-visible {
+    background-color: #f2c94c;
+    color: #352300;
+    border-color: #ffe58a;
+    box-shadow: 0 0 12px rgba(242, 201, 76, 0.75);
+    transform: translateY(-2px);
+}
+
+body.tema-pokemons .buy-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   MOLDURA AZUL NOS CARDS DA LOJA DE POKÉMONS
+   ========================================= */
+body.tema-pokemons .shop-item {
+    background-color: rgba(15, 20, 30, 0.76);
+    border: none;
+    border-radius: 0;
+    padding: 30px 25px 32px;
+    box-shadow: none;
+    isolation: isolate;
+}
+
+body.tema-pokemons .shop-item::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background-image: url("../ImagensPVZ/Cenários/Moldura.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 5;
+}
+
+body.tema-pokemons .shop-item > :not(.tooltip) {
+    position: relative;
+    z-index: 6;
+}
+
+body.tema-pokemons .shop-item .tooltip {
+    z-index: 20;
+}
+
+body.tema-pokemons .shop-item:hover {
+    box-shadow: 0 0 18px rgba(0, 145, 255, 0.38);
+}
+
+/* =========================================
+   RESPONSIVIDADE (TUDO UNIFICADO AQUI)
    ========================================= */
 @media (max-width: 900px) {
     .page.active {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 60px 15px;
     }
-    .arrow-btn {
-        width: 80px;
-        height: 80px;
+    
+    .arrow-btn, body.tema-pokemons .carousel-wrapper .arrow-btn {
+        width: 110px;
+        height: 55px;
+        flex: 0 0 110px;
+        background-size: contain;
+    }
+
+    body.tema-pokemons .shop-item {
+        padding: 27px 20px 29px;
+    }
+    
+    .pages-container {
+        min-height: 900px; 
     }
 }
 
 @media (max-width: 600px) {
     .page.active {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .arrow-btn {
-        width: 60px;
-        height: 60px;
+    
+    .arrow-btn, body.tema-pokemons .carousel-wrapper .arrow-btn {
+        width: 80px;
+        height: 40px;
+        flex: 0 0 80px;
+        background-size: contain;
     }
+
     .modal-buttons {
         flex-direction: column;
         gap: 15px;
     }
     .pixel-bubble { padding: 20px; }
+    
+    body.tema-pokemons .shop-item {
+        padding: 25px 17px 27px;
+    }
+
+    .pages-container {
+        min-height: 1400px; 
+    }
 }
