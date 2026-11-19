@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="menuzin">
-    <h1>Cadastro</h1>
+    <h1 style= "text-decoration:underline">Cadastro</h1>
         <form action="..\controllers\cadastro_controller.php" method="POST" enctype="multipart/form-data">
             <label ><h3> Nome </h3> </label>
             <input type="text" id="nome" name="nome_usr" required maxlenght="100">
