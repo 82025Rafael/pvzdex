@@ -5,15 +5,13 @@
    ========================================= */
 :root {
     /* Tema Padrão (Itens - Rosa) */
-    --cor-tema: #ff00ff;
-    --cor-tema-escura: #cc00cc;
+    
     --cor-preco: #00ff00;
 }
 
 body.tema-pokemons {
     /* Tema Pokémons (Verde) */
-    --cor-tema: #00cc00;
-    --cor-tema-escura: #009900;
+
     --cor-preco: #f8e9a1;
 }
 
@@ -109,6 +107,7 @@ body {
 .pixel-bubble li { margin-bottom: 8px; }
 .pixel-bubble strong { color: #d900d9; }
 
+
 /* =========================================
    BOTÕES DO MENU INICIAL
    ========================================= */
@@ -182,18 +181,19 @@ body {
     margin: 0 auto;
 }
 
+/* SUBTÍTULO CORRIGIDO (Fundo transparente igual ao título) */
 .shop-container h3 {
     text-align: center;
     margin: 0 0 15px 0;
     color: #ffffff;
     font-size: 18px;
     text-shadow: 1px 1px 3px #000;
-    background-color: rgba(139, 90, 43, 0.8);
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo preto transparente */
     padding: 5px 20px;
     border-radius: 20px;
     width: fit-content;
     margin: 0 auto 15px auto;
-    border: 1px solid var(--cor-tema);
+    border: 1px solid var(--cor-tema); /* Mantém a borda colorida */
 }
 
 .carousel-wrapper {
@@ -203,27 +203,35 @@ body {
     gap: 15px;
 }
 
+/* =========================================
+   BOTÕES DE SETA (MÃO DO ZUMBI)
+   ========================================= */
 .arrow-btn {
-    background-color: var(--cor-tema);
-    color: white;
+    background-color: transparent;
     border: none;
-    font-size: 26px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 240px; 
+    height: 240px;
+    background-image: url('../ImagensPVZ/Cenários/maozumbiesquerda.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s, transform 0.2s;
-    flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
     z-index: 100;
+    font-size: 0;
 }
 
 .arrow-btn:hover {
-    background-color: var(--cor-tema-escura);
     transform: scale(1.1);
+}
+
+/* ESPELHA A MÃO PARA A DIREITA */
+#next-btn {
+    transform: scaleX(-1); 
+}
+
+#next-btn:hover {
+    transform: scaleX(-1) scale(1.1);
 }
 
 .pages-container {
@@ -324,11 +332,14 @@ body {
     padding: 4px;
 }
 
+/* REMOVIDO O FUNDO DAS CAIXAS DE NOME */
 .item-name {
     font-size: 14px;
     margin: 4px 0;
     color: #fff;
     min-height: 34px; 
+    background-color: transparent; /* Garante que não tem fundo */
+    border: none;
 }
 
 .item-price {
@@ -364,6 +375,10 @@ body {
         grid-template-columns: repeat(3, 1fr);
         gap: 60px 15px;
     }
+    .arrow-btn {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -371,9 +386,8 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     .arrow-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        width: 60px;
+        height: 60px;
     }
     .modal-buttons {
         flex-direction: column;
