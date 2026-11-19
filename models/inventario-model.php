@@ -89,10 +89,23 @@
         ':usr'      =>      $this->id_usr
 
     ]);
-    }
+    } // FIM DO LOAD ===============================================================================================
 
 
+    /* QUANDO FOR FAZER A LOJA!!
 
-}
+    $item = new item(); $item->setId(5); $item->load();
+    $vent = new inventario();
+    session_start();
+
+    $vent->setUsr($_SESSION['id_usr']);
+    $vent->setItem($item->getId());
+
+    $vent->load();
+
+    if(!$vent->getQuant()) { $vent->insert();}
+    $vent->update(); */
+
+} 
 
 ?>
