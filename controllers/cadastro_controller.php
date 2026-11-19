@@ -33,7 +33,7 @@ session_start();
 
     try{
         if($arquivo["size"] > $tamMax)
-        throw new Exception("Arquivo Muito Grande!");
+        throw new Exception("Arquivo Muito Grande!"); // SE O ARQUIVO FOR MAIOR QUE 4 MB
     }
     catch(Exception $e)
     {
@@ -42,13 +42,13 @@ session_start();
         exit;
     }
     
-    $extensoesPermitidas = ["png", "jpg", "gif"];
+    $extensoesPermitidas = ["png", "jpg", "gif"]; // QUAIS EXTENSOES PODEM SER UPADAS
 
     try{
 
     if(in_array($extensao, $extensoesPermitidas))
         {
-          move_uploaded_file($arquivo['tmp_name'], $caminho);
+          move_uploaded_file($arquivo['tmp_name'], $caminho); // MOVE O ARQUIVO PRO DESTINO
 
         }
     else{
