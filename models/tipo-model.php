@@ -1,5 +1,5 @@
 <?php
-class tipo{
+class Tipo{
 
     private string $nome_tipo;
     private int $id_tipo;

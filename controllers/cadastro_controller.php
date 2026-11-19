@@ -80,8 +80,8 @@ try{
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
 
 $id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
-$pokemon = new pokemon();
-$especie = new especie();
+$pokemon = new Pokemon();
+$especie = new Especie();
 
 //Insere Disparervilha
 

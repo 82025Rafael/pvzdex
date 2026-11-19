@@ -1,6 +1,6 @@
 <?php
 
-class item{
+class Item{
 
 private string $nome_item;
 private int $id_item;

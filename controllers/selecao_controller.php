@@ -7,7 +7,7 @@ $usuario = new Usuario(); // Cria um instancia da classe Usuario
 $usuario->setId($id_usr); // seta o id do usuario
 $usuario->load();
 
-$especie = new especie();
+$especie = new Especie();
 
 $_SESSION['pokemons'] = $usuario->PegarMeusPokemons();
 $_SESSION['inventario'] = $usuario->pegarMeuInventario();
