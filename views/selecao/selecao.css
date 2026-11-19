@@ -1,6 +1,33 @@
+html, body {
+    width:100%;
+    height:100%;
+
+}
+body {
+    
+}
 .pokemon-card{
     background-color: lightgray;
+    margin: 2px;
+ 
 }
 #pokemons #inventario {
     background-color: darkgray;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+
+}
+#pokemons
+#menu {
+    border: 3px solid red;
+    margin: 0 auto;
+    width:50%;
+    height:100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
