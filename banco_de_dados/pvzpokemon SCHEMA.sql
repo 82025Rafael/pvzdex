@@ -113,6 +113,7 @@ quant_item int not null,
 
 foreign key (id_usr) references usuario(id_usr),
 foreign key (id_item) references item(id_item)
+constraint usuario_item primary key (id_usr, id_item) 
 
 );
 

@@ -48,7 +48,7 @@
    } // FIM METODO INSERT =======================================================================================
 
 
- public function load(){ // CARREGAR DADOS DO ITEM FROM BANCO
+ public function load(){ // CARREGAR DADOS DO INVENTARIO FROM BANCO
 
     $pdo = connect();
     $sql = "select id_usr, id_item, quant_item from inventario where id_item = :item and id_usr = :usr" ; // RECUPERANDO DADOS A PARTIR DO ID
@@ -61,9 +61,17 @@
 
     //var_dump($item);
     
-    $this->setItem($item['id_item']); // SETANDO OQ FOI RECUPERADO
-    $this->setQuant($item['quant_item']); 
-    $this->setUsr($item['id_usr']);
+    if($item)
+        {
+            $this->setItem($item['id_item']); // SETANDO OQ FOI RECUPERADO
+            $this->setQuant($item['quant_item']); 
+            $this->setUsr($item['id_usr']);
+        }
+    else{
+        return false;
+    }
+
+
 
     } // ======================================================================================================
 

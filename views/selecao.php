@@ -15,16 +15,9 @@
     <div>Itens de evolução</div>    
     <div>Pokemons do usuario</div>
 
-    <?php $item = new item(); $item->setId(5); $item->load();
+    <?php 
+
     
-    $vent = new inventario();
-    session_start();
-
-    $vent->setUsr($_SESSION['id_usr']);
-    $vent->setItem($item->getId());
-    $vent->load();
-
-    $vent->update();
     
     ?> 
 
