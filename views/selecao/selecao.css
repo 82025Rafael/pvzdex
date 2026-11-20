@@ -1,33 +1,251 @@
-html, body {
-    width:100%;
-    height:100%;
-
+/* Faz com que dimensões e espaçamentos incluam bordas e preenchimentos. */
+* {
+    box-sizing: border-box;
 }
+
+/* Remove margens padrão e define a identidade visual geral da página. */
+html,
 body {
-    
-}
-.pokemon-card{
-    background-color: lightgray;
-    margin: 2px;
- 
-}
-#pokemons #inventario {
-    background-color: darkgray;
-    display: flex;
-    justify-content: left;
-    align-items: center;
+    min-height: 100%;
     margin: 0;
-    padding: 0;
-
-
 }
-#pokemons
-#menu {
-    border: 3px solid red;
-    margin: 0 auto;
-    width:50%;
-    height:100%;
+
+body {
+    font-family: Arial, sans-serif;
+    background-image:url("../../imagensPVZ/Cenários/teladetitulo.png");
+    background-size: cover;
+    color: #203020;
+}
+
+.selection-page {
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.page-header {
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.page-header h1,
+.page-header p {
+    margin: 4px 0;
+}
+
+/* Desktop: três colunas, com painel central dividido entre inventário e lista de monstrinhos. */
+.game-layout {
+    display: grid;
+    grid-template-columns: minmax(210px, 0.8fr) minmax(0, 2fr) minmax(160px, 0.6fr);
+    gap: 14px;
+    height: calc(100vh - 112px);
+    min-height: 580px;
+}
+
+.panel {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #a7b99b;
+    border-radius: 10px;
+    background: #f8fbf5;
+    box-shadow: 0 2px 8px rgba(32, 48, 32, 0.12);
+}
+
+.panel h2 {
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+}
+
+/* Mantém conteúdo longo rolável dentro de cada painel. */
+.team-panel,
+.inventory-panel,
+.pokemon-panel,
+.menu-panel {
+    overflow: auto;
+}
+
+.team-panel {
+    height: 100%;
+}
+
+.center-column {
+    display: grid;
+    grid-template-rows: minmax(190px, 0.75fr) minmax(300px, 1.25fr);
+    gap: 14px;
+    min-height: 0;
+}
+
+.inventory-panel,
+.pokemon-panel {
+    min-height: 0;
+}
+
+/* Exibe itens e cards em linhas flexíveis com espaçamento uniforme. */
+.inventory-list {
     display: flex;
-    justify-content: right;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: auto;
+}
+
+.item-card {
+    min-width: 130px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #e5eddc;
+}
+
+.item-card h3,
+.item-card p {
+    margin: 4px 0;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+    min-height: 0;
+    overflow: auto;
+}
+
+/* Cards clicáveis: imagem ocupa o card, informações aparecem no hover. */
+.pokemon-card {
+    position: relative;
+    display: block;
+    width: 380px;
+    height: 140px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-color: #d3dec9;
+    cursor: pointer;
+    user-select: none;
+}
+
+.pokemon-card.selected {
+    border-color: #3b8f45;
+    background-color: lightgreen;
+}
+
+.pokemon-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.pokemon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pokemon-info {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px;
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+}
+
+.pokemon-card:hover .pokemon-info,
+.pokemon-card:focus-within .pokemon-info {
+    opacity: 1;
+    visibility: visible;
+}
+
+.team-list .pokemon-card {
+    width: 100%;
+    height: 150px;
+}
+
+/* Botões de navegação empilhados na coluna direita. */
+.menu-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.menu-panel a {
+    text-decoration: none;
+}
+
+.menu-panel button {
+    width: 100%;
+    padding: 11px 8px;
+    border: 0;
+    border-radius: 6px;
+    background: #4b8b45;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.menu-panel button:hover {
+    background: #376d32;
+}
+
+/* Em tablets, o menu ocupa uma faixa abaixo das duas colunas de conteúdo. */
+@media (max-width: 850px) {
+    .game-layout {
+        grid-template-columns: minmax(180px, 0.8fr) minmax(0, 2fr);
+        grid-template-rows: minmax(580px, 1fr) auto;
+        height: auto;
+        min-height: calc(100vh - 112px);
+    }
+
+    .menu-panel {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .menu-panel a {
+        flex: 1 1 120px;
+    }
+}
+
+/* Em celulares, os painéis ficam empilhados para facilitar a rolagem vertical. */
+@media (max-width: 600px) {
+    .selection-page {
+        padding: 10px;
+    }
+
+    .game-layout {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 0;
+    }
+
+    .team-panel {
+        min-height: 220px;
+    }
+
+    .center-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inventory-panel {
+        min-height: 180px;
+    }
+
+    .pokemon-panel {
+        min-height: 360px;
+    }
+
+    .menu-panel {
+        order: 4;
+    }
 }

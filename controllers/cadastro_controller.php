@@ -31,11 +31,11 @@ $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1, id_atk2) values 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id' => $id_usr]);
 //Insere Paparazzumbi
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1, id_atk2) values (:id, 'Paparazzumbi', 34, 11, 12 )";
+$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1, id_atk2) values (:id, 'Paparazzumbi', 35, 11, 12 )";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id' => $id_usr]);
 //Insere Girassol
-$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1, id_atk2) values (:id,  'Girassol', 20, 9, 10)";
+$sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, id_atk1, id_atk2) values (:id,  'Girassol', 21, 9, 10)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id' => $id_usr]);
 //Redireciona para o index

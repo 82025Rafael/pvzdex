@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once __DIR__ . '/../config.php';
 class pokemon {
     //nome
     private string $nome;
@@ -71,3 +71,4 @@ class pokemon {
    public function setIdEvo($id_evo) {
       $this->id_evo = $id_evo;
    }
+}

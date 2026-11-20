@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php'; // conectando com o banco
+require_once __DIR__ . '/../config.php'; // conectando com o banco
 
 
 class Usuario {
@@ -133,7 +133,9 @@ $this->setDinheiro($usuario['dinheiro']);
 
 public function pegarMeusPokemons() { 
     $pdo = connect();
-    $sql = "SELECT pokemon.nome_pkm, especie.nome_esp, pokemon.vida_restante_pkm, pokemon.vida_total_pkm
+    $sql = "SELECT pokemon.nome_pkm, especie.nome_esp, especie.foto,
+                   pokemon.vida_atual AS vida_restante_pkm,
+                   especie.vida_max AS vida_total_pkm
             FROM pokemon
             JOIN especie ON pokemon.id_esp = especie.id_esp
             WHERE pokemon.id_usr = :id";

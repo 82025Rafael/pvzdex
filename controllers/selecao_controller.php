@@ -1,12 +1,16 @@
 <?php
-require_once '../config.php'; // conecta com o banco
+require_once __DIR__ . '/../config.php';
 session_start();
 
-$id_usr = $_SESSION['id_usr']; // pega o id do usuario logado
-$usuario = new usuario(); // Cria um instancia da classe Usuario
-$usuario->setId($id_usr); // seta o id do usuario
+if (empty($_SESSION['logado']) || empty($_SESSION['id_usr'])) {
+    header('Location: ../views/login.php');
+    exit;
+}
 
-$_SESSION['pokemons'] = $usuario->PegarMeusPokemons();
-$_SESSION['inventario'] = $usuario->pegarMeuInventario();
+$usuario = new usuario();
+$usuario->setId((int) $_SESSION['id_usr']);
 
-header("location:../views/selecao/selecao.php");
+$pokemons = $usuario->pegarMeusPokemons();
+$inventario = $usuario->pegarMeuInventario();
+
+require __DIR__ . '/../views/selecao/selecao.php';
