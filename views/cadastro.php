@@ -12,14 +12,19 @@
 </head>
 <body>
 <div class="menuzin">
-    <h1>Cadastro</h1>
-        <form action="..\controllers\cadastro_controller.php" method="POST">
+    <h1 style= "text-decoration:underline">Cadastro</h1>
+        <form action="..\controllers\cadastro_controller.php" method="POST" enctype="multipart/form-data">
             <label ><h3> Nome </h3> </label>
             <input type="text" id="nome" name="nome_usr" required maxlenght="100">
 
             <br> <?= $_SESSION['erroCadastro'] ?? '<br>'?>
             <label > <h3> Senha </h3> </label>
             <input type="password" id="senha" name="senha" required maxlenght="20">
+            
+            <br><br>
+
+            <label><b> Foto </b> </label> <br>
+            <input class = "inputFoto" type="file" name="arquivo" required>
 
             <br><br>
             <label> <b> Cor Favorita </b> </label>

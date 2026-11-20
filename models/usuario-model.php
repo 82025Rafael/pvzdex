@@ -11,6 +11,7 @@ private string $cor_favorita = '#00bfff';
 private int $id_usr;
 
 private int $dinheiro = 500;
+private string $foto;
 
 
 
@@ -27,8 +28,11 @@ public function getCor()
 public function getDinheiro()
 {return $this->dinheiro;}
 
-public function getIDusr()
+public function getID()
 {return $this->id_usr;}
+
+public function getFoto()
+{return $this->foto;}
 
 // SETTERS
 
@@ -47,43 +51,66 @@ public function setCor(string $cor_favorita)
 public function setDinheiro(string $dinheiro)
 {$this->dinheiro = $dinheiro;}
 
+public function setFoto(string $foto)
+{$this->foto = $foto;}
 
-public function updateBD()
+public function updateBD() // ATUALIZAR NO BANCO DE DADOS
 {
 $pdo = connect();
-    $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d where id_usr = :id"; 
+    $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d, foto :f where id_usr = :id"; 
     $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
     
     $stmt->execute([
     
             ':n' => $this->nome_usr, //EVITA SQL INJECT
-            ':c' => $this->$cor_favorita,
-            ':d' => $this->$dinheiro,
-            ':id' => $this->$id_usr
+            ':c' => $this->cor_favorita,
+            ':d' => $this->dinheiro,
+            ':f'=>  $this->foto,
+            ':id' => $this->id_usr
          ]);
 
-}
+} // ======================================================================================================
+
+public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
+
+$pdo = connect();
+$sql = "select nome_usr, cor_favorita, dinheiro, foto from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    ':id' => $this->id_usr
+]);
+$usuario = $stmt->fetch(); // ENFIA TUDO NUM VETOR
+
+//var_dump($usuario);
+
+$this->setNome($usuario['nome_usr']); // SETANDO OQ FOI RECUPERADO
+$this->setCor($usuario['cor_favorita']);
+$this->setDinheiro($usuario['dinheiro']);
+$this->setFoto($usuario['foto']);
+
+} // ======================================================================================================
 
 
 
 public function cadastroUsr(){ //FUNCAO DE CADASTRAR O USUARIO NO BANCO
 
     $pdo = connect();
-    $sql = "insert into usuario (nome_usr, senha, cor_favorita) values (:n, :s, :c)"; 
+    $sql = "insert into usuario (nome_usr, senha, cor_favorita, foto) values (:n, :s, :c, :f)"; 
     $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
     
     $stmt->execute([
     
             ':n' => $this->nome_usr, //EVITA SQL INJECT
             ':s' => $this->senha,
-            ':c' => $this->cor_favorita
+            ':c' => $this->cor_favorita,
+            ':f' => $this->foto
          ]);
 
          $this->id_usr = $pdo->lastInsertId();
 
-}
+} // FIM CADASTRO ===========================================================================
 
-public function SeraQueExisteNome(){ // VERIFICAR SE O NOME DIGITADO JA EXISTE
+public function SeraQueExisteNome(){ // METODO VERIFICAR SE O NOME DIGITADO JA EXISTE
 
 session_start(); // RETOMAR SESSAO
 
@@ -111,27 +138,28 @@ catch(Exception $e){
 unset($_SESSION['erroCadastro']); // DESCARTA A EXCESSAO
 
 return false;
-}
+} // FIM METODO VERIFICADOR ===========================================================================
 
-public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
+public function login($nome_usr, $senha){
 
-$pdo = connect();
-$sql = "select nome_usr, cor_favorita, dinheiro from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
-$stmt = $pdo->prepare($sql);
+    $pdo =  connect();
+    session_start();
+
+ // SELECIONAR ID A PARTIR DE NOME E SENHA E VER SE ESTÁ CERTO
+$sql = "SELECT id_usr from usuario where nome_usr = :n and senha = :s"; // SQL SELECT tudo do usuario
+$stmt = $pdo->prepare($sql); // prepara e executa o SQL
 $stmt->execute([
-    ':id' => $this->id_usr
+
+    ':n' => $nome_usr, //pra evitar o SQL inject 
+    ':s' => $senha
 ]);
-$usuario = $stmt->fetch(); // ENFIA TUDO NUM VETOR
 
-//var_dump($usuario);
+$usr = $stmt->fetch(); 
+return $usr['id_usr'];
 
-$this->setNome($usuario['nome_usr']); // SETANDO OQ FOI RECUPERADO
-$this->setCor($usuario['cor_favorita']);
-$this->setDinheiro($usuario['dinheiro']);
 
-}
-
-public function pegarMeusPokemons() { 
+} // FIM METODO LOGIN  ==============================================================================
+public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
     $pdo = connect();
     $sql = "SELECT pokemon.nome_pkm, especie.nome_esp, especie.foto,
                    pokemon.vida_atual AS vida_restante_pkm,
@@ -143,7 +171,10 @@ public function pegarMeusPokemons() {
     $stmt->execute([
         ':id' => $this->id_usr
     ]);
-    return $stmt->fetchAll();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 }
 public function pegarMeuInventario() { 
     $pdo = connect();
