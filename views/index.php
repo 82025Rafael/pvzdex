@@ -2,7 +2,7 @@
 <?php  
  session_start();
 
- if($_SESSION['logado'] == false)
+ if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false)
   { header("location:login.php"); }  
         
   require_once '../config.php';   
@@ -31,7 +31,7 @@
 <div class = "menuzin"> 
     
                     <h1><img src='../ImagensPVZ/logo.png' width=100%></h1>
-                    <h2> <u> <i> Só que Pokémon </u> </i> </h2> <br>
+                    <h2> <u> <i> Só que Pokémon </i> </u>  </h2> <br>
 
  
 
@@ -42,7 +42,7 @@
                     
 
     Aperte para começar <br><br>
-    <a href='../selecao/selecao.php'><button type='button' class="botaoIni"> JOGAR </button></a>
+    <a href='selecao/selecao.php'><button type='button' class="botaoIni"> JOGAR </button></a>
     <br>
 
      <br> Se esse não é você, clique aqui 

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bazar do Rux - Itens</title>
-    <link rel="stylesheet" href="lojaCSS.css">
+    <link rel="stylesheet" href="lojinha.css">
 </head>
 <body>
 
-    <a href="lojainicial.html" class="back-btn">⬅ Voltar</a>
+    <a href="lojainicial.php" class="back-btn">⬅ Voltar</a>
 
     <div class="shop-container">
-        <h2>🧪 Itens do Rux 🌻</h2>
+        <h2>Itens do Rux </h2>
         <h3 id="category-title">Itens de Cura</h3>
         
         <div class="carousel-wrapper">
@@ -22,70 +22,70 @@
                 <div class="page active">
                     <div class="shop-item">
                         <div class="tooltip">Cura status de Paralisia (Par).</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/Aloe.png" alt="Aloe" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/Aloe.png" alt="Aloe" class="item-img">
                         <h3 class="item-name">Aloe</h3>
                         <p class="item-price">$ 60</p>
                         <button class="buy-btn" onclick="comprarItem('Aloe', 60)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Restaura 20 HP.</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/Bacon.png" alt="Bacon" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/Bacon.png" alt="Bacon" class="item-img">
                         <h3 class="item-name">Bacon</h3>
                         <p class="item-price">$ 15</p>
                         <button class="buy-btn" onclick="comprarItem('Bacon', 15)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Cura status de Sono (Sno).</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/café.png" alt="Café" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/café.png" alt="Café" class="item-img">
                         <h3 class="item-name">Café</h3>
                         <p class="item-price">$ 30</p>
                         <button class="buy-btn" onclick="comprarItem('Café', 30)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Revive o minion com metade da vida.</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/cenoura_do_poder.png" alt="Cenoura do Poder" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/cenoura_do_poder.png" alt="Cenoura do Poder" class="item-img">
                         <h3 class="item-name">Cenoura do Poder</h3>
                         <p class="item-price">$ 80</p>
                         <button class="buy-btn" onclick="comprarItem('Cenoura do Poder', 80)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Cura status de Paralisia (Par).</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/cura_de_paralisia.png" alt="Cura de Paralisia" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/cura_de_paralisia.png" alt="Cura de Paralisia" class="item-img">
                         <h3 class="item-name">Cura de Paralisia</h3>
                         <p class="item-price">$ 20</p>
                         <button class="buy-btn" onclick="comprarItem('Cura de Paralisia', 20)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Cura status de Queimadura (Qmd).</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/cura_de_queimadura.png" alt="Cura de Queimadura" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/cura_de_queimadura.png" alt="Cura de Queimadura" class="item-img">
                         <h3 class="item-name">Cura de Queimadura</h3>
                         <p class="item-price">$ 20</p>
                         <button class="buy-btn" onclick="comprarItem('Cura de Queimadura', 20)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Restaura 100% do HP e cura todos os status.</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/restauratudo.png" alt="RestauraTudo" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/restauratudo.png" alt="RestauraTudo" class="item-img">
                         <h3 class="item-name">RestauraTudo</h3>
                         <p class="item-price">$ 120</p>
                         <button class="buy-btn" onclick="comprarItem('RestauraTudo', 120)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Restaura 200 HP.</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/tacomagico.png" alt="Taco Mágico" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/tacomagico.png" alt="Taco Mágico" class="item-img">
                         <h3 class="item-name">Taco Mágico</h3>
                         <p class="item-price">$ 90</p>
                         <button class="buy-btn" onclick="comprarItem('Taco Mágico', 90)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Cura status de Envenenamento (Ven).</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/Vitamina_Z.png" alt="Vitamina Z" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/Vitamina_Z.png" alt="Vitamina Z" class="item-img">
                         <h3 class="item-name">Vitamina Z</h3>
                         <p class="item-price">$ 20</p>
                         <button class="buy-btn" onclick="comprarItem('Vitamina Z', 20)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Restaura 50 HP.</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/waffle.png" alt="Waffle" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/waffle.png" alt="Waffle" class="item-img">
                         <h3 class="item-name">Waffle</h3>
                         <p class="item-price">$ 30</p>
                         <button class="buy-btn" onclick="comprarItem('Waffle', 30)">Comprar</button>
@@ -96,14 +96,14 @@
                 <div class="page">
                     <div class="shop-item">
                         <div class="tooltip">Cura status de Congelamento (Gel).</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/Hot_Sauce.png" alt="Hot Sauce" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/Hot_Sauce.png" alt="Hot Sauce" class="item-img">
                         <h3 class="item-name">Hot Sauce</h3>
                         <p class="item-price">$ 40</p>
                         <button class="buy-btn" onclick="comprarItem('Hot Sauce', 40)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Restaura 100% do HP.</div>
-                        <img src="../ImagensPVZ/itens/itens de cura/WaffleTaco.png" alt="Waffle Taco" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de cura/WaffleTaco.png" alt="Waffle Taco" class="item-img">
                         <h3 class="item-name">Waffle Taco</h3>
                         <p class="item-price">$ 130</p>
                         <button class="buy-btn" onclick="comprarItem('Waffle Taco', 130)">Comprar</button>
@@ -114,70 +114,70 @@
                 <div class="page">
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Galinha → Galo de Fogo</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/pedra_de_fogo.png" alt="Pedra de fogo" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/pedra_de_fogo.png" alt="Pedra de fogo" class="item-img">
                         <h3 class="item-name">Pedra de Fogo</h3>
                         <p class="item-price">$ 200</p>
                         <button class="buy-btn" onclick="comprarItem('Pedra de Fogo', 200)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Disparervilha → Gelerilha</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/pedra_de_gelo.png" alt="Pedra de gelo" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/pedra_de_gelo.png" alt="Pedra de gelo" class="item-img">
                         <h3 class="item-name">Pedra de Gelo</h3>
                         <p class="item-price">$ 100</p>
                         <button class="buy-btn" onclick="comprarItem('Pedra de Gelo', 100)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Girassol → Flor Elétrica</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/arcoiris.png" alt="Arco-íris" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/arcoiris.png" alt="Arco-íris" class="item-img">
                         <h3 class="item-name">Arco-íris</h3>
                         <p class="item-price">$ 250</p>
                         <button class="buy-btn" onclick="comprarItem('Arco-íris', 250)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Item especial de evento.</div>
-                        <img src="../ImagensPVZ/itens/doce.png" alt="Doce Zumbi" class="item-img">
+                        <img src="../../ImagensPVZ/itens/doce.png" alt="Doce Zumbi" class="item-img">
                         <h3 class="item-name">Doce Zumbi</h3>
                         <p class="item-price">$ 200</p>
                         <button class="buy-btn" onclick="comprarItem('Doce Zumbi', 200)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Cabra → Planador Cabra 3000</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/Teleport_HD.png" alt="Teleport" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/Teleport_HD.png" alt="Teleport" class="item-img">
                         <h3 class="item-name">Teleport</h3>
                         <p class="item-price">$ 200</p>
                         <button class="buy-btn" onclick="comprarItem('Teleport', 200)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Zumbolha → Gigante Gasoso</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/super_fedor.png" alt="Super Fedor" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/super_fedor.png" alt="Super Fedor" class="item-img">
                         <h3 class="item-name">Super Fedor</h3>
                         <p class="item-price">$ 300</p>
                         <button class="buy-btn" onclick="comprarItem('Super Fedor', 300)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Nabo Bebê → Babosassauro</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/babosa.png" alt="babosa" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/babosa.png" alt="babosa" class="item-img">
                         <h3 class="item-name">Babosa</h3>
                         <p class="item-price">$ 350</p>
                         <button class="buy-btn" onclick="comprarItem('Babosa', 350)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Sumô → Aspirante a Herói</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/bandeira.png" alt="Bandeira" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/bandeira.png" alt="Bandeira" class="item-img">
                         <h3 class="item-name">Bandeira</h3>
                         <p class="item-price">$ 300</p>
                         <button class="buy-btn" onclick="comprarItem('Bandeira', 300)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Boca-de-Dragão → Pitaya</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/buraco_negro.png" alt="Buraco_negro" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/buraco_negro.png" alt="Buraco_negro" class="item-img">
                         <h3 class="item-name">Buraco Negro</h3>
                         <p class="item-price">$ 400</p>
                         <button class="buy-btn" onclick="comprarItem('Buraco Negro', 400)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Gelerilha → Ervilhadora</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/capacete.png" alt="Capacete" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/capacete.png" alt="Capacete" class="item-img">
                         <h3 class="item-name">Capacete</h3>
                         <p class="item-price">$ 300</p>
                         <button class="buy-btn" onclick="comprarItem('Capacete', 300)">Comprar</button>
@@ -188,28 +188,28 @@
                 <div class="page">
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Uvas Azedas → Mirtilartista</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/saxofone.png" alt="Saxofone" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/saxofone.png" alt="Saxofone" class="item-img">
                         <h3 class="item-name">Saxofone</h3>
                         <p class="item-price">$ 250</p>
                         <button class="buy-btn" onclick="comprarItem('Saxofone', 250)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Paparazzumbi → Sumô</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/hamburguer.png" alt="Hamburguer" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/hamburguer.png" alt="Hamburguer" class="item-img">
                         <h3 class="item-name">Hamburguer</h3>
                         <p class="item-price">$ 100</p>
                         <button class="buy-btn" onclick="comprarItem('Hamburguer', 100)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Dançarino → Discotron 3000</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/Disco_bola.png" alt="Disco Bola" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/Disco_bola.png" alt="Disco Bola" class="item-img">
                         <h3 class="item-name">Disco Bola</h3>
                         <p class="item-price">$ 250</p>
                         <button class="buy-btn" onclick="comprarItem('Disco Bola', 250)">Comprar</button>
                     </div>
                     <div class="shop-item">
                         <div class="tooltip">Evolui: Galinha → Mascote de time</div>
-                        <img src="../ImagensPVZ/itens/itens de evolução/cutelo.png" alt="Cutelo" class="item-img">
+                        <img src="../../ImagensPVZ/itens/itens de evolução/cutelo.png" alt="Cutelo" class="item-img">
                         <h3 class="item-name">Cutelo</h3>
                         <p class="item-price">$ 200</p>
                         <button class="buy-btn" onclick="comprarItem('Cutelo', 200)">Comprar</button>

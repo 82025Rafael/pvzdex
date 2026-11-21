@@ -1,10 +1,13 @@
+<?php require __DIR__ . '/../../controllers/selecao_controller.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Pokemons</title>
-    <link rel="stylesheet" href="../views/selecao/selecao.css">
+    <link rel="stylesheet" href="selecao.css">
 </head>
 <body>
     <div class="selection-page">
@@ -47,7 +50,7 @@
                             <?php foreach ($pokemons as $pokemon): ?>
                                 <label class="pokemon-card">
                                     <input type="checkbox" class="pokemon-checkbox" aria-label="Selecionar Pokémon">
-                                    <img class="pokemon-image" src="<?php echo '../foto/' . htmlspecialchars($pokemon['foto'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($pokemon['nome_pkm'] ?? 'Pokémon', ENT_QUOTES, 'UTF-8'); ?>">
+                                    <img class="pokemon-image" src="<?php echo '../../foto/' . htmlspecialchars($pokemon['foto'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($pokemon['nome_pkm'] ?? 'Pokémon', ENT_QUOTES, 'UTF-8'); ?>">
                                     <span class="pokemon-info">
                                         <strong><?php echo htmlspecialchars($pokemon['nome_pkm'] ?? '', ENT_QUOTES, 'UTF-8'); ?></strong>
                                         <span>Espécie: <?php echo htmlspecialchars($pokemon['nome_esp'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
@@ -64,11 +67,11 @@
 
             <!-- Atalhos de navegação ficam agrupados na coluna direita. -->
             <nav id="menu" class="panel menu-panel" aria-label="Menu principal">
-                <a href="../views/login.php"><button type="button">Sair</button></a>
-                <a href="../controllers/log.php"><button type="button">Log</button></a>
-                <a href="../controllers/centro.php"><button type="button">Centro</button></a>
-                <a href="../controllers/loja.php"><button type="button">Loja</button></a>
-                <a href="../controllers/batalha.php"><button type="button">Batalhar</button></a>
+                <a href="../index.php"><button type="button">Sair</button></a>
+                <a href="../log.php"><button type="button">Log</button></a>
+                <a href="../centro.php"><button type="button">Centro</button></a>
+                <a href="../louja/lojainicial.php"><button type="button">Loja</button></a>
+                <a href="../../controllers/batalha_controller.php"><button type="button">Batalhar</button></a>
             </nav>
         </main>
     </div>

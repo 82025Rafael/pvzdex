@@ -174,8 +174,6 @@ public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO CO
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-}
 public function pegarMeuInventario() { 
     $pdo = connect();
     $sql = "SELECT nome_item, quant_item FROM inventario 

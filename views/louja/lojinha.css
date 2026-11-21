@@ -15,11 +15,22 @@ body.tema-pokemons {
     --cor-preco: #f8e9a1;
 }
 
+a:visited{
+color: white;
+text-decoration:none;
+}
+
+
+a{
+color: white;
+text-decoration: none;
+}
+
 /* =========================================
    ESTILOS GERAIS E FUNDO
    ========================================= */
 body {
-    background-image: url('../ImagensPVZ/Cenários/rux.png');
+    background-image: url('../../ImagensPVZ/Cenários/rux.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -211,7 +222,7 @@ body {
     border: none;
     width: 240px; 
     height: 240px;
-    background-image: url('../ImagensPVZ/Cenários/maozumbiesquerda.png'); 
+    background-image: url('../../ImagensPVZ/Cenários/maozumbiesquerda.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -352,7 +363,7 @@ body {
 .buy-btn {
     background-color: var(--cor-tema);
     color: white;
-    border: none;
+    border: 2px solid white;
     padding: 8px;
     border-radius: 5px;
     font-weight: bold;

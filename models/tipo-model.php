@@ -55,7 +55,7 @@ class Tipo{
     
     $this->setNome($tipo['nome_tipo']); // SETANDO OQ FOI RECUPERADO
     $this->setForcas($tipo['f1'], $tipo['f2']);
-    $this->setFraquezas($tipo['w1'], $tipo[w2]);
+    $this->setFraquezas($tipo['w1'], $tipo['w2']);
 
     } // ======================================================================================================
 }

@@ -11,6 +11,7 @@ class Especie{
     private int $veloc;
 
     private string $foto;
+    private int $preco_esp;
 
 
     // GETTERS
@@ -27,7 +28,7 @@ class Especie{
     }
 
     public function getTipo() {
-        return $this->$id_tipo;
+        return $this->id_tipo;
     }
 
     public function getVida() {
@@ -42,6 +43,11 @@ class Especie{
 
     public function getFoto(){
         return $this->foto;
+    }
+
+    public function getPreco()
+    {
+        return $this->preco_esp;
     }
     
 
@@ -76,6 +82,10 @@ class Especie{
         $this->foto = $foto;
     }
 
+    public function setPreco(int $preco_esp)
+    {
+        $this->preco_esp = $preco_esp;
+    }
 
 
 
@@ -93,12 +103,32 @@ class Especie{
     
     $this->setNome($esp['nome_esp']); // SETANDO OQ FOI RECUPERADO
     $this->setTipo($esp['id_tipo']); 
-    $this->setEvo($esp['id_evo']);
+    $this->setEvo($esp['id_evo'] ?? $this->id_esp);
     $this->setVida($esp['vida_max']); 
     $this->setForca($esp['forca']); 
     $this->setVeloc($esp['veloc']);
     $this->setFoto($esp['foto']);
+    $this->setPreco((($this->getForca()*2 ?: 2)) * $this->getVida());
 
 
     } // ======================================================================================================
+
+
+    public function TodosDoTipo(){ // CARREGAR DADOS DA ESPECIE FROM BANCO
+
+    $pdo = connect();
+    $sql = "select nome_esp, id_esp, vida_max, forca, veloc, foto from especie where id_tipo = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':id' => $this->id_tipo
+    ]);
+    $esp = $stmt->fetchAll(); // ENFIA TUDO NUM VETOR
+
+  
+
+    return $esp;
+
+    } // ======================================================================================================
+
+
 }
