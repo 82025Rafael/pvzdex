@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Pokemons</title>
     <link rel="stylesheet" href="selecao.css">
+    
 </head>
 <body>
     <div class="selection-page">
@@ -48,7 +49,7 @@
                     <div id="pokemons" class="card-list">
                         <?php if (!empty($pokemons)): ?>
                             <?php foreach ($pokemons as $pokemon): ?>
-                                <label class="pokemon-card">
+                                <label class="pokemon-card" tipo="<?php echo htmlspecialchars($pokemon['nome_tipo'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                                     <input type="checkbox" class="pokemon-checkbox" aria-label="Selecionar Pokémon">
                                     <img class="pokemon-image" src="<?php echo '../../foto/' . htmlspecialchars($pokemon['foto'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($pokemon['nome_pkm'] ?? 'Pokémon', ENT_QUOTES, 'UTF-8'); ?>">
                                     <span class="pokemon-info">

@@ -8,6 +8,8 @@ html,
 body {
     min-height: 100%;
     margin: 0;
+    overflow: hidden; /* remove scrollbars */
+
 }
 
 body {
@@ -44,15 +46,16 @@ body {
 .panel {
     min-width: 0;
     padding: 14px;
-    border: 1px solid #a7b99b;
+    border: 5px solid hsl(20, 73%, 7%);
     border-radius: 10px;
-    background: #f8fbf5;
+    background: hsl(18, 71%, 18%);
     box-shadow: 0 2px 8px rgba(32, 48, 32, 0.12);
 }
 
 .panel h2 {
     margin: 0 0 12px;
     font-size: 1.15rem;
+    color: oklab(0% 0 0);
 }
 
 /* Mantém conteúdo longo rolável dentro de cada painel. */
@@ -60,7 +63,8 @@ body {
 .inventory-panel,
 .pokemon-panel,
 .menu-panel {
-    overflow: auto;
+    overflow: hidden; /* remove scrollbars */
+
 }
 
 .team-panel {
@@ -85,6 +89,8 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     overflow: auto;
+    color: black;
+
 }
 
 .item-card {
@@ -117,14 +123,53 @@ body {
     overflow: hidden;
     border: 2px solid transparent;
     border-radius: 8px;
-    background-color: #d3dec9;
+    background-color: #ffffff;
     cursor: pointer;
     user-select: none;
+}
+/* SOFIAAAA coloca as cores certinhas aqui :D */
+.pokemon-card[tipo="Protetor"]{
+    background-color: #a8c9a0;
+}
+
+.pokemon-card[tipo="Explosivo"]{
+    background-color: #f2a28f;
+}
+
+.pokemon-card[tipo="Crescida"] {
+    background-color: #6caf48;
+}
+
+.pokemon-card[tipo="Esperto"] {
+    background-color: #a9c7e8;
+}
+
+.pokemon-card[tipo="Solar"] {
+    background-color: #ffe58f;
+}
+
+.pokemon-card[tipo="Feroz"] {
+    background-color: #efad7b;
+}
+
+.pokemon-card[tipo="Miolástico"] {
+    background-color: #c4a0d8;
+}
+
+.pokemon-card[tipo="Doidão"] {
+    background-color: #d8a4c7;
+}
+
+.pokemon-card[tipo="Vigoroso"] {
+    background-color: #e9b9a2;
+}
+
+.pokemon-card[tipo="Furtivo"] {
+    background-color: #9db8a8;
 }
 
 .pokemon-card.selected {
     border-color: #3b8f45;
-    background-color: lightgreen;
 }
 
 .pokemon-checkbox {
@@ -249,3 +294,4 @@ body {
         order: 4;
     }
 }
+
