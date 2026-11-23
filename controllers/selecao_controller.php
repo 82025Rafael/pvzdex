@@ -13,4 +13,4 @@ $usuario->setId((int) $_SESSION['id_usr']);
 $pokemons = $usuario->pegarMeusPokemons();
 $inventario = $usuario->pegarMeuInventario();
 
-require __DIR__ . '/../views/selecao/selecao.php';
+?>

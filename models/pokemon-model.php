@@ -1,12 +1,10 @@
 <?php
-require_once '../config.php';
+require_once __DIR__ . '/../config.php';
 class Pokemon {
     
    private int $id_pkm;
    private string $nome_pkm;
    private int $vida_atual;
-   private int $atk1;
-   private int $atk2;
     
    private int $id_esp;
    private int $id_usr; // DONO DELE
@@ -45,13 +43,6 @@ class Pokemon {
    public function setUsr(int $id_usr)
    { $this->id_usr = $id_usr;}
 
-   public function setAtk1(int $id_atk1) {
-      $this->id_atk1 = $id_atk1;
-   }
-   public function  setAtk2(int $id_atk2) {
-      $this->id_atk2 = $id_atk2;
-   }
-
    public function setEsp(int $id_esp) {
       $this->id_esp = $id_esp;
    }
@@ -64,15 +55,13 @@ class Pokemon {
    
    $pdo = connect();
 
-   $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, vida_atual, id_atk1, id_atk2) values (:id, :nome, :esp, :vat, :atk1, :atk2)";
+   $sql = "INSERT into pokemon (id_usr, nome_pkm, id_esp, vida_atual) values (:id, :nome, :esp, :vat)";
    $stmt = $pdo->prepare($sql);
    $stmt->execute([
       ':id'    =>    $this->id_usr,
       ':nome'  =>    $this->nome_pkm,
       ':esp'   =>    $this->id_esp,
-      ':vat'   =>    $this->vida_atual,
-      ':atk1'  =>    $this->id_atk1,
-      ':atk2'  =>    $this->id_atk2
+      ':vat'   =>    $this->vida_atual
       
       ]);
       
@@ -81,7 +70,7 @@ class Pokemon {
    public function load(){ // CARREGAR DADOS DO POKEMON FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_pkm, vida_atual, id_esp, id_evo, id_atk1, id_atk2 from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_pkm, vida_atual, id_esp from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_tipo
@@ -94,9 +83,7 @@ class Pokemon {
    $this->setNome($pkm['nome_pkm']); // SETANDO OQ FOI RECUPERADO
    $this->setVida($pkm['vida_atual']);
    $this->setEsp($pkm['id_esp']);
-   $this->setEvo($pkm['id_evo']);
-   $this->setAtk1($pkm['id_atk1']);
-   $this->setAtk2($pkm['id_atk2']);
+
 
 
     } // ======================================================================================================

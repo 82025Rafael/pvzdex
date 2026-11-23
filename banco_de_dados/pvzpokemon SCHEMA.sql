@@ -187,8 +187,8 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Telporte', 200
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Noz Obstáculo', 0,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Cacto', 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Tricenourátops', 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern.png'); -- 4
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato.png'); -- 5
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png'); -- 4
+insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
 
 
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6

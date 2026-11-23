@@ -57,12 +57,13 @@ public function setFoto(string $foto)
 public function updateBD() // ATUALIZAR NO BANCO DE DADOS
 {
 $pdo = connect();
-    $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d, foto :f where id_usr = :id"; 
+    $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d, foto = :f where id_usr = :id"; 
     $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
     
     $stmt->execute([
     
             ':n' => $this->nome_usr, //EVITA SQL INJECT
+            ':s' => $this->senha,
             ':c' => $this->cor_favorita,
             ':d' => $this->dinheiro,
             ':f'=>  $this->foto,
@@ -74,7 +75,7 @@ $pdo = connect();
 public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
 
 $pdo = connect();
-$sql = "select nome_usr, cor_favorita, dinheiro, foto from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+$sql = "select nome_usr, senha, cor_favorita, dinheiro, foto from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     ':id' => $this->id_usr
@@ -84,6 +85,7 @@ $usuario = $stmt->fetch(); // ENFIA TUDO NUM VETOR
 //var_dump($usuario);
 
 $this->setNome($usuario['nome_usr']); // SETANDO OQ FOI RECUPERADO
+$this->setSenha($usuario['senha']);
 $this->setCor($usuario['cor_favorita']);
 $this->setDinheiro($usuario['dinheiro']);
 $this->setFoto($usuario['foto']);
@@ -174,7 +176,6 @@ public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO CO
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
 public function pegarMeuInventario() { 
     $pdo = connect();
