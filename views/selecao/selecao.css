@@ -68,7 +68,24 @@ body {
 }
 
 .team-panel {
+    display: flex;
+    flex-direction: column;
     height: 100%;
+}
+
+.team-panel .team-list {
+    display: grid;
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    flex: 1;
+    align-content: stretch;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.team-list .pokemon-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
 }
 
 .center-column {
@@ -231,7 +248,7 @@ body {
     border-radius: 6px;
     background: #4b8b45;
     color: white;
-    font-size: 1rem;
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -274,7 +291,7 @@ body {
     }
 
     .team-panel {
-        min-height: 220px;
+        min-height: 580px;
     }
 
     .center-column {
@@ -294,4 +311,22 @@ body {
         order: 4;
     }
 }
+.fotoPerfil{    
+    border: 3px solid white;
+    border-radius: 100%;
+    margin: 0;
+    }
+.banco {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #4b8b45;
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-radius: 8px;
 
+
+}

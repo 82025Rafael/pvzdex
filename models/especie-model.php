@@ -40,7 +40,9 @@ class Especie{
     public function getVeloc() {
         return $this->veloc;
     }
-
+   public function setAtk1($atk1) {
+    $this->atk1 = $atk1;
+    }
     public function getFoto(){
         return $this->foto;
     }

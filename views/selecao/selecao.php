@@ -1,5 +1,17 @@
-<?php require __DIR__ . '/../../controllers/selecao_controller.php'; ?>
-
+<?php require __DIR__ . '/../../controllers/selecao_controller.php';  
+ if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false)
+  { header("location:login.php"); }  
+        
+  require_once '../../config.php';   
+        
+        $usuario = new usuario();
+        $usuario->setId((int) $_SESSION['id_usr']);
+        $usuario->load();
+        
+        
+        
+        
+        ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -15,6 +27,7 @@
         <header class="page-header">
             <h1 id="titulo">Selecione seu time!</h1>
             <p id="instrucoes">Escolha 6 Monstrinhos para sua equipe:</p>
+            <p id="selection-status" role="status" aria-live="polite"></p>
         </header>
 
         <!-- Grade principal: equipe à esquerda, inventário e monstrinhos no centro e navegação à direita. -->
@@ -66,8 +79,12 @@
                 </section>
             </div>
 
-            <!-- Atalhos de navegação ficam agrupados na coluna direita. -->
+            <!-- Menu de navegação ficam agrupados na coluna direita. -->
             <nav id="menu" class="panel menu-panel" aria-label="Menu principal">
+
+                <img class = "fotoPerfil" src='../<?=$usuario->getFoto();?>' width = 230vw height = 230vh> 
+                <div class="banco">Dinheiro: $<?= $usuario->getDinheiro() ?></div>           
+
                 <a href="../index.php"><button type="button">Sair</button></a>
                 <a href="../log.php"><button type="button">Log</button></a>
                 <a href="../centro.php"><button type="button">Centro</button></a>
@@ -80,15 +97,24 @@
     <script>
         const equipeSelecionada = document.getElementById('equipe-selecionada');
         const pokemonsDisponiveis = document.getElementById('pokemons');
+        const statusSelecao = document.getElementById('selection-status');
+        const limiteEquipe = 6;
 
         // Ao marcar ou desmarcar, move o card entre a lista disponível e a equipe.
         document.addEventListener('change', (event) => {
             if (!event.target.matches('.pokemon-checkbox')) return;
 
             const card = event.target.closest('.pokemon-card');
+            if (event.target.checked && equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length >= limiteEquipe) {
+                event.target.checked = false;
+                statusSelecao.textContent = 'Sua equipe pode ter no máximo 6 Pokémon.';
+                return;
+            }
+
             card.classList.toggle('selected', event.target.checked);
             const destino = event.target.checked ? equipeSelecionada : pokemonsDisponiveis;
             destino.appendChild(card);
+            statusSelecao.textContent = '';
         });
     </script>
 </body>
