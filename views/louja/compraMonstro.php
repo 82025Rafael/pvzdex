@@ -23,7 +23,7 @@ $atk = new ataque();
 $esp->setId($_GET['compra']);
 $esp->load();
 
-$_SESSION['id_esp_Compra'] = $esp->getId();
+$_SESSION['id_esp_compra'] = $esp->getId();
 
 ?>
 
