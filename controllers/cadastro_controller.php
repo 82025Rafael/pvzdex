@@ -42,7 +42,7 @@ session_start();
         exit;
     }
     
-    $extensoesPermitidas = ["png", "jpg", "gif"]; // QUAIS EXTENSOES PODEM SER UPADAS
+    $extensoesPermitidas = ["png", "jpeg", "gif"]; // QUAIS EXTENSOES PODEM SER UPADAS
 
     try{
 
@@ -92,8 +92,6 @@ $especie->load();
 
 $pokemon->setEsp($especie->getId());
 $pokemon->setNome($especie->getNome());
-$pokemon->setAtk1(5);
-$pokemon->setAtk2(6);
 $pokemon->setVida($especie->getVida());
 
 $pokemon->insert();
@@ -106,8 +104,6 @@ $especie->load();
 
 $pokemon->setEsp($especie->getId());
 $pokemon->setNome($especie->getNome());
-$pokemon->setAtk1(11);
-$pokemon->setAtk2(20);
 $pokemon->setVida($especie->getVida());
 
 $pokemon->insert();
@@ -119,8 +115,6 @@ $especie->load();
 
 $pokemon->setEsp($especie->getId());
 $pokemon->setNome($especie->getNome());
-$pokemon->setAtk1(9);
-$pokemon->setAtk2(10);
 $pokemon->setVida($especie->getVida());
 
 $pokemon->insert();

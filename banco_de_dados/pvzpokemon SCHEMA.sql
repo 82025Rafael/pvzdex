@@ -71,6 +71,8 @@ id_esp int primary key auto_increment,
 vida_max int not null,
 forca int not null,
 veloc int not null,
+atk1 int not null,
+atk2 int,
 
 id_evo int,
 
@@ -89,10 +91,6 @@ nome_pkm varchar(100) not null,
 id_usr int,
 
 id_esp int not null,
-
-id_atk1 int,
-id_atk2 int,
-
 id_cond int,
 
 vida_atual int not null,
@@ -148,6 +146,9 @@ update tipo set f1 = 4, f2 = 5, w1 = 2, w2 = 3 where id_tipo = 9; -- vigo
 update tipo set f1 = 1, f2 = 3, w1 = 4, w2 = 5 where id_tipo = 10; -- furt
 
 
+
+
+
 insert into condicao(nome_cond, efeito) values ('Queimado', 'Perde 5% vida Max no fim do turno. Nao pode cong. ATK -10%'); -- 1
 insert into condicao(nome_cond, efeito) values ('Envenenado', 'Perde 10% vida Max no fim do turno'); -- 2
 insert into condicao(nome_cond, efeito) values ('Paralizado', 'Vel - 50%. 30% de chance de nao se mover'); -- 3
@@ -183,26 +184,66 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Bandeira', 300
 insert into item(nome_item, preco_item, desc_item, foto) values ('Telporte', 200, 'Evolui Cabra para Planador Cabra 3000', '../ImagensPVZ/itens/itens de evolução/Teleport_HD.png'); -- 25
 
 
+-- ATAQUES
 
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Noz Obstáculo', 0,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Cacto', 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Tricenourátops', 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png'); -- 4
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ruinagumelo',1,7.0,4,'Destroi violentamente o inimigo, mas precisa de recarga', null); -- 1
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Barreira de Noz',1,0.0,-1,'Se proteja de ataques', null); -- 2
 
-
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Coronel Milho', 12,60,8,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png'); -- 7
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo,foto) values ('Nabossauro Bebê', 3,20,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png'); -- 8
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Uvas Azedas', 4,20,4,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png'); -- 9
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Mirtilartista', 6,30,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Bluesberry.png'); -- 10
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Explosão Frutífera',2,1.8,2,'Frutinhas violentamente explosivas', null); -- 3 3
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Bombanana',2,4,1,'Explosão Forte e rápida', null); -- 4
 
 
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Disparervilha', 2,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png'); -- 11
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Ervilhadora', 10,40,5,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png'); -- 12
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Batatossauro', 10,50,6,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Tater_titan.png'); -- 13
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Repolho Boxeador', 4,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Hd_bonk.png'); -- 14
-insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Aneis de Cebola', 8,40,4,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Onion_Rings_HD.png'); -- 15
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Canhervilha',3,1,4,'Dispara um projetil comum', null); -- 5
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Fertilizar',3,0,4,'Aumente seu Ataque em +20', null); -- 6
+
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Tiro Gelado',4,0.8,2,'Tem uma chance de congelar o inimigo', 5,50); -- 7
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Alfaiceberg',4,0,2,'Congele seu inimigo', 5,100); -- 8
+
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Pulso Solar',5,0.7,3,'Tem uma chance de queimar o oponente', 1,50); -- 9
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Insolação',5,0,20,'Diminui a prioridade dos ataques de planta', null); -- 10
+
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Mordiscada',6,0.8,1,'Tem uma chance de paralisar o oponente', 3,30); -- 11
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Miolo no Prato',6,0,2,'Aumente seu ataque em +10', null); -- 12
+
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ciência de Foguetes',7,2,9,'Foguetes violentamente explosivos', null); -- 13
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Criomiolos',7,0,20,'Reduz a prioridade dos ataques zumbis', null); -- 14
+
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Dança dos Mortos Vivos',8,1,4,'Dançar até a morte!', null); -- 15
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Dança do Sono',8,0,10,'Como uma canção de ninar, só que dançante', 4,100); -- 16
+
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Arroto',9,0.8,3,'Tem chance de envenenar', 2,30); -- 17
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Sepultar',9,0,-1,'Protege contra ataques', null); -- 18
+
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Pedrada',10,0.5,3,'Olha a pedra!', null); -- 19
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Doce Saudável',10,0,10,'Cura 20 de vida', null); -- 20!
+
+-- ESPECIES
+
+insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Noz Obstáculo', 2, 19, 0, ,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
+insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Cacto', 3, 6, 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Tricenourátops', 11, 3 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 1, 18 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png'); -- 4
+insert into especie(nome_esp, atk1, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 2, 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
+
+
+insert into especie(nome_esp, atk1, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 4, 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Coronel Milho', 3, 9, 12,60,8,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png'); -- 7
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto) values ('Nabossauro Bebê', 11, 20, 3,20,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png'); -- 8
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Uvas Azedas', 3, 6, 4,20,4,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png'); -- 9
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Mirtilartista', 6,30,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Bluesberry.png'); -- 10
+
+
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Disparervilha', 5, 6, 2,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/HD_Peashooter_(PvZH).png'); -- 11
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Ervilhadora', 5, 6 10,40,5,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Gatling_Pea_cardface.png'); -- 12
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Batatossauro', 17 ,2 10,50,6,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Tater_titan.png'); -- 13
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Repolho Boxeador', 4,10,1,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Hd_bonk.png'); -- 14
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Aneis de Cebola', 8,40,4,3, '../ImagensPVZ/monstrinhos_campo/Crescida/Onion_Rings_HD.png'); -- 15
 
 
 insert into especie(nome_esp, forca , vida_max, veloc, id_tipo, foto) values ('Carambola Cadente', 5,20,5,4, '../ImagensPVZ/monstrinhos_campo/Esperto/Shooting_Starfruit_HD.png'); -- 16
@@ -273,40 +314,3 @@ update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
 update especie set id_evo = 48 where id_esp = 45; --  Galinha -> Mascote
 
 
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ruinagumelo',1,7.0,4,'Destroi violentamente o inimigo, mas precisa de recarga', null); -- 1
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Barreira de Noz',1,0.0,-1,'Se proteja de ataques', null); -- 2
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Explosão Frutífera',2,1.8,2,'Frutinhas violentamente explosivas', null); -- 3 3
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Bombanana',2,4,1,'Explosão Forte e rápida', null); -- 4
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Canhervilha',3,1,4,'Dispara um projetil comum', null); -- 5
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Fertilizar',3,0,4,'Aumente seu Ataque em +20', null); -- 6
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Tiro Gelado',4,0.8,2,'Tem uma chance de congelar o inimigo', 5,50); -- 7
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Alfaiceberg',4,0,2,'Congele seu inimigo', 5,100); -- 8
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Pulso Solar',5,0.7,3,'Tem uma chance de queimar o oponente', 1,50); -- 9
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ensolação',5,0,20,'Diminui a prioridade dos ataques de planta', null); -- 10
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Mordiscada',6,0.8,1,'Tem uma chance de paralisar o oponente', 3,30); -- 11
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Miolo no Prato',6,0,2,'Aumente seu ataque em +10', null); -- 12
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ciência de Foguetes',7,2,9,'Foguetes violentamente explosivos', null); -- 13
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Criomiolos',7,0,20,'Reduz a prioridade dos ataques zumbis', null); -- 14
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Dança dos Mortos Vivos',8,1,4,'Dançar até a morte!', null); -- 15
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Dança do Sono',8,0,10,'Como uma canção de ninar, só que dançante', 4,100); -- 16
-
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Arroto',9,0.8,3,'Tem chance de envenenar', 2,30); -- 17
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Sepultar',9,0,-1,'Protege contra ataques', null); -- 18
-
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Pedrada',10,0.5,3,'Olha a pedra!', null); -- 19
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Doce Saudável',10,0,10,'Cura 20 de vida', null); -- 20!
