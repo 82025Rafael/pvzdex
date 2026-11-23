@@ -8,7 +8,7 @@ html,
 body {
     min-height: 100%;
     margin: 0;
-    overflow: hidden; /* remove scrollbars */
+
 
 }
 
@@ -63,7 +63,7 @@ body {
 .inventory-panel,
 .pokemon-panel,
 .menu-panel {
-    overflow: hidden; /* remove scrollbars */
+    overflow: auto;
 
 }
 
