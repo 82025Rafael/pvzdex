@@ -27,7 +27,6 @@
         <header class="page-header">
             <h1 id="titulo">Selecione seu time!</h1>
             <p id="instrucoes">Escolha 6 Monstrinhos para sua equipe:</p>
-            <p id="selection-status" role="status" aria-live="polite"></p>
         </header>
 
         <!-- Grade principal: equipe à esquerda, inventário e monstrinhos no centro e navegação à direita. -->
@@ -97,24 +96,33 @@
     <script>
         const equipeSelecionada = document.getElementById('equipe-selecionada');
         const pokemonsDisponiveis = document.getElementById('pokemons');
-        const statusSelecao = document.getElementById('selection-status');
         const limiteEquipe = 6;
+
+        function atualizarDisponibilidade() {
+            const equipeCheia = equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length >= limiteEquipe;
+            document.querySelectorAll('.pokemon-checkbox').forEach((checkbox) => {
+                checkbox.disabled = equipeCheia && !checkbox.checked;
+            });
+        }
 
         // Ao marcar ou desmarcar, move o card entre a lista disponível e a equipe.
         document.addEventListener('change', (event) => {
-            if (!event.target.matches('.pokemon-checkbox')) return;
+            if (!(event.target instanceof HTMLInputElement) || !event.target.matches('.pokemon-checkbox')) return;
 
-            const card = event.target.closest('.pokemon-card');
-            if (event.target.checked && equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length >= limiteEquipe) {
-                event.target.checked = false;
-                statusSelecao.textContent = 'Sua equipe pode ter no máximo 6 Pokémon.';
+            const checkbox = event.target;
+            const card = checkbox.closest('.pokemon-card');
+            if (!card) return;
+
+            if (checkbox.checked && equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length > limiteEquipe) {
+                checkbox.checked = false;
+                atualizarDisponibilidade();
                 return;
             }
 
-            card.classList.toggle('selected', event.target.checked);
-            const destino = event.target.checked ? equipeSelecionada : pokemonsDisponiveis;
+            card.classList.toggle('selected', checkbox.checked);
+            const destino = checkbox.checked ? equipeSelecionada : pokemonsDisponiveis;
             destino.appendChild(card);
-            statusSelecao.textContent = '';
+            atualizarDisponibilidade();
         });
     </script>
 </body>
