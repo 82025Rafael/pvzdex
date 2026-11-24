@@ -42,7 +42,9 @@ $_SESSION['id_esp_compra'] = $esp->getId();
             <form action='../../controllers/compraMonstro_controller.php' method=POST>
 
             <label> <b> Apelido (Opcional)</b></label> <br>
-            <input type=text name="nome_pkm" value="<?=$esp->getNome()?>">
+            <input type=text name="nome_pkm" value="<?=$esp->getNome()?>"> <br>
+            <?= $esp->getPreco();?> <br>
+            <?= $_SESSION['erro_compra'] ?? ''; ?>
             <button type=submit> Comprar </button>
 
 

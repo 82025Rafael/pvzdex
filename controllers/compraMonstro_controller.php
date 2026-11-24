@@ -32,14 +32,17 @@ try{
                     $usr->setDinheiro($money  - $esp->getPreco());
                     $pkm->insert();
                     $usr->updateBD();
+                    header("location: ../views/louja/lojapokemons.php");
+                    unset($_SESSION['erro_compra']);
             }
         else
             {throw new Pokemon_Exception("Saldo Insuficiente!");}
     }
     catch(Pokemon_Exception $e)
     {
-        $_SESISON['erro_compra'] = $e->getMessage();
-        echo $_SESISON['erro_compra'];
+        $_SESSION['erro_compra'] = $e->getMessage();
+        header("location: ../views/louja/compraMonstro.php?compra=" . $_SESSION['id_esp_compra']);
+        
     }
 }
 catch(PDOException $e)

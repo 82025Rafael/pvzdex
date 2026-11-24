@@ -42,7 +42,7 @@ session_start();
         exit;
     }
     
-    $extensoesPermitidas = ["png", "jpeg", "gif"]; // QUAIS EXTENSOES PODEM SER UPADAS
+    $extensoesPermitidas = ["png", "jpg", "jpeg", "gif"]; // QUAIS EXTENSOES PODEM SER UPADAS
 
     try{
 
