@@ -4,6 +4,10 @@ require_once '../../config.php';
 
 unset($_SESSION['erro_compra']);
 
+$usr = new Usuario();
+$usr->setId($_SESSION['id_usr']);
+$usr->load();
+
 ?>
 
 <!DOCTYPE html>

@@ -109,13 +109,12 @@ id_item int not null,
 quant_item int not null,
 
 
-primary key (id_usr, id_item),
+constraint item_usuario primary key clustered (id_usr, id_item),
 foreign key (id_usr) references usuario(id_usr),
 foreign key (id_item) references item(id_item)
 
 
 );
-
 
 use pvzpokemon; -- INSERTS
 
@@ -163,7 +162,7 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Vitamina Z', 2
 insert into item(nome_item, preco_item, desc_item, foto) values ('Cabeça Flutuante', 20, 'Cura da Paralisia', '../ImagensPVZ/itens/itens de cura/cura_de_paralisia.png'); -- 8
 insert into item(nome_item, preco_item, desc_item, foto) values ('Café', 20, 'Cura da Sono', '../ImagensPVZ/itens/itens de cura/café.png'); -- 9
 insert into item(nome_item, preco_item, desc_item, foto) values ('Aloe', 60, 'Cura Tudo', '../ImagensPVZ/itens/itens de cura/Aloe.png'); -- 10
-insert into item(nome_item, preco_item, desc_item, foto) values ('WaffleTaco', 120, 'Cura Tudo e 100% de vida', '../ImagensPVZ/itens/itens de cura/WaffleTaco.png'); -- 11
+insert into item(nome_item, preco_item, desc_item, foto) values ('Frangão', 180, 'Cura Tudo e 100% de vida', '../ImagensPVZ/itens/itens de cura/restauratudo.png'); -- 11
 insert into item(nome_item, preco_item, desc_item, foto) values ('Cenoura do Poder', 80, 'Revive com 50% de vida', '../ImagensPVZ/itens/itens de cura/cenoura_do_poder.png'); -- 12
 -- ITENS EVOLUÇÃO
 insert into item(nome_item, preco_item, desc_item, foto) values ('Pedra de Gelo', 100, 'Evolui Disparervilha para Gelervilha', '../ImagensPVZ/itens/itens de evolução/pedra_de_gelo.png'); -- 13

@@ -35,7 +35,8 @@
    
    $pdo = connect();
 
-   $sql = "INSERT into inventario (id_item, id_usr, quant_item) values (:item, :usr, :quant)";
+   $sql = "INSERT into inventario (id_item, id_usr, quant_item) values (:item, :usr, :quant) on duplicate key update quant_item = quant_item + values(quant_item);
+";
    $stmt = $pdo->prepare($sql);
    $stmt->execute([
       ':item'    =>    $this->id_item,
