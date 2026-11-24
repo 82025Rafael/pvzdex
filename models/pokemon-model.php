@@ -25,11 +25,15 @@ class Pokemon {
       }
 
    public function getEsp() {
-         return $this->esp;
+         return $this->id_esp;
       }
 
    public function getUsr()
    {return $this->id_usr;}
+
+      public function getId()
+   {return $this->id_pkm;}
+
 
    // SETTERS
 
@@ -48,6 +52,10 @@ class Pokemon {
    }
    public function setEvo(int $id_evo) {
       $this->id_evo = $id_evo;
+   }
+
+    public function setId(int $id_pkm) {
+      $this->id_pkm = $id_pkm;
    }
 
    public function insert() // INSERIR NO BANCO COM ID DO USUARIO
@@ -73,7 +81,7 @@ class Pokemon {
     $sql = "select nome_pkm, vida_atual, id_esp from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':id' => $this->id_tipo
+        ':id' => $this->id_pkm
     ]);
 
     $pkm = $stmt->fetch(); // ENFIA TUDO NUM VETOR

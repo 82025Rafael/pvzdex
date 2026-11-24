@@ -10,8 +10,8 @@ class Ataque{
     private int $priori;    //prioridade do ataque, quanto menor, mas rapido ele é
     private string $desc;   //descrição do ataque
     
-    private int $id_cond;
-    private float $chance_condicao;
+    private $id_cond;
+    private  $chance_cond;
 
 
     // GETTERS
@@ -23,7 +23,7 @@ class Ataque{
         return $this->nome;
     }
     public function getTipo(){
-        return $this->ipo;
+        return $this->id_tipo;
     }
     public function getDano(){
         return $this->mult_dano;
@@ -35,7 +35,7 @@ class Ataque{
         return $this->desc;
     }
     public function getCond(){
-        return $this->condicao;
+        return $this->id_cond;
     }
     public function getChance(){
         return $this->chance_condicao;
@@ -62,11 +62,11 @@ class Ataque{
     public function setDesc(string $desc){
         $this->desc = $desc;
     }
-    public function setCond(int $id_cond){
+    public function setCond( $id_cond){
         $this->condicao = $id_cond;
     }
     public function setChance($chance_cond){
-        $this->chance_condicao = $chance_condicao;
+        $this->chance_cond = $chance_cond;
     }
 
     public function load(){ // CARREGAR DADOS DO ATAQUE FROM BANCO
@@ -75,7 +75,7 @@ class Ataque{
     $sql = "select nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond from ataque where id_atk = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':id' => $this->id_tipo
+        ':id' => $this->id_atk
     ]);
     $atk = $stmt->fetch(); // ENFIA TUDO NUM VETOR
 
