@@ -327,6 +327,10 @@ body {
         order: 4;
     }
 }
+.ataques{
+    padding-left:40px
+    
+}
 .fotoPerfil {
     display: block;
     width: 230px;
