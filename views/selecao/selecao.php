@@ -50,7 +50,7 @@
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
-                            <p>Nenhum item no inventário.</p>
+                            <p style = "color:white;">Nenhum item no inventário.</p>
                         <?php endif; ?>
                     </div>
                 </section>
