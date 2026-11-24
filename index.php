@@ -1,3 +1,3 @@
 <?php
-header('Location: views\index.php'); // vai pro index
+header('Location: views\index.php'); // redireciona pro index
 ?>

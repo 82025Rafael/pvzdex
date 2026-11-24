@@ -61,7 +61,7 @@
                     <div id="pokemons" class="card-list">
                         <?php if (!empty($pokemons)): ?>
                             <?php foreach ($pokemons as $pokemon): ?>
-                                <label class="pokemon-card" tipo="<?php echo htmlspecialchars($pokemon['nome_tipo'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                                <label class="pokemon-card" data-pokemon-id="<?php echo (int) ($pokemon['id_pkm'] ?? 0); ?>" tipo="<?php echo htmlspecialchars($pokemon['nome_tipo'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                                     <input type="checkbox" class="pokemon-checkbox" aria-label="Selecionar Pokémon">
                                     <img class="pokemon-image" src="<?php echo '../../foto/' . htmlspecialchars($pokemon['foto'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($pokemon['nome_pkm'] ?? 'Pokémon', ENT_QUOTES, 'UTF-8'); ?>">
                                     <span class="pokemon-info">
@@ -81,14 +81,17 @@
             <!-- Menu de navegação ficam agrupados na coluna direita. -->
             <nav id="menu" class="panel menu-panel" aria-label="Menu principal">
 
-                <img class = "fotoPerfil" src='../<?=$usuario->getFoto();?>' width = 230vw height = 230vh> 
+                <img class="fotoPerfil" src="../<?= htmlspecialchars($usuario->getFoto(), ENT_QUOTES, 'UTF-8'); ?>">
                 <div class="banco">Dinheiro: $<?= $usuario->getDinheiro() ?></div>           
 
                 <a href="../index.php"><button type="button">Sair</button></a>
                 <a href="../log.php"><button type="button">Log</button></a>
                 <a href="../centro.php"><button type="button">Centro</button></a>
                 <a href="../louja/lojainicial.php"><button type="button">Loja</button></a>
-                <a href="../../controllers/batalha_controller.php"><button type="button">Batalhar</button></a>
+                <form id="batalha-form" action="../../controllers/batalha_controller.php" method="post">
+                    <div id="pokemon-ids"></div>
+                    <button type="submit">Batalhar</button>
+                </form>
             </nav>
         </main>
     </div>
@@ -123,6 +126,29 @@
             const destino = checkbox.checked ? equipeSelecionada : pokemonsDisponiveis;
             destino.appendChild(card);
             atualizarDisponibilidade();
+        });
+
+        document.getElementById('batalha-form').addEventListener('submit', (event) => {
+            const idsContainer = document.getElementById('pokemon-ids');
+            idsContainer.replaceChildren();
+
+            const idsSelecionados = Array.from(
+                equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked')
+            ).map((checkbox) => checkbox.closest('.pokemon-card').dataset.pokemonId);
+
+            if (idsSelecionados.length === 0) {
+                event.preventDefault();
+                alert('Selecione pelo menos um monstrinho.');
+                return;
+            }
+
+            idsSelecionados.forEach((id) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'pokemon_ids[]';
+                input.value = id;
+                idsContainer.appendChild(input);
+            });
         });
     </script>
 </body>
