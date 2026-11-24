@@ -68,6 +68,9 @@
                                         <strong><?php echo htmlspecialchars($pokemon['nome_pkm'] ?? '', ENT_QUOTES, 'UTF-8'); ?></strong>
                                         <span>Espécie: <?php echo htmlspecialchars($pokemon['nome_esp'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                                         <span>Vida: <?php echo htmlspecialchars((string) ($pokemon['vida_restante_pkm'] ?? 0), ENT_QUOTES, 'UTF-8'); ?>/<?php echo htmlspecialchars((string) ($pokemon['vida_total_pkm'] ?? 0), ENT_QUOTES, 'UTF-8'); ?></span>
+                                        <strong>Ataques:</strong> 
+                                        <span class="ataques" > <?php echo htmlspecialchars($pokemon['atk1'] ?? '', ENT_QUOTES, 'UTF-8'); ?> </span>
+                                        <span class="ataques"> <?php echo htmlspecialchars($pokemon['atk2'] ?? '', ENT_QUOTES, 'UTF-8'); ?> </span>
                                     </span>
                                 </label>
                             <?php endforeach; ?>

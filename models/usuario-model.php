@@ -173,11 +173,16 @@ public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO CO
     $pdo = connect();
     $sql = "SELECT pokemon.id_pkm, pokemon.nome_pkm, especie.nome_esp, especie.foto, tipo.nome_tipo,
                    pokemon.vida_atual AS vida_restante_pkm,
-                   especie.vida_max AS vida_total_pkm
+                   especie.vida_max AS vida_total_pkm,
+                   a1.nome_atk AS atk1,
+                   a2.nome_atk AS atk2
             FROM pokemon
             JOIN especie ON pokemon.id_esp = especie.id_esp
             JOIN tipo ON especie.id_tipo = tipo.id_tipo
+            JOIN ataque a1 ON especie.atk1 = a1.id_atk
+            LEFT JOIN ataque a2 ON especie.atk2 = a2.id_atk 
             WHERE pokemon.id_usr = :id";
+            // left join garante que as especies sem um segundo ataque não deem problema
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_usr
