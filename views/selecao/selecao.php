@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleção de Pokemons</title>
+    <title>Seleção de Monstrinhos</title>
     <link rel="stylesheet" href="selecao.css">
     
 </head>
@@ -33,14 +33,14 @@
         <main class="game-layout">
             <!-- Os cards selecionados são movidos para esta coluna pelo JavaScript. -->
             <section class="panel team-panel">
-                <h2>Equipe Selecionada</h2>
+                <h2 style = "color:oklab(0.85 0.01 0.13);">Equipe Selecionada</h2>
                 <div id="equipe-selecionada" class="card-list team-list"></div>
             </section>
 
             <div class="center-column">
                 <!-- Mostra os itens e quantidades carregados do inventário do usuário. -->
                 <section class="panel inventory-panel">
-                    <h2>Inventário</h2>
+                    <h2 style = "color:oklab(0.85 0.01 0.13);" >Inventário</h2>
                     <div id="inventario" class="inventory-list">
                         <?php if (!empty($inventario)): ?>
                             <?php foreach ($inventario as $item): ?>
@@ -57,7 +57,7 @@
 
                 <!-- Cada card mantém o checkbox para seleção e revela os dados ao passar o mouse. -->
                 <section class="panel pokemon-panel">
-                    <h2>Monstrinhos disponíveis</h2>
+                    <h2 style = "color:oklab(0.85 0.01 0.13);" >Monstrinhos disponíveis</h2>
                     <div id="pokemons" class="card-list">
                         <?php if (!empty($pokemons)): ?>
                             <?php foreach ($pokemons as $pokemon): ?>
@@ -79,18 +79,18 @@
             </div>
 
             <!-- Menu de navegação ficam agrupados na coluna direita. -->
-            <nav id="menu" class="panel menu-panel" aria-label="Menu principal">
+            <nav style="display: flex; justify-content:center; align-items:center; "id="menu" class="panel menu-panel" aria-label="Menu principal">
 
                 <img class="fotoPerfil" src="../<?= htmlspecialchars($usuario->getFoto(), ENT_QUOTES, 'UTF-8'); ?>">
                 <div class="banco">Dinheiro: $<?= $usuario->getDinheiro() ?></div>           
 
-                <a href="../index.php"><button type="button">Sair</button></a>
-                <a href="../log.php"><button type="button">Log</button></a>
-                <a href="../centro.php"><button type="button">Centro</button></a>
-                <a href="../louja/lojainicial.php"><button type="button">Loja</button></a>
+                <a style = "width:100%;" href="../index.php"><button type="button">Sair</button></a>
+                <a style = "width:100%;" href="../log.php"><button type="button">Log</button></a>
+                <a style = "width:100%;" href="../centro.php"><button type="button">Centro</button></a>
+                <a style = "width:100%;" href="../louja/lojainicial.php"><button type="button">Loja</button></a>
                 <form id="batalha-form" action="../../controllers/batalha_controller.php" method="post">
                     <div id="pokemon-ids"></div>
-                    <button type="submit">Batalhar</button>
+                    <button style = "width:100%;"  type="submit">Batalhar</button>
                 </form>
             </nav>
         </main>

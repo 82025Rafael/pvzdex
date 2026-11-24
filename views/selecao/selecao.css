@@ -1,6 +1,8 @@
 /* Faz com que dimensões e espaçamentos incluam bordas e preenchimentos. */
 * {
     box-sizing: border-box;
+    font-family:"Comic Sans MS";
+    font-size: 102%;
 }
 
 /* Remove margens padrão e define a identidade visual geral da página. */
