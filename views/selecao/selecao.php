@@ -3,6 +3,7 @@
   { header("location:login.php"); }  
         
   require_once '../../config.php';   
+  unset($_SESSION['pkm']);
         
         $usuario = new usuario();
         $usuario->setId((int) $_SESSION['id_usr']);

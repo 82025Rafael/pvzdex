@@ -12,6 +12,8 @@ class Especie{
 
     private string $foto;
     private int $preco_esp;
+    private int $id_atk1;
+    private int $id_atk2;
 
 
     // GETTERS
@@ -40,9 +42,7 @@ class Especie{
     public function getVeloc() {
         return $this->veloc;
     }
-   public function setAtk1($atk1) {
-    $this->atk1 = $atk1;
-    }
+
     public function getFoto(){
         return $this->foto;
     }
@@ -51,7 +51,13 @@ class Especie{
     {
         return $this->preco_esp;
     }
+
+    public function getAtk1()
+    {return $this->id_atk1;}
     
+    
+    public function getAtk2()
+    {return $this->id_atk2;}
 
     // SETTERS
 
@@ -89,12 +95,22 @@ class Especie{
         $this->preco_esp = $preco_esp;
     }
 
+     public function setAtk1(int $id_atk1)
+    {
+        $this->id_atk1 = $id_atk1;
+    }
+
+    
+     public function setAtk2(int $id_atk2)
+    {
+        $this->id_atk2 = $id_atk2;
+    }
 
 
      public function load(){ // CARREGAR DADOS DA ESPECIE FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_esp, id_tipo, id_evo, vida_max, forca, veloc, foto from especie where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_esp, id_tipo, id_evo, vida_max, forca, veloc, foto, atk1, atk2 from especie where id_esp = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_esp
@@ -111,7 +127,8 @@ class Especie{
     $this->setVeloc($esp['veloc']);
     $this->setFoto($esp['foto']);
     $this->setPreco((($this->getForca()*2 ?: 2)) * $this->getVida());
-
+    $this->setAtk1($esp['atk1']);
+    $this->setAtk2($esp['atk2']);
 
     } // ======================================================================================================
 
