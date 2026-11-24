@@ -13,7 +13,7 @@ class Especie{
     private string $foto;
     private int $preco_esp;
     private int $id_atk1;
-    private int $id_atk2;
+    private $id_atk2;
 
 
     // GETTERS
@@ -101,7 +101,7 @@ class Especie{
     }
 
     
-     public function setAtk2(int $id_atk2)
+     public function setAtk2( $id_atk2)
     {
         $this->id_atk2 = $id_atk2;
     }
