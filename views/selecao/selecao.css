@@ -68,7 +68,25 @@ body {
 }
 
 .team-panel {
+    display: flex;
+    flex-direction: column;
     height: 100%;
+}
+
+.team-panel .team-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    flex: 1;
+    align-content: stretch;
+    gap: 8px;
+    overflow: auto;
+}
+
+.team-list .pokemon-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
 }
 
 .center-column {
@@ -105,20 +123,27 @@ body {
     margin: 4px 0;
 }
 
-.card-list {
+.pokemon-panel {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    flex: 1;
     align-content: flex-start;
     gap: 10px;
     min-height: 0;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Cards clicáveis: imagem ocupa o card, informações aparecem no hover. */
 .pokemon-card {
     position: relative;
     display: block;
-    width: 380px;
+    width: 100%;
     height: 140px;
     overflow: hidden;
     border: 2px solid transparent;
@@ -207,11 +232,6 @@ body {
     visibility: visible;
 }
 
-.team-list .pokemon-card {
-    width: 100%;
-    height: 150px;
-}
-
 /* Botões de navegação empilhados na coluna direita. */
 .menu-panel {
     display: flex;
@@ -231,7 +251,7 @@ body {
     border-radius: 6px;
     background: #4b8b45;
     color: white;
-    font-size: 1rem;
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -277,6 +297,11 @@ body {
         min-height: 220px;
     }
 
+    .team-panel .team-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+
     .center-column {
         display: flex;
         flex-direction: column;
@@ -294,4 +319,22 @@ body {
         order: 4;
     }
 }
+.fotoPerfil{    
+    border: 3px solid white;
+    border-radius: 100%;
+    margin: 0;
+    }
+.banco {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #4b8b45;
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-radius: 8px;
 
+
+}

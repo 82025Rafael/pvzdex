@@ -48,11 +48,19 @@ public function setSenha(string $senha)
 public function setCor(string $cor_favorita)
 {$this->cor_favorita = $cor_favorita;}
 
-public function setDinheiro(string $dinheiro)
+public function setDinheiro(int $dinheiro)
 {$this->dinheiro = $dinheiro;}
 
 public function setFoto(string $foto)
 {$this->foto = $foto;}
+
+public function setAtk1($atk1) {
+    $this->atk1 = $atk1;
+}
+
+public function setAtk2($atk2) {
+    $this->atk2 = $atk2;
+}
 
 public function updateBD() // ATUALIZAR NO BANCO DE DADOS
 {

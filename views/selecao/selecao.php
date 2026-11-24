@@ -1,5 +1,17 @@
-<?php require __DIR__ . '/../../controllers/selecao_controller.php'; ?>
-
+<?php require __DIR__ . '/../../controllers/selecao_controller.php';  
+ if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false)
+  { header("location:login.php"); }  
+        
+  require_once '../../config.php';   
+        
+        $usuario = new usuario();
+        $usuario->setId((int) $_SESSION['id_usr']);
+        $usuario->load();
+        
+        
+        
+        
+        ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -66,8 +78,12 @@
                 </section>
             </div>
 
-            <!-- Atalhos de navegação ficam agrupados na coluna direita. -->
+            <!-- Menu de navegação ficam agrupados na coluna direita. -->
             <nav id="menu" class="panel menu-panel" aria-label="Menu principal">
+
+                <img class = "fotoPerfil" src='../<?=$usuario->getFoto();?>' width = 230vw height = 230vh> 
+                <div class="banco">Dinheiro: $<?= $usuario->getDinheiro() ?></div>           
+
                 <a href="../index.php"><button type="button">Sair</button></a>
                 <a href="../log.php"><button type="button">Log</button></a>
                 <a href="../centro.php"><button type="button">Centro</button></a>
@@ -80,15 +96,33 @@
     <script>
         const equipeSelecionada = document.getElementById('equipe-selecionada');
         const pokemonsDisponiveis = document.getElementById('pokemons');
+        const limiteEquipe = 6;
+
+        function atualizarDisponibilidade() {
+            const equipeCheia = equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length >= limiteEquipe;
+            document.querySelectorAll('.pokemon-checkbox').forEach((checkbox) => {
+                checkbox.disabled = equipeCheia && !checkbox.checked;
+            });
+        }
 
         // Ao marcar ou desmarcar, move o card entre a lista disponível e a equipe.
         document.addEventListener('change', (event) => {
-            if (!event.target.matches('.pokemon-checkbox')) return;
+            if (!(event.target instanceof HTMLInputElement) || !event.target.matches('.pokemon-checkbox')) return;
 
-            const card = event.target.closest('.pokemon-card');
-            card.classList.toggle('selected', event.target.checked);
-            const destino = event.target.checked ? equipeSelecionada : pokemonsDisponiveis;
+            const checkbox = event.target;
+            const card = checkbox.closest('.pokemon-card');
+            if (!card) return;
+
+            if (checkbox.checked && equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length > limiteEquipe) {
+                checkbox.checked = false;
+                atualizarDisponibilidade();
+                return;
+            }
+
+            card.classList.toggle('selected', checkbox.checked);
+            const destino = checkbox.checked ? equipeSelecionada : pokemonsDisponiveis;
             destino.appendChild(card);
+            atualizarDisponibilidade();
         });
     </script>
 </body>
