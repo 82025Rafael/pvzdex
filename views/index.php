@@ -36,7 +36,7 @@
  
 
     <h3> Bem-vindo(a), <?= $usuario->getNome();?>!! </h3> <br>
-    <img class="fotoPerfil" src="../<?= htmlspecialchars($usuario->getFoto(), ENT_QUOTES, 'UTF-8'); ?>" width="250" height="250"> <br>
+    <img class="fotoPerfil" src="<?= htmlspecialchars($usuario->getFoto(), ENT_QUOTES, 'UTF-8'); ?>" width="250" height="250"> <br>
 
     
                     
