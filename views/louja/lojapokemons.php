@@ -2,6 +2,7 @@
 session_start();
 require_once '../../config.php';
 
+unset($_SESSION['erro_compra']);
 
 ?>
 
@@ -39,7 +40,7 @@ require_once '../../config.php';
                 <div class="page active">
 
                     <?php 
-
+                        
                         $esp->setTipo(2);
                         $tipo->setId($esp->getTipo());
                         $tipo->load();
