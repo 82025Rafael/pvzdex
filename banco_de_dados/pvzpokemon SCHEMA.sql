@@ -116,6 +116,15 @@ foreign key (id_item) references item(id_item)
 
 );
 
+create table inimigo(
+
+id_inim int primary key auto_increment,
+txt_entra varchar(300) not null,
+txt_mata varchar(300) not null,
+txt_morre varchar(300) not null
+
+);
+
 use pvzpokemon; -- INSERTS
 
 insert into tipo(nome_tipo) values ('Protetor'); -- 1 
@@ -310,4 +319,12 @@ update especie set id_evo = 42 where id_esp = 41; --  Sumô -> Aspirante a Heró
 update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
 update especie set id_evo = 48 where id_esp = 45; --  Galinha -> Mascote
 
+-- CRIANDO OS INIMIGOS
+
+-- RAISSA
+insert into usuario(nome_usr, id_usr, senha, cor_favorita, dinheiro, foto) values ('Raissa', 999, 1, '#ff00b3', 0, '../ImagensPVZ/Inimigos/raissa.png');
+
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim', 999, 8, 20);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim 2', 999, 32, 50);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim O Maior', 999, 48, 10);
 

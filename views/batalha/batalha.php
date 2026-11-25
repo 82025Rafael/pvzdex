@@ -28,9 +28,10 @@ $tipo->load();
 $atk[0]->setId($esp->getAtk1());
 $atk[0]->load();
 
-
-$atk[1]->setId($esp->getAtk2());
-$atk[1]->load();
+if (null !== $esp->getAtk2())
+    {$atk[1]->setId($esp->getAtk2());
+    $atk[1]->load();}
+else{$atk[1]->setNome(' ');}
 
 ?>
 <!DOCTYPE html>
