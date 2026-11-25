@@ -8,6 +8,7 @@ class Pokemon {
     
    private int $id_esp;
    private int $id_usr; // DONO DELE
+   private $id_cond;
 
     // GETTERS
    public function getNome() {
@@ -34,6 +35,8 @@ class Pokemon {
       public function getId()
    {return $this->id_pkm;}
 
+   public function getCond()
+   {return $this->id_cond;}
 
    // SETTERS
 
@@ -57,6 +60,9 @@ class Pokemon {
     public function setId(int $id_pkm) {
       $this->id_pkm = $id_pkm;
    }
+
+   public function setCond($id_cond)
+   {$this->id_cond = $id_cond;}
 
    public function insert() // INSERIR NO BANCO COM ID DO USUARIO
    {

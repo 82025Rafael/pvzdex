@@ -78,14 +78,14 @@
 
 
 
-    public function update(){ // INCREMENTAR A QUANTIDADE EM +1
+    public function update(){ // ATUALIZA
 
     $pdo = connect();
-    $sql = "update inventario set quant_item = :maisum where id_item = :item and id_usr = :usr";
+    $sql = "update inventario set quant_item = :quant where id_item = :item and id_usr = :usr";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
 
-        ':maisum'   =>      ($this->quant_item+1),
+        ':quant'   =>      ($this->quant_item),
         ':item'     =>      $this->id_item,
         ':usr'      =>      $this->id_usr
 
