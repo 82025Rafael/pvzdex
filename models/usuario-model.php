@@ -59,13 +59,6 @@ public function setDinheiro(int $dinheiro)
 public function setFoto(string $foto)
 {$this->foto = $foto;}
 
-public function setAtk1($atk1) {
-    $this->atk1 = $atk1;
-}
-
-public function setAtk2($atk2) {
-    $this->atk2 = $atk2;
-}
 
 public function setFase(int $fase)
 {$this->fase = $fase;}

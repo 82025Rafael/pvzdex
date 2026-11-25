@@ -38,7 +38,7 @@ class Ataque{
         return $this->id_cond;
     }
     public function getChance(){
-        return $this->chance_condicao;
+        return $this->chance_cond;
     }
 
 
@@ -51,7 +51,7 @@ class Ataque{
         $this->nome = $nome;
     }
     public function setTipo(int $id_tipo){
-        $this->ipo = $id_tipo;
+        $this->id_tipo = $id_tipo;
     }
     public function setDano(float $mult_dano){
         $this->mult_dano = $mult_dano;
@@ -63,7 +63,7 @@ class Ataque{
         $this->desc = $desc;
     }
     public function setCond( $id_cond){
-        $this->condicao = $id_cond;
+        $this->id_cond = $id_cond;
     }
     public function setChance($chance_cond){
         $this->chance_cond = $chance_cond;

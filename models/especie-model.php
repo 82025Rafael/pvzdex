@@ -4,7 +4,7 @@ class Especie{
     private int $id_esp;
 
     private int $id_tipo;
-    private int $id_evo;
+    private $id_evo;
 
     private int $vida_max;
     private int $forca;
@@ -68,7 +68,7 @@ class Especie{
         $this->id_esp = $id_esp;
     }
 
-    public function setEvo(int $id_evo) {
+    public function setEvo($id_evo) {
         $this->id_evo = $id_evo;
     }
 

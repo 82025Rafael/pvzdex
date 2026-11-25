@@ -18,12 +18,6 @@ class Pokemon {
          return $this->vida_atual;
       }
 
-   public function  getAtk1() {
-         return $this->atk1;
-      }
-   public function  getAtk2() {
-         return $this->atk2;
-      }
 
    public function getEsp() {
          return $this->id_esp;
@@ -101,5 +95,24 @@ class Pokemon {
 
 
     } // ======================================================================================================
+
+public function update(){ // CARREGAR DADOS DO POKEMON FROM BANCO
+
+    $pdo = connect();
+    $sql = "update pokemon set nome_pkm = :n, vida_atual = :v, id_esp = :e from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+         ':n' => $this->nome_pkm,
+         ':v'  => $this->vida_atual,
+         ':e' => $this->id_esp,
+        ':id' => $this->id_pkm
+    ]);
+
+
+    
+    } // ======================================================================================================
+
+
+
 
 }

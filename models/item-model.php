@@ -29,8 +29,6 @@ public function getDesc()
 public function getFoto()
 {return $this->foto;}
 
-public function getUsr()
-{return $this->id_usr;}
 
 
 // SETTERS
@@ -53,9 +51,6 @@ public function setDesc(string $desc_item)
 
 public function setFoto(string $foto)
 {$this->foto = $foto;}
-
-public function setUsr(int $id_usr)
-{$this->id_usr = $id_usr;}
 
 
  public function load(){ // CARREGAR DADOS DO ITEM FROM BANCO

@@ -100,7 +100,8 @@ vida_atual int not null,
 id_pkm int primary key auto_increment,
 
 foreign key (id_cond) references condicao(id_cond),
-foreign key (id_esp) references especie(id_esp)
+foreign key (id_esp) references especie(id_esp),
+foreign key (id_usr) references usuario(id_usr)
 );
 
 create table inventario(
@@ -125,6 +126,19 @@ txt_mata varchar(300) not null,
 txt_morre varchar(300) not null
 
 );
+
+create table log{
+
+    id_log int primary key auto_increment,
+    nome_usr varchar(100) not null,
+    nome_inim varchar(100) not null,
+    data_log datetime not null default current_timestamp,
+    ganhou_perdeu boolean not null,
+
+    foreign key (nome_usr) references usuario(nome_usr),
+    foreign key (nome_inim) references usuario(nome_usr)
+
+}
 
 use pvzpokemon; -- INSERTS
 
@@ -188,7 +202,7 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Super Fedor', 
 insert into item(nome_item, preco_item, desc_item, foto) values ('Discobola', 250, 'Evolui Dançarino para Discotron 3000', '../ImagensPVZ/itens/itens de evolução/Disco_bola.png'); -- 22
 insert into item(nome_item, preco_item, desc_item, foto) values ('Hambúrguer', 100, 'Evolui Paparazzumbi para Sumô', '../ImagensPVZ/itens/itens de evolução/hamburguer.png'); -- 23
 insert into item(nome_item, preco_item, desc_item, foto) values ('Bandeira', 300, 'Evolui Sumô para Aspirante a Herói', '../ImagensPVZ/itens/itens de evolução/bandeira.png'); -- 24
-insert into item(nome_item, preco_item, desc_item, foto) values ('Telporte', 200, 'Evolui Cabra para Planador Cabra 3000', '../ImagensPVZ/itens/itens de evolução/Teleport_HD.png'); -- 25
+insert into item(nome_item, preco_item, desc_item, foto) values ('Teleporte', 200, 'Evolui Cabra para Planador Cabra 3000', '../ImagensPVZ/itens/itens de evolução/Teleport_HD.png'); -- 25
 
 
 -- ATAQUES
