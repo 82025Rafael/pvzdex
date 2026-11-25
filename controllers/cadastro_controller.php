@@ -118,7 +118,15 @@ $pokemon->setNome($especie->getNome());
 $pokemon->setVida($especie->getVida());
 
 $pokemon->insert();
-//Redireciona para o index
+// Inserindo entrada no log
+$mensagem = "Usuário cadastrado: {$usuario->getNome()} ";
+$arquivoLog = "../logs/registro.log";
+date_default_timezone_set('America/Sao_Paulo');
+$dataHora = date("Y-m-d H:i:s");
+$entrada = "[$dataHora] - $mensagem" . PHP_EOL;
+file_put_contents($arquivoLog, $entrada, FILE_APPEND);
+
+
 header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {
     echo "Erro ao cadastrar usuário: " . $e->getMessage();

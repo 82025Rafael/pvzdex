@@ -122,7 +122,9 @@ public function cadastroUsr(){ //FUNCAO DE CADASTRAR O USUARIO NO BANCO
 
 public function SeraQueExisteNome(){ // METODO VERIFICAR SE O NOME DIGITADO JA EXISTE
 
-session_start(); // RETOMAR SESSAO
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 try{
     

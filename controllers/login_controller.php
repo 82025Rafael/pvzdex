@@ -9,7 +9,8 @@ session_start(); // iniciando/retomando sessão
     $usuario = new Usuario(); //instanciando usuario
 
     $id_usr = $usuario->login($nome_usr, $senha);
-    
+    //
+
     if ($id_usr)
     {
         
@@ -17,10 +18,19 @@ session_start(); // iniciando/retomando sessão
         $_SESSION['logado'] = true;
         $_SESSION['id_usr'] = $id_usr;
         header("location:../views/index.php");
+        $mensagem = "Usuário logado com sucesso: {$nome_usr}";
+
     }
 else
     {
         $_SESSION['erroLogin'] = "Senha ou Usuário incorretos."; // errou burro
         header("location:../views/login.php");
-        
+        $mensagem = "Falha ao logar: {$nome_usr}";
+
     }
+    //Configuração do log
+    $arquivoLog = "../logs/registro.log";
+    date_default_timezone_set('America/Sao_Paulo');
+    $dataHora = date("Y-m-d H:i:s");
+    $entrada = "[$dataHora] = $mensagem" . PHP_EOL;
+    file_put_contents($arquivoLog, $entrada, FILE_APPEND);

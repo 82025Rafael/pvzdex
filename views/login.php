@@ -1,8 +1,23 @@
 <?php
+    require_once '../config.php'; // conectando com o banco
 session_start(); 
-// iniciando/retomando sessão 
+if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
+    $usr = new Usuario();
+    $usr->setId((int) $_SESSION['id_usr']);
+    $usr->load();
+
+    $mensagem = "Usuário deslogado: {$usr->getNome()}";
+    $arquivoLog = __DIR__ . '/../logs/registro.log';
+    date_default_timezone_set('America/Sao_Paulo');
+    $dataHora = date("Y-m-d H:i:s");
+    $entrada = "[$dataHora] = $mensagem" . PHP_EOL;
+    file_put_contents($arquivoLog, $entrada, FILE_APPEND);
+}
+// Iniciando/retomando sessão
 $_SESSION['logado'] = false;
 $_SESSION['id_usr'] = '';
+
+ 
 ?>
 
 <!DOCTYPE html>

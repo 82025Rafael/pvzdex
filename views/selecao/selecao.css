@@ -220,12 +220,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 8px;
+    padding: 5px;
     color: white;
     background: rgba(0, 0, 0, 0.8);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s;
+    font-size: 13px;
+
 }
 
 .pokemon-card:hover .pokemon-info,
@@ -234,12 +236,26 @@ body {
     visibility: visible;
 }
 
+.banco {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #4b8b45;
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 8px;
+}
+
 /* Botões de navegação empilhados na coluna direita. */
 .menu-panel {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
+    padding-bottom: 20px;
     overflow: hidden;
 
 }
@@ -339,18 +355,4 @@ body {
     border: 3px solid white;
     border-radius: 100%;
     margin: 0;
-}
-.banco {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    background-color: #4b8b45;
-    font-family: Arial, sans-serif;
-    padding: 8px;
-    margin-top: 0px;
-    margin-bottom: 30px;
-    text-align: center;
-    border-radius: 8px;
-
-
 }
