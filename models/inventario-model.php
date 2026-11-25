@@ -93,20 +93,20 @@
     } // FIM DO LOAD ===============================================================================================
 
 
-    /* QUANDO FOR FAZER A LOJA!!
 
-    $item = new item(); $item->setId(5); $item->load();
-    $vent = new inventario();
-    session_start();
+public function delete(){ // DELETA OS ITENS 
 
-    $vent->setUsr($_SESSION['id_usr']);
-    $vent->setItem($item->getId());
+    $pdo = connect();
+    $sql = "delete from inventario where id_item = :item and id_usr = :usr";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':item'     =>      $this->id_item,
+        ':usr'      =>      $this->id_usr
+    ]);
 
-    $vent->load();
 
-    if(!$vent->getQuant()) { $vent->insert();}
-    $vent->update(); */
+}
 
-} 
+    }
 
 ?>

@@ -318,7 +318,6 @@ update especie set id_evo = 41 where id_esp = 35; --  Paparazzumbi -> Sumô
 update especie set id_evo = 42 where id_esp = 41; --  Sumô -> Aspirante a Herói
 
 update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
-update especie set id_evo = 48 where id_esp = 45; --  Galinha -> Mascote
 
 -- CRIANDO OS INIMIGOS
 
