@@ -6,6 +6,10 @@ $usr = new Usuario();
 $usr->setId($_SESSION['id_usr']);
 $usr->load();
 
+$ini = new Inimigo();
+$ini->setId(999);
+$ini->load();
+
 $esp = new Especie();
 $item = new Item();
 
@@ -13,6 +17,12 @@ $atk[0] = new Ataque();
 $atk[1] = new Ataque();
 
 $pkm = new Pokemon();
+
+$pkm_ini = new Pokemon();
+
+$pkm_ini->setId($_SESSION['ini']);
+$pkm_ini->load();
+
 $tipo = new Tipo();
 
 
@@ -54,5 +64,15 @@ else{$atk[1]->setNome(' ');}
         {echo $esp->getFoto();}?>">
     </div> <br>
     <a href="../../controllers/batalha_controller.php"> Continuar </a> <?php if($_SESSION['turno'] > 0) {echo $atk[0]->getNome() . " " . $atk[1]->getNome();} ?>
+
+    <div style="border: 1px solid red; width: 30vw; height: 50vh;" class ="voces"> 
+<img style="width: 75%;" src = "../<?php
+
+    if($_SESSION['turno'] == 0)
+       {echo $ini->getFoto();}
+    else
+        {$esp->setId($pkm_ini->getEsp()); $esp->load(); echo $esp->getFoto();}?>">
+
+
 </body>
 </html>
