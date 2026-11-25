@@ -8,7 +8,8 @@ id_usr int auto_increment primary key,
 senha varchar(20) not null,
 cor_favorita char(7) default '#00bfff',
 dinheiro int default 500,
-foto varchar(200)
+foto varchar(200),
+fase int default 1
 
 );
 

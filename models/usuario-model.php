@@ -13,6 +13,8 @@ private int $id_usr;
 private int $dinheiro = 500;
 private string $foto;
 
+private int $fase;
+
 
 
 // GETTERS 
@@ -33,6 +35,9 @@ public function getID()
 
 public function getFoto()
 {return $this->foto;}
+
+public function getFase()
+{return $this->fase;}
 
 // SETTERS
 
@@ -62,10 +67,13 @@ public function setAtk2($atk2) {
     $this->atk2 = $atk2;
 }
 
+public function setFase(int $fase)
+{$this->fase = $fase;}
+
 public function updateBD() // ATUALIZAR NO BANCO DE DADOS
 {
 $pdo = connect();
-    $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d, foto = :f where id_usr = :id"; 
+    $sql = "update usuario set nome_usr = :n, senha = :s, cor_favorita = :c, dinheiro = :d, foto = :f, fase = :fase where id_usr = :id"; 
     $stmt = $pdo->prepare($sql); // Substituindo os valores provisorios
     
     $stmt->execute([
@@ -75,6 +83,7 @@ $pdo = connect();
             ':c' => $this->cor_favorita,
             ':d' => $this->dinheiro,
             ':f'=>  $this->foto,
+            ':fase' => $this->fase,
             ':id' => $this->id_usr
          ]);
 
@@ -83,7 +92,7 @@ $pdo = connect();
 public function load(){ // CARREGAR DADOS DO USUARIO FROM BANCO
 
 $pdo = connect();
-$sql = "select nome_usr, senha, cor_favorita, dinheiro, foto from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+$sql = "select nome_usr, senha, cor_favorita, dinheiro, foto, fase from usuario where id_usr = :id"; // RECUPERANDO DADOS A PARTIR DO ID
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     ':id' => $this->id_usr
@@ -97,6 +106,7 @@ $this->setSenha($usuario['senha']);
 $this->setCor($usuario['cor_favorita']);
 $this->setDinheiro($usuario['dinheiro']);
 $this->setFoto($usuario['foto']);
+$this->setFase($usuario['fase']);
 
 } // ======================================================================================================
 

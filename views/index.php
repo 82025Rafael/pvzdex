@@ -3,7 +3,7 @@
  session_start();
 
  if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false)
-  { header("location:login.php"); }  
+  { header("location:login.php"); exit; }  
         
   require_once '../config.php';   
         
