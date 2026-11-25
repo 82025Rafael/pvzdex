@@ -8,8 +8,11 @@
 </head>
 <body>
 
+    <!-- Botão de Voltar para a página selecao.php -->
+    <a href="../selecao/selecao.php" class="back-btn">⬅ Voltar</a>
+
     <div class="pixel-bubble">
-        <h2>Bem-vindo... Profissional da Educação do IFRS</h2>
+        <h2>Bem-vindo... Profissional da Educação do IFRS 🧙🏻‍♂️</h2>
         
         <p>Aviso que se você for visto aqui, o Tadachi irá demiti-lo, então tome cuidado!</p>
         <p>Aqui você encontra tudo o que precisa para fortalecer seu time:</p>
@@ -22,8 +25,8 @@
         </ul>
         
         <div class="modal-buttons">
-            <a href="lojaitens.php" class="choice-btn btn-itens"> Itens</a>
-            <a href="lojapokemons.php" class="choice-btn btn-pokemons"> Pokemons</a>
+            <a href="lojaitens.php" class="choice-btn btn-itens">🧪 Itens</a>
+            <a href="lojapokemons.php" class="choice-btn btn-pokemons">🧟‍♂️ Pokemons</a>
         </div>
     </div>
 

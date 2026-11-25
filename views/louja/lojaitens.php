@@ -2,13 +2,11 @@
 session_start();
 require_once '../../config.php';
 
-
 $item = new Item();
 $usr = new Usuario();
 $usr->setId($_SESSION['id_usr']);
 $usr->load();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,12 +16,13 @@ $usr->load();
     <title>Bazar do Rux - Itens</title>
     <link rel="stylesheet" href="lojinha.css">
 </head>
-<body>
+<!-- A classe tema-pokemons aplica as molduras azuis e botão dourado -->
+<body class="tema-pokemons">
 
     <a href="lojainicial.php" class="back-btn">⬅ Voltar</a>
 
     <div class="shop-container">
-        <h2>Itens do Rux </h2>
+        <h2>🧪 Itens do Rux 🌻</h2>
         <h3 id="category-title">Itens de Cura</h3>
         
         <div class="carousel-wrapper">
@@ -32,92 +31,76 @@ $usr->load();
             <div class="pages-container">
                 <!-- PÁGINA 1 -->
                 <div class="page active">
-                    
                     <?php
-                    $id_item = 1;
-
                     for($id_item = 1; $id_item < 11; $id_item++) {
                         $item->setId($id_item);
                         $item->load();
 
-                        echo' <div class="shop-item">';
-                        echo' <div class="tooltip">' . $item->getDesc() . '.</div>';
-                        echo' <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
-                        echo' <h3 class="item-name">' . $item->getNome() . '</h3>';
-                        echo' <p class="item-price">$' . $item->getPreco() . '</p>';
-                        echo' <button class="buy-btn" > <a href=compraItem.php?compra='. $item->getId().'>Comprar </a></button>';
-                        echo' </div>';
+                        echo '<div class="shop-item">';
+                        echo '  <div class="tooltip">' . $item->getDesc() . '.</div>';
+                        echo '  <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
+                        echo '  <h3 class="item-name">' . $item->getNome() . '</h3>';
+                        echo '  <p class="item-price">$ ' . $item->getPreco() . '</p>';
+                        // Botão formatado corretamente para o PHP
+                        echo '  <div class="buy-btn"><a href="compraItem.php?compra='. $item->getId().'">Comprar</a></div>';
+                        echo '</div>';
                     }
-
-
                     ?>
-
-                    
                 </div>
                                   
                 <!-- PÁGINA 2 -->
                 <div class="page">
                     <?php
-
                     for($id_item = 11; $id_item < 13; $id_item++) {
                         $item->setId($id_item);
                         $item->load();
 
-                        echo' <div class="shop-item">';
-                        echo' <div class="tooltip">' . $item->getDesc() . '.</div>';
-                        echo' <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
-                        echo' <h3 class="item-name">' . $item->getNome() . '</h3>';
-                        echo' <p class="item-price">$' . $item->getPreco() . '</p>';
-                        echo' <button class="buy-btn" > <a href=compraItem.php?compra='. $item->getId().'>Comprar </a></button>';
-                        echo' </div>';
+                        echo '<div class="shop-item">';
+                        echo '  <div class="tooltip">' . $item->getDesc() . '.</div>';
+                        echo '  <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
+                        echo '  <h3 class="item-name">' . $item->getNome() . '</h3>';
+                        echo '  <p class="item-price">$ ' . $item->getPreco() . '</p>';
+                        echo '  <div class="buy-btn"><a href="compraItem.php?compra='. $item->getId().'">Comprar</a></div>';
+                        echo '</div>';
                     }
-
-
                     ?>
                 </div>
 
                 <!-- PÁGINA 3 -->
                 <div class="page">
                     <?php
-
                     for($id_item = 13; $id_item < 23; $id_item++) {
                         $item->setId($id_item);
                         $item->load();
 
-                        echo' <div class="shop-item">';
-                        echo' <div class="tooltip">' . $item->getDesc() . '.</div>';
-                        echo' <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
-                        echo' <h3 class="item-name">' . $item->getNome() . '</h3>';
-                        echo' <p class="item-price">$' . $item->getPreco() . '</p>';
-                        echo' <button class="buy-btn" > <a href=compraItem.php?compra='. $item->getId().'>Comprar </a></button>';
-                        echo' </div>';
+                        echo '<div class="shop-item">';
+                        echo '  <div class="tooltip">' . $item->getDesc() . '.</div>';
+                        echo '  <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
+                        echo '  <h3 class="item-name">' . $item->getNome() . '</h3>';
+                        echo '  <p class="item-price">$ ' . $item->getPreco() . '</p>';
+                        echo '  <div class="buy-btn"><a href="compraItem.php?compra='. $item->getId().'">Comprar</a></div>';
+                        echo '</div>';
                     }
-
-
                     ?>
                 </div>
 
                 <!-- PÁGINA 4 -->
                 <div class="page">
                     <?php
-
                     for($id_item = 23; $id_item < 26; $id_item++) {
                         $item->setId($id_item);
                         $item->load();
 
-                        echo' <div class="shop-item">';
-                        echo' <div class="tooltip">' . $item->getDesc() . '.</div>';
-                        echo' <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
-                        echo' <h3 class="item-name">' . $item->getNome() . '</h3>';
-                        echo' <p class="item-price">$' . $item->getPreco() . '</p>';
-                        echo' <button class="buy-btn" > <a href=compraItem.php?compra='. $item->getId().'>Comprar </a></button>';
-                        echo' </div>';
+                        echo '<div class="shop-item">';
+                        echo '  <div class="tooltip">' . $item->getDesc() . '.</div>';
+                        echo '  <img src="../' . $item->getFoto() .'" alt="' . $item->getNome() . '" class="item-img">';
+                        echo '  <h3 class="item-name">' . $item->getNome() . '</h3>';
+                        echo '  <p class="item-price">$ ' . $item->getPreco() . '</p>';
+                        echo '  <div class="buy-btn"><a href="compraItem.php?compra='. $item->getId().'">Comprar</a></div>';
+                        echo '</div>';
                     }
-
-
                     ?>
                 </div>
-
             </div>
 
             <button id="next-btn" class="arrow-btn" onclick="changePage(1)"></button>
@@ -154,9 +137,24 @@ $usr->load();
             }
         }
 
-        function comprarItem(nome, preco) {
-            alert(`Você tentou comprar: ${nome}\nPreço: $${preco}`);
-        }
+        // Navegação pelas setas do teclado
+        document.addEventListener('keydown', function (event) {
+            const elemento = event.target;
+            const digitando = elemento && (
+                elemento.isContentEditable ||
+                ['INPUT', 'TEXTAREA', 'SELECT'].includes(elemento.tagName)
+            );
+
+            if (digitando || event.altKey || event.ctrlKey || event.metaKey) return;
+
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                changePage(-1);
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                changePage(1);
+            }
+        });
     </script>
 </body>
 </html>
