@@ -7,7 +7,7 @@ $usr->setId($_SESSION['id_usr']);
 $usr->load();
 
 $ini = new Inimigo();
-$ini->setId(999);
+$ini->setId(1);
 $ini->load();
 
 $esp = new Especie();

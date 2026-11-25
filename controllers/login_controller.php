@@ -7,7 +7,7 @@ session_start(); // iniciando/retomando sessão
     $nome_usr = $_POST['nome_usr'];   
     $senha = $_POST['senha'];
     $usuario = new Usuario(); //instanciando usuario
-
+    
     $id_usr = $usuario->login($nome_usr, $senha);
     //
 

@@ -5,7 +5,7 @@ require_once "../config.php";
 $pokemons = $_POST['pokemon_ids'] ?? [];
 
 $ini = new Inimigo();
-$ini->setId(999);
+$ini->setId(1);
 $inimigo = $ini->pegarMeusPokemons();
 
 $esp = new Especie();

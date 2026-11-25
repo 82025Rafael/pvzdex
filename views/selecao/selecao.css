@@ -156,11 +156,11 @@ body {
 }
 /* SOFIAAAA coloca as cores certinhas aqui :D */
 .pokemon-card[tipo="Protetor"]{
-    background-color: #a8c9a0;
+    background-color: #6c553b;
 }
 
 .pokemon-card[tipo="Explosivo"]{
-    background-color: #f2a28f;
+    background-color: #f32e2e;
 }
 
 .pokemon-card[tipo="Crescida"] {
@@ -168,31 +168,31 @@ body {
 }
 
 .pokemon-card[tipo="Esperto"] {
-    background-color: #a9c7e8;
+    background-color: #cccccc;
 }
 
 .pokemon-card[tipo="Solar"] {
-    background-color: #ffe58f;
+    background-color: #ffd64e;
 }
 
 .pokemon-card[tipo="Feroz"] {
-    background-color: #efad7b;
+    background-color: #49baf7;
 }
 
 .pokemon-card[tipo="Miolástico"] {
-    background-color: #c4a0d8;
+    background-color: #ff5bd9;
 }
 
 .pokemon-card[tipo="Doidão"] {
-    background-color: #d8a4c7;
+    background-color: #9a42cd;
 }
 
 .pokemon-card[tipo="Vigoroso"] {
-    background-color: #e9b9a2;
+    background-color: #ff8018;
 }
 
 .pokemon-card[tipo="Furtivo"] {
-    background-color: #9db8a8;
+    background-color: #1e1e1e;
 }
 
 .pokemon-card.selected {

@@ -322,9 +322,35 @@ update especie set id_evo = 48 where id_esp = 45; --  Galinha -> Mascote
 -- CRIANDO OS INIMIGOS
 
 -- RAISSA
-insert into usuario(nome_usr, id_usr, senha, cor_favorita, dinheiro, foto) values ('Raissa', 999, 1, '#ff00b3', 0, '../ImagensPVZ/Inimigos/raissa.png');
+insert into usuario(nome_usr, id_usr, senha, cor_favorita, dinheiro, foto) values ('Raissa', 1, "pudim", '#ff00b3', 0, '../ImagensPVZ/Inimigos/raissa.png');
 
-insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim', 999, 8, 20);
-insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim 2', 999, 32, 50);
-insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim O Maior', 999, 48, 10);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim', 1, 8, 20);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim 2', 1, 32, 50);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim O Maior', 1, 48, 10);
 
+insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Oii! Meus pudins polimórficos vão acabar com você!", "Sabia que venceria. Você nunca venceria essa sobrecarga de métodos!", "Parece que te subestimei! Mas esse é só o começo.");
+
+-- JACQUE
+
+insert into usuario(nome_usr, id_usr, senha, cor_favorita, dinheiro, foto) values ('Jacque', 2, "banquinhodosdadinhos", '#5bff50', 0, '../ImagensPVZ/Inimigos/jacque.png' );
+
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Creaitinho', 2, 2, 20);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Readzinho', 2, 20, 20);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Updatonho', 2, 41, 30);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Deletosa', 2, 22, 50);
+
+insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Olá! Você sabe quais são as operações do CRUD?", "Parece que meu time deu Truncate no seu", "Ótima luta. Você sabe mesmo de modelagem");
+
+-- MARCIO
+
+insert into usuario(nome_usr, id_usr, senha, cor_favorita, dinheiro, foto) values ('Marcio', 3, "euamorevisaoonline", '#307cff', 0, '../ImagensPVZ/Inimigos/marcio.png' );
+
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Hagá Tê Ême Éle', 3, 26, 10);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Cê Ésse Ésse', 3, 15, 40);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Javskri Ptchê', 3, 39, 50);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pedro Henrique Pereira', 3, 19, 60);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Revisinho Olinu', 3, 46, 20);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Rhiana', 3, 50, 50);
+
+
+insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Esse será o seu teste final. PREPARE-SE", "Você não revisou o suficiente.", "Meus parabens. Você se mostrou capaz de dominar a programação web.");
