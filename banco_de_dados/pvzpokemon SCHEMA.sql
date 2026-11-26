@@ -377,20 +377,20 @@ update especie set id_evo = 42 where id_esp = 41; --  Sumô -> Aspirante a Heró
 update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
 
 
-insert into evolucao(id_item, id_esp) values (13, 11) -- Pedra de Gelo pra Ervilha
-insert into evolucao(id_item, id_esp) values (14, 18) -- Capacete pra Gelervilha
-insert into evolucao(id_item, id_esp) values (15, 9) -- Saxofone pra Uvas
-insert into evolucao(id_item, id_esp) values (16, 17) -- Buraco Negro pra Boca-de-Dragão
-insert into evolucao(id_item, id_esp) values (17, 21) -- Arco-Íris pra Girassol
-insert into evolucao(id_item, id_esp) values (18, 8) -- Babosa pro Nabossauro
+insert into evolucao(id_item, id_esp) values (13, 11); -- Pedra de Gelo pra Ervilha
+insert into evolucao(id_item, id_esp) values (14, 18);-- Capacete pra Gelervilha
+insert into evolucao(id_item, id_esp) values (15, 9); -- Saxofone pra Uvas
+insert into evolucao(id_item, id_esp) values (16, 17); -- Buraco Negro pra Boca-de-Dragão
+insert into evolucao(id_item, id_esp) values (17, 21); -- Arco-Íris pra Girassol
+insert into evolucao(id_item, id_esp) values (18, 8);  -- Babosa pro Nabossauro
 
-insert into evolucao(id_item, id_esp) values (19, 47) -- Cutelo pro Frango
-insert into evolucao(id_item, id_esp) values (20, 47) -- Pedra de Fogo (evolui frango pra galo)
-insert into evolucao(id_item, id_esp) values (21, 32) -- Super Fedor pro Zumbolha
-insert into evolucao(id_item, id_esp) values (22, 38) -- Discobola pro Disco
-insert into evolucao(id_item, id_esp) values (23, 35) -- Hamburguer pro Paparazzumbi
-insert into evolucao(id_item, id_esp) values (24, 41) -- Bandeira pro Sumô
-insert into evolucao(id_item, id_esp) values (25, 26) -- Teleporte pra Cabra
+insert into evolucao(id_item, id_esp) values (19, 47); -- Cutelo pro Frango
+insert into evolucao(id_item, id_esp) values (20, 47);-- Pedra de Fogo (evolui frango pra galo)
+insert into evolucao(id_item, id_esp) values (21, 32);-- Super Fedor pro Zumbolha
+insert into evolucao(id_item, id_esp) values (22, 38);-- Discobola pro Disco
+insert into evolucao(id_item, id_esp) values (23, 35);-- Hamburguer pro Paparazzumbi
+insert into evolucao(id_item, id_esp) values (24, 41);-- Bandeira pro Sumô
+insert into evolucao(id_item, id_esp) values (25, 26);-- Teleporte pra Cabra
 
 
 -- CRIANDO OS INIMIGOS
@@ -402,7 +402,7 @@ insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim', 1, 8,
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim 2', 1, 32, 50);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim O Maior', 1, 48, 10);
 
-insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Oii! Meus pudins polimórficos vão acabar com você!", "Sabia que venceria. Você nunca venceria essa sobrecarga de métodos!", "Parece que te subestimei! Mas esse é só o começo.");
+insert into inimigo(txt_entra, txt_mata, txt_morre) values ("Oii! Meus pudins polimórficos vão acabar com você!", "Sabia que venceria. Você nunca venceria essa sobrecarga de métodos!", "Parece que te subestimei! Mas esse é só o começo.");
 
 -- JACQUE
 
@@ -413,7 +413,7 @@ insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Readzinho', 2
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Updatonho', 2, 41, 30);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Deletosa', 2, 22, 50);
 
-insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Olá! Você sabe quais são as operações do CRUD?", "Parece que meu time deu Truncate no seu", "Ótima luta. Você sabe mesmo de modelagem");
+insert into inimigo(txt_entra, txt_mata, txt_morre) values ("Olá! Você sabe quais são as operações do CRUD?", "Parece que meu time deu Truncate no seu", "Ótima luta. Você sabe mesmo de modelagem");
 
 -- MARCIO
 
@@ -427,4 +427,4 @@ insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Revisinho Oli
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Rhiana', 3, 50, 50);
 
 
-insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Esse será o seu teste final. PREPARE-SE", "Você não revisou o suficiente.", "Meus parabens. Você se mostrou capaz de dominar a programação web.");
+insert into inimigo(txt_entra, txt_mata, txt_morre) values ("Esse será o seu teste final. PREPARE-SE", "Você não revisou o suficiente.", "Meus parabens. Você se mostrou capaz de dominar a programação web.");
