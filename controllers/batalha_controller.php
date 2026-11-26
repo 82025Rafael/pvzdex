@@ -1,17 +1,27 @@
 <?php
-
-
 session_start();
 require_once "../config.php";
 
+// Lê o corpo JSON enviado pelo fetch logo no início
+$json = file_get_contents('php://input');
+$input = json_decode($json, true);
+
 if (empty($_SESSION['logado']) || empty($_SESSION['id_usr'])) {
+    if (is_array($input)) {
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code(401);
+        echo json_encode(['error' => 'Sessão expirada. Faça login novamente.']);
+        exit;
+    }
     header("Location: ../views/login.php");
     exit;
 }
 
-$action = $_POST['action'] ?? $_GET['action'] ?? null;
+// Agora ele enxerga o 'action' vindo do JSON!
+$action = $_POST['action'] ?? $_GET['action'] ?? $input['action'] ?? null;
+
 if ($action === null && isset($_POST['pokemon_ids'])) {
-    $action = 'iniciar'; // Quando recebe o post do botaozinho de inicio ele seta que a batalha ta pra começar
+    $action = 'iniciar';
 }
 
 // COMEÇANDO A BATALHA
@@ -75,6 +85,7 @@ if ($action === 'iniciar') {
         
         $enemyTeam[] = [ // JSON DO TIME DO INIMIGO
             'id_pkm' => $ep['id_pkm'],
+            'id_esp' => $ep['id_esp'], 
             'nome' => $ep['nome_pkm'],
             'vida_atual' => $ep['vida_restante_pkm'],
             'vida_max' => $esp->getVida(),
@@ -153,15 +164,17 @@ if ($action === 'iniciar') {
         'enemyData' => [
             'id_inim' => $ini->getInim(),
             'nome' => $ini->getNome(),
-            'txt_entra' => $ini->getEntra(), // As mensagens do inimigo, id, nome e foto
+            'txt_entra' => $ini->getEntra(),
             'txt_mata' => $ini->getMata(),
             'txt_morre' => $ini->getMorre(),
-            'foto' => $ini->getFoto()
+            'foto' => $ini->getFoto(),
+            'cor' => $ini->getCor() // <-- ADICIONE ISSO
         ],
         'userData' => [
-            'nome' => $usr->getNome(), // os dados do usuario
+            'nome' => $usr->getNome(),
             'foto' => $usr->getFoto(),
-            'dinheiro' => $usr->getDinheiro()
+            'dinheiro' => $usr->getDinheiro(),
+            'cor' => $usr->getCor() // <-- ADICIONE ISSO
         ],
         'cenario' => $cenarios[$fase_atual] ?? $cenarios[1],
         'musica' => $musicas[$fase_atual] ?? $musicas[1]
@@ -176,13 +189,14 @@ if ($action === 'iniciar') {
 
 // QUANDO A BATALHA ACABA ELE VOLTA AQUI
 if ($action === 'finalizar') {
-    // Lê o corpo da requisição JSON (enviado via fetch pelo JS)
-    $json = file_get_contents('php://input');
-    $input = json_decode($json, true);
+    header('Content-Type: application/json; charset=utf-8');
 
     if (!$input) {
         http_response_code(400);
-        echo json_encode(['error' => 'Dados inválidos.']);
+        echo json_encode([
+            'success' => true, 
+            'redirect' => '../selecao/selecao.php'
+        ]);
         exit;
     }
 
@@ -230,9 +244,20 @@ if ($action === 'finalizar') {
             $preco = $esp->getPreco();
 
  
+            // Pega o id_esp enviado pelo JS ou, como garantia, o do último inimigo salvo na sessão
+            $ultimoInimigoSessao = end($_SESSION['battle_data']['enemyTeam']);
+            $idEspFinal = (int)($lastEnemyEspId ?: ($ultimoInimigoSessao['id_esp'] ?? 0));
+
+            $preco = 10; // Valor padrão de segurança caso não ache a espécie
+            if ($idEspFinal > 0) {
+                $esp = new Especie();
+                $esp->setId($idEspFinal);
+                $esp->load();
+                $preco = $esp->getPreco() ?? 10;
+            }
+
             $divisor = max(1, $userActiveHp / 2); 
             $recompensa = ceil($preco / $divisor) + $aliveUser;
-
             // Atualiza dinheiro
             $usr->setDinheiro($usr->getDinheiro() + $recompensa);
 
@@ -293,16 +318,19 @@ if ($action === 'finalizar') {
         // Retorna sucesso para o JS redirecionar
         echo json_encode([
             'success' => true, 
-            'redirect' => '../views/selecao/selecao.php'
+            'redirect' => '../selecao/selecao.php'
         ]);
         exit;
 
-    } catch (Exception $e) {
-        $pdo->rollBack(); // Desfaz tudo se der ruim
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        }
         http_response_code(500);
-        echo json_encode(['error' => 'Erro ao salvar resultado: ' . $e->getMessage()]);
+        echo json_encode(['error' => $e->getMessage() . ' na linha ' . $e->getLine()]);
         exit;
     }
+
 }
 
 // Se chegar aqui sem ação definida volta pra seleção como se nada tivesse acontessido

@@ -258,7 +258,7 @@ insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) valu
 
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Canhervilha',3,1,4,'Dispara um projetil comum', null); -- 5
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Fertilizar',3,0,4,'Aumente seu Ataque em +20', null); -- 6
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Fertilizar',3,0,4,'Aumente seu Ataque em +6', null); -- 6
 
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Tiro Gelado',4,0.8,2,'Tem uma chance de congelar o inimigo', 5,50); -- 7
@@ -270,7 +270,7 @@ insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) valu
 
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond, chance_cond) values ('Mordiscada',6,0.8,1,'Tem uma chance de paralisar o oponente', 3,30); -- 11
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Miolo no Prato',6,0,2,'Aumente seu ataque em +10', null); -- 12
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Miolo no Prato',6,0,2,'Aumente seu ataque em +4', null); -- 12
 
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ciência de Foguetes',7,2,9,'Foguetes violentamente explosivos', null); -- 13
@@ -408,7 +408,7 @@ insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Oii! Meus pudins po
 
 insert into usuario(nome_usr, id_usr, senha, cor_favorita, dinheiro, foto) values ('Jacque', 2, "banquinhodosdadinhos", '#5bff50', 0, '../ImagensPVZ/Inimigos/jacque.png' );
 
-insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Creaitinho', 2, 2, 20);
+insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Creaitinho', 2, 2, 50);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Readzinho', 2, 20, 20);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Updatonho', 2, 41, 30);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Deletosa', 2, 22, 50);
