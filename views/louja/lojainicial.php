@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="lojinha.css">
 </head>
 <body>
+ <audio src="../../Música/Laura Shigihara - Choose Your Seeds.mp3" autoplay loop></audio>
 
     <!-- Botão de Voltar para a página selecao.php -->
     <a href="../selecao/selecao.php" class="back-btn">⬅ Voltar</a>

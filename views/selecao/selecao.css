@@ -279,8 +279,22 @@ body {
     cursor: pointer;
 }
 
-.menu-panel button:hover {
-    background: #376d32;
+.menu-panel button:disabled {
+    background-color: #555555 !important; 
+    color: #999999 !important;         
+}
+
+/* Remove o efeito de hover se o botão estiver desativado */
+.menu-panel button:disabled:hover {
+    background-color: #555555 !important;
+}
+
+.menu-panel .batalha button{
+    background:rgb(155, 17, 206);
+}
+
+.menu-panel .batalha button:hover{
+    background:rgb(95, 9, 126);
 }
 
 /* Em tablets, o menu ocupa uma faixa abaixo das duas colunas de conteúdo. */
@@ -356,3 +370,5 @@ body {
     border-radius: 100%;
     margin: 0;
 }
+
+

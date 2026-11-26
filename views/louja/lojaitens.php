@@ -18,6 +18,7 @@ $usr->load();
 </head>
 <!-- A classe tema-pokemons aplica as molduras azuis e botão dourado -->
 <body class="tema-pokemons">
+ <audio src="../../Música/Laura Shigihara - Cerebrawl.mp3" autoplay loop></audio>
 
     <a href="lojainicial.php" class="back-btn">⬅ Voltar</a>
 

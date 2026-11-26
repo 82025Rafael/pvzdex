@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="lojinha.css">
 </head>
 <body class="tema-pokemons">
+ <audio src="../../Música/Laura Shigihara - Choose Your Seeds.mp3" autoplay loop></audio>
 
 <?php
 require_once '../../config.php';

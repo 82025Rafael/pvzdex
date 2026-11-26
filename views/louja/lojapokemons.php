@@ -18,6 +18,7 @@ $usr->load();
     <link rel="stylesheet" href="lojinha.css">
 </head>
 <body class="tema-pokemons">
+ <audio src="../../Música/Laura Shigihara - Cerebrawl.mp3" autoplay loop></audio>
 
     <a href="lojainicial.php" class="back-btn">⬅ Voltar</a>
 

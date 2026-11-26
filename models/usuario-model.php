@@ -176,7 +176,7 @@ return $usr['id_usr'];
 } // FIM METODO LOGIN  ==============================================================================
 public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
     $pdo = connect();
-    $sql = "SELECT pokemon.id_pkm, pokemon.nome_pkm, especie.nome_esp, especie.foto, tipo.nome_tipo,
+    $sql = "SELECT pokemon.id_pkm, pokemon.id_esp, pokemon.nome_pkm, especie.nome_esp, especie.foto, tipo.nome_tipo,
                    pokemon.vida_atual AS vida_restante_pkm,
                    especie.vida_max AS vida_total_pkm,
                    a1.nome_atk AS atk1,
@@ -194,7 +194,6 @@ public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO CO
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 public function pegarMeuInventario() { 
     $pdo = connect();
     $sql = "SELECT nome_item, quant_item FROM inventario 

@@ -146,10 +146,10 @@ switch($item->getId()){
 
 $vent->setQuant($vent->getQuant()-1);
 
-if($vent->getQuant() >= 0) { $vent->setQuant(0); $vent->delete();}
+if($vent->getQuant() <= 0) { $vent->setQuant(0); $vent->delete();}
 
 $vent->update();
-// CRIAR METODO UPDATE POKEMON E IMPLEMENTAR EVOLUÇôes
+$pkm->update();
 
 
 

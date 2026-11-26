@@ -47,9 +47,7 @@ class Pokemon {
    public function setEsp(int $id_esp) {
       $this->id_esp = $id_esp;
    }
-   public function setEvo(int $id_evo) {
-      $this->id_evo = $id_evo;
-   }
+
 
     public function setId(int $id_pkm) {
       $this->id_pkm = $id_pkm;
@@ -78,7 +76,7 @@ class Pokemon {
    public function load(){ // CARREGAR DADOS DO POKEMON FROM BANCO
 
     $pdo = connect();
-    $sql = "select nome_pkm, vida_atual, id_esp from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "select nome_pkm, vida_atual, id_esp, id_cond from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':id' => $this->id_pkm
@@ -91,6 +89,7 @@ class Pokemon {
    $this->setNome($pkm['nome_pkm']); // SETANDO OQ FOI RECUPERADO
    $this->setVida($pkm['vida_atual']);
    $this->setEsp($pkm['id_esp']);
+   $this->setCond($pkm['id_cond']);
 
 
 
@@ -99,12 +98,13 @@ class Pokemon {
 public function update(){ // CARREGAR DADOS DO POKEMON FROM BANCO
 
     $pdo = connect();
-    $sql = "update pokemon set nome_pkm = :n, vida_atual = :v, id_esp = :e from pokemon where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
+    $sql = "update pokemon set nome_pkm = :n, vida_atual = :v, id_esp = :e, id_cond = :c where id_pkm = :id"; // RECUPERANDO DADOS A PARTIR DO ID
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
          ':n' => $this->nome_pkm,
          ':v'  => $this->vida_atual,
          ':e' => $this->id_esp,
+         ':c' => $this->id_cond,
         ':id' => $this->id_pkm
     ]);
 

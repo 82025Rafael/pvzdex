@@ -1,8 +1,8 @@
 <?php require __DIR__ . '/../../controllers/selecao_controller.php';  
  if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false)
-  { header("location:login.php"); }  
+  { header("location:login.php"); exit; }  
         
-  require_once '../../config.php';   
+
   unset($_SESSION['pkm']);
         
         $usuario = new usuario();
@@ -24,6 +24,8 @@
     
 </head>
 <body>
+ <audio src="../../Música/Laura Shigihara - Zen Garden.mp3" autoplay loop></audio>
+
     <div class="selection-page">
         <header class="page-header">
             <h1 id="titulo">Selecione seu time!</h1>
@@ -89,10 +91,19 @@
                 <div class="banco">Dinheiro: $<?= $usuario->getDinheiro() ?></div>           
 
                 <a style = "width:100%;" href="../index.php"><button type="button">Sair</button></a>
-                <a style = "width:100%;" href="../log.php"><button type="button">Log</button></a>
-                <a style = "width:100%;" href="../centro.php"><button type="button">Centro</button></a>
+                
+
+                <?php  if ($venceuJogo): // SE O DESGRAÇADO VENCEU ?>
+                    <a style="width:100%;" href="../creditos.php">
+                        <button type="button" style="width:100%;">Créditos</button>
+                    </a>
+                <?php else: // CASO CONTRARIO ELE SÓ FICA CINZA ?>
+                    
+                    <button type="button" style="width:100%;" disabled title="Vença o jogo para desbloquear!">Créditos</button>
+                <?php endif; ?>
+                <a  style = "width:100%;" href="../log.php"><button type="button">Log</button></a>
                 <a style = "width:100%;" href="../louja/lojainicial.php"><button type="button">Loja</button></a>
-                <form id="batalha-form" action="../../controllers/batalha_controller.php" method="post">
+                <form class = "batalha" id="batalha-form" action="../../controllers/batalha_controller.php" method="post">
                     <div id="pokemon-ids"></div>
                     <button style = "width:100%;"  type="submit">Batalhar</button>
                 </form>

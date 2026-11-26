@@ -127,7 +127,7 @@ txt_morre varchar(300) not null
 
 );
 
-create table log{
+create table log(
 
     id_log int primary key auto_increment,
     nome_usr varchar(100) not null,
@@ -138,7 +138,7 @@ create table log{
     foreign key (nome_usr) references usuario(nome_usr),
     foreign key (nome_inim) references usuario(nome_usr)
 
-}
+);
 
 use pvzpokemon; -- INSERTS
 
@@ -170,7 +170,7 @@ update tipo set f1 = 1, f2 = 3, w1 = 4, w2 = 5 where id_tipo = 10; -- furt
 
 
 
-insert into condicao(nome_cond, efeito) values ('Queimado', 'Perde 5% vida Max no fim do turno. Nao pode cong. ATK -10%'); -- 1
+insert into condicao(nome_cond, efeito) values ('Queimado', 'Perde 5% vida Max no fim do turno. ATK 75%'); -- 1
 insert into condicao(nome_cond, efeito) values ('Envenenado', 'Perde 10% vida Max no fim do turno'); -- 2
 insert into condicao(nome_cond, efeito) values ('Paralizado', 'Vel - 50%. 30% de chance de nao se mover'); -- 3
 insert into condicao(nome_cond, efeito) values ('Adormecido', 'Nao se move. 30% de chance de acordar no fim. incrementa +15'); -- 4

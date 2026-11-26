@@ -8,7 +8,8 @@
     <link rel=stylesheet href=lojinha.css>
 </head>
 <body>
-    
+     <audio src="../../Música/Laura Shigihara - Choose Your Seeds.mp3" autoplay loop></audio>
+
 <?php
 require_once '../../config.php';
 session_start();

@@ -1,4 +1,3 @@
-
 <?php  
  session_start();
 
@@ -24,9 +23,10 @@
     <title>Plants Vs. Zombies</title>
     
     <link rel="stylesheet" href="menuIni.css">
-    
+
 </head>
 <body>
+    <audio src="../Música/Laura Shigihara - Crazy Dave (Intro Theme).mp3" autoplay loop></audio>
 
 <div class = "menuzin"> 
     
