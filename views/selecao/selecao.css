@@ -113,23 +113,75 @@ body {
 
 }
 
-.item-card {
-    min-width: 130px;
-    padding: 10px;
-    border-radius: 8px;
-    background: #e5eddc;
-}
-
-.item-card h3,
-.item-card p {
-    margin: 4px 0;
-}
+/* =========================================
+   CARDS DE ITENS NO INVENTÁRIO
+   ========================================= */
 
 .pokemon-panel {
     display: flex;
     flex-direction: column;
 }
+/* =========================================
+   CARDS DE ITENS NO INVENTÁRIO
+   ========================================= */
+.item-card {
+    min-width: 0 !important;
+    width: 90px !important;
+    padding: 6px !important;
+    border-radius: 8px;
+    background: #e5eddc;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    overflow: hidden;
+}
 
+.item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+.item-card.item-selected {
+    outline: 3px solid #ffd64e;
+    box-shadow: 0 0 14px #ffd64e;
+}
+
+/* Imagem do item — FORÇANDO tamanho pequeno */
+.item-card .item-card-img,
+.item-card img {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto 4px auto !important;
+    flex-shrink: 0;
+    image-rendering: pixelated;
+}
+
+/* Textos do item */
+.item-card h3 {
+    font-size: 11px !important;
+    margin: 2px 0 !important;
+    line-height: 1.1 !important;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    color: #1c301c;
+    max-height: 24px;
+    overflow: hidden;
+}
+
+.item-card p {
+    font-size: 11px !important;
+    margin: 0 !important;
+    font-weight: bold;
+    color: #4b8b45;
+}
 .card-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

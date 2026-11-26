@@ -53,13 +53,16 @@
                         <?php if (!empty($inventario)): ?>
                             <?php foreach ($inventario as $item): ?>
                                 <div class="item-card"
-                                     data-item-id="<?= (int)($item['id_item'] ?? 0) ?>"
-                                     title="Clique para usar em um monstrinho">
-                                    <h3><?php echo htmlspecialchars($item['nome_item'] ?? 'Item', ENT_QUOTES, 'UTF-8'); ?></h3>
-                                    <p>Quantidade: <?php echo htmlspecialchars((string) ($item['quant_item'] ?? 0), ENT_QUOTES, 'UTF-8'); ?></p>
+                                    data-item-id="<?= (int)($item['id_item'] ?? 0) ?>"
+                                    title="Clique para usar em um monstrinho">
+                                    <!-- O '../' é necessário porque no banco a foto já começa com '../' -->
+                                    <img class="item-card-img"
+                                        src="../<?= htmlspecialchars($item['foto'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                        alt="<?= htmlspecialchars($item['nome_item'] ?? 'Item', ENT_QUOTES, 'UTF-8') ?>">
+                                    <h3><?= htmlspecialchars($item['nome_item'] ?? 'Item', ENT_QUOTES, 'UTF-8') ?></h3>
+                                    <p>Qtd: <?= htmlspecialchars((string) ($item['quant_item'] ?? 0), ENT_QUOTES, 'UTF-8') ?></p>
                                 </div>
                             <?php endforeach; ?>
-                        <?php else: ?>
                             <p style = "color:white;">Nenhum item no inventário.</p>
                         <?php endif; ?>
                     </div>
