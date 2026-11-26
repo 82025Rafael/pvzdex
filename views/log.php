@@ -119,7 +119,7 @@ $taxaVitoria  = $total > 0 ? (int) round(($totalVitorias / $total) * 100) : 0;
         </section>
 
         <div class="log-actions">
-            <a href="louja/selecao.php"><button type="button">⬅ Voltar à seleção</button></a>
+            <a href="selecao/selecao.php"><button type="button">⬅ Voltar à seleção</button></a>
             <a href="index.php"><button type="button">🏠 Início</button></a>
         </div>
     </div>
