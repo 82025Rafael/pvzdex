@@ -11,16 +11,16 @@ if (empty($_SESSION['logado']) || empty($_SESSION['id_usr'])) {
 
 $action = $_POST['action'] ?? $_GET['action'] ?? null;
 if ($action === null && isset($_POST['pokemon_ids'])) {
-    $action = 'iniciar';
+    $action = 'iniciar'; // Quando recebe o post do botaozinho de inicio ele seta que a batalha ta pra começar
 }
 
 // COMEÇANDO A BATALHA
 if ($action === 'iniciar') {
-    // Pega os IDs dos pokémons selecionados na tela anterior.
+    // Pega os IDs dos pokémons selecionados antes
     $pokemons_ids = $_POST['pokemon_ids'] ?? [];
     
     if (empty($pokemons_ids)) {
-        // Se não selecionou ninguém, volta pra seleção.
+        // Se nao selecionou ninguem volta
         header("Location: ../views/selecao/selecao.php");
         exit;
     }
@@ -33,7 +33,7 @@ if ($action === 'iniciar') {
 
     // TIME DO USUARIO
     $userTeam = [];
-    foreach ($pokemons_ids as $id_pkm) {
+    foreach ($pokemons_ids as $id_pkm) { // Para cada pokemon selecionado, ele faz o json do pokemon. Daí fica um vetorzão de json
         $pkm = new Pokemon();
         $pkm->setId((int)$id_pkm);
         $pkm->load();
@@ -67,7 +67,7 @@ if ($action === 'iniciar') {
 
     // TIME DO INIMIGO
     $enemyTeam = [];
-    $inim_pokemons = $ini->pegarMeusPokemons();
+    $inim_pokemons = $ini->pegarMeusPokemons(); // mesma coisa do usuario
     foreach ($inim_pokemons as $ep) {
         $esp = new Especie();
         $esp->setId($ep['id_esp']);
@@ -83,54 +83,54 @@ if ($action === 'iniciar') {
             'veloc' => $esp->getVeloc(),
             'atk1' => $esp->getAtk1(),
             'atk2' => $esp->getAtk2(),
-            'id_cond' => null, // Pode ser buscado se o inimigo iniciar com status.
+            'id_cond' => null, //inimigo começa sempre sem condições
             'foto' => $esp->getFoto()
         ];
     }
 
-        // --- 4. Carregando Catálogos Globais (Ataques, Tipos, Itens) ---
+        //CATALOGANDO TODOS OS ATAQUES E TIPOS
     $pdo = connect();
 
-    // Catálogo de Ataques
-    $stmt = $pdo->query("SELECT id_atk, nome_atk, id_tipo, mult_dano, priori, id_cond, chance_cond FROM ataque");
+    // PEGANDO ataques
+    $stmt = $pdo->query("SELECT id_atk, nome_atk, id_tipo, mult_dano, priori, id_cond, chance_cond FROM ataque"); // pega todos do banoc
     $movesCatalog = [];
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $movesCatalog[$row['id_atk']] = $row;
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // enfia num vetor associativo
+        $movesCatalog[$row['id_atk']] = $row; //cada linha do catalogo é um ataque com seus dados
     }
 
-    // Tabela de Tipos (Matriz de Efetividade)
-    $stmt = $pdo->query("SELECT id_tipo, f1, f2, w1, w2 FROM tipo");
+    // Tabela de Tipos (TABELINHA)
+    $stmt = $pdo->query("SELECT id_tipo, f1, f2, w1, w2 FROM tipo"); // pega todos os tipos
     $typeChart = [];
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $atkType = $row['id_tipo'];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // enfia os dados no vetorzão e verifica por linha (cada tipo)
+        $atkType = $row['id_tipo']; 
         $typeChart[$atkType] = [];
-        for ($def = 1; $def <= 10; $def++) {
-            if ($def == $row['f1'] || $def == $row['f2']) {
-                $typeChart[$atkType][$def] = 2.0; // Super efetivo
-            } elseif ($def == $row['w1'] || $def == $row['w2']) {
-                $typeChart[$atkType][$def] = 0.5; // Pouco efetivo
+        for ($def = 1; $def <= 10; $def++) { // Para quem se defende do tipo inimigo
+            if ($def == $row['f1'] || $def == $row['f2']) { // se é um dos efetivos ele recebe o dobro de dano
+                $typeChart[$atkType][$def] = 2.0;
+            } elseif ($def == $row['w1'] || $def == $row['w2']) { // se é um dos fracos ele recebe metade
+                $typeChart[$atkType][$def] = 0.5; 
             } else {
-                $typeChart[$atkType][$def] = 1.0; // Neutro
+                $typeChart[$atkType][$def] = 1.0; // se nenhum recebe só 1x mesmo
             }
         }
     }
 
-    // Catálogo de Itens de Cura (IDs de 1 a 12) - CORRIGIDO COM A FOTO
+    // Catalogando todos os itens
     $stmt = $pdo->query("SELECT id_item, nome_item, desc_item, foto FROM item WHERE id_item <= 12");
     $itemsCatalog = [];
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // pra cada linha de item selecionado, enfia no catalogo com todos os dados
         $itemsCatalog[$row['id_item']] = $row;
     }
 
-    // Inventário atual do jogador - CORRIGIDO (Query estava errada e dando erro de parâmetros)
+    // Carregando o inventario do usuario
     $stmt = $pdo->prepare("SELECT id_item, quant_item FROM inventario WHERE id_usr = ?");
     $stmt->execute([$usr->getID()]);
-    $userInventory = [];
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $userInventory = []; // mesma coisaaaaaaaaaaa
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // enfia as linhas com dados na tabela
         $userInventory[$row['id_item']] = $row['quant_item'];
     }
 
-    // CENARIOS PARA CADA SITUAÇÂO
+    // CENARIOS E MUSICAS PARA CADA ENCONTRO
     $cenarios = [
         1 => '../../ImagensPVZ/Cenários/campoGW.png',
         2 => '../../ImagensPVZ/Cenários/cenariozumbibasico.png',
@@ -145,21 +145,21 @@ if ($action === 'iniciar') {
     // JSON COMPLETASSO NOSSAAAAAAAAAAAAA
     $battleData = [
         'userTeam' => $userTeam,
-        'enemyTeam' => $enemyTeam,
+        'enemyTeam' => $enemyTeam, // os dois times
         'movesCatalog' => $movesCatalog,
         'typeChart' => $typeChart,
-        'itemsCatalog' => $itemsCatalog,
-        'userInventory' => $userInventory,
+        'itemsCatalog' => $itemsCatalog, // os catalogos
+        'userInventory' => $userInventory, // o inventario
         'enemyData' => [
             'id_inim' => $ini->getInim(),
             'nome' => $ini->getNome(),
-            'txt_entra' => $ini->getEntra(),
+            'txt_entra' => $ini->getEntra(), // As mensagens do inimigo, id, nome e foto
             'txt_mata' => $ini->getMata(),
             'txt_morre' => $ini->getMorre(),
             'foto' => $ini->getFoto()
         ],
         'userData' => [
-            'nome' => $usr->getNome(),
+            'nome' => $usr->getNome(), // os dados do usuario
             'foto' => $usr->getFoto(),
             'dinheiro' => $usr->getDinheiro()
         ],
@@ -167,10 +167,10 @@ if ($action === 'iniciar') {
         'musica' => $musicas[$fase_atual] ?? $musicas[1]
     ];
 
-    // Salva na sessão para a View batalha.php ler e repassar pro JS.
+    // Salva tudo na sessão pra nao ter que ficar passando
     $_SESSION['battle_data'] = $battleData;
     
-    header("Location: ../views/batalha/batalha.php");
+    header("Location: ../views/batalha/batalha.php"); // some daqui meu
     exit;
 }
 
@@ -186,15 +186,15 @@ if ($action === 'finalizar') {
         exit;
     }
 
-    // Variáveis enviadas pela engine
-    $winner = $input['winner'] ?? null; // 'user' ou 'enemy'
-    $teamFinalHp = $input['teamFinalHp'] ?? [];
-    $itemsUsed = $input['itemsUsed'] ?? [];
+    // Variaveis recebidas pos termino da batalha
+    $winner = $input['winner'] ?? null; // 'user' ou 'enemy' pra ver quem ganhou
+    $teamFinalHp = $input['teamFinalHp'] ?? []; // a vida final do time do usuario
+    $itemsUsed = $input['itemsUsed'] ?? []; // quais itens foram usados
     $lastEnemyEspId = $input['lastEnemyEspId'] ?? null;
-    $userActiveHp = $input['userActiveHp'] ?? 0;
-    $aliveUser = $input['aliveUser'] ?? 0;
+    $userActiveHp = $input['userActiveHp'] ?? 0; // vida do pokemon ativo do usuario
+    $aliveUser = $input['aliveUser'] ?? 0; 
 
-    if ($winner !== 'user' && $winner !== 'enemy') {
+    if ($winner !== 'user' && $winner !== 'enemy') { // se der ruim pra setar quem ganhou
         http_response_code(400);
         echo json_encode(['error' => 'Resultado de vitória inválido.']);
         exit;
@@ -237,7 +237,7 @@ if ($action === 'finalizar') {
             $usr->setDinheiro($usr->getDinheiro() + $recompensa);
 
 
-            //  ID maximo de inimigo cadastrado no banco
+            //  ID do maior inimigo cadastrado no banco
             $stmtFase = $pdo->query("SELECT MAX(id_inim) FROM inimigo");
             $max_fase = (int)$stmtFase->fetchColumn();
 
@@ -261,15 +261,19 @@ if ($action === 'finalizar') {
             $stmt->execute([$usr->getID()]);
         }
 
+        $vent = new inventario();
+        $vent->setUsr($_SESSION['id_usr']);
+
             // Atualizar inventario do usuario
         foreach ($itemsUsed as $id_item => $quant) {
             if ($quant > 0) {
-                $stmt = $pdo->prepare("UPDATE inventario SET quant_item = quant_item - ? WHERE id_usr = ? AND id_item = ?");
-                $stmt->execute([(int)$quant, $usr->getID(), (int)$id_item]);
+               $vent->setItem((int) $id_item);
+               $vent->setQuant((int) $quant);
+               $vent->update();
                 
                 // Remove a linha do inventário se a quantidade zerar
-                $stmt = $pdo->prepare("DELETE FROM inventario WHERE quant_item <= 0 AND id_usr = ? AND id_item = ?");
-                $stmt->execute([$usr->getID(), (int)$id_item]);
+                if($vent->getQuant() == 0)
+                    {$vent->delete();}
             }
         }
 
@@ -283,7 +287,7 @@ if ($action === 'finalizar') {
 
         $pdo->commit(); // Confirma tudo no banco
 
-        // Limpa os dados da batalha na sessão
+        // mata todo o json da batalha
         unset($_SESSION['battle_data']);
 
         // Retorna sucesso para o JS redirecionar
@@ -294,13 +298,13 @@ if ($action === 'finalizar') {
         exit;
 
     } catch (Exception $e) {
-        $pdo->rollBack(); // Desfaz tudo se der erro
+        $pdo->rollBack(); // Desfaz tudo se der ruim
         http_response_code(500);
         echo json_encode(['error' => 'Erro ao salvar resultado: ' . $e->getMessage()]);
         exit;
     }
 }
 
-// Se chegar aqui sem ação definida, volta pra seleção.
+// Se chegar aqui sem ação definida volta pra seleção como se nada tivesse acontessido
 header("Location: ../views/selecao/selecao.php");
 exit;
