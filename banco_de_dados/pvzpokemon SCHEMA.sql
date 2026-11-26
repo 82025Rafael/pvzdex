@@ -140,6 +140,27 @@ create table log(
 
 );
 
+create table evolucao(
+
+    id_item int not null,
+    id_esp int not null,
+
+    foreign key (id_item) references item (id_item),
+    foreign key (id_esp) references especie (id_esp),
+    constraint item_especie primary key clustered (id_item, id_esp)
+
+);
+
+create table cura(
+
+    id_item int not null,
+    quant_cura int,
+    id_cond int,
+
+    foreign key (id_item) references item(id_item),
+    foreign key (id_cond) references condicao(id_cond)
+);
+
 use pvzpokemon; -- INSERTS
 
 insert into tipo(nome_tipo) values ('Protetor'); -- 1 
@@ -188,6 +209,28 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Café', 20, 'C
 insert into item(nome_item, preco_item, desc_item, foto) values ('Aloe', 60, 'Cura Tudo', '../ImagensPVZ/itens/itens de cura/Aloe.png'); -- 10
 insert into item(nome_item, preco_item, desc_item, foto) values ('Frangão', 180, 'Cura Tudo e 100% de vida', '../ImagensPVZ/itens/itens de cura/restauratudo.png'); -- 11
 insert into item(nome_item, preco_item, desc_item, foto) values ('Cenoura do Poder', 80, 'Revive com 50% de vida', '../ImagensPVZ/itens/itens de cura/cenoura_do_poder.png'); -- 12
+
+insert into cura(id_item, quant_cura) values (1,6);
+insert into cura(id_item, quant_cura) values (2,12);
+insert into cura(id_item, quant_cura) values (3,45);
+insert into cura(id_item, quant_cura) values (4,70);
+insert into cura(id_item, id_cond) values (5,1);
+insert into cura(id_item, id_cond) values (6,5);
+insert into cura(id_item, id_cond) values (7,2);
+insert into cura(id_item, id_cond) values (8,1);
+insert into cura(id_item, id_cond) values (9,4);
+insert into cura(id_item, id_cond) values (10,1);
+insert into cura(id_item, id_cond) values (10,2);
+insert into cura(id_item, id_cond) values (10,3);
+insert into cura(id_item, id_cond) values (10,4);
+insert into cura(id_item, id_cond) values (10,5);
+insert into cura(id_item, quant_cura) values (11,70,1);
+insert into cura(id_item, quant_cura) values (11,70,2);
+insert into cura(id_item, quant_cura) values (11,70,3);
+insert into cura(id_item, quant_cura) values (11,70,4);
+insert into cura(id_item, quant_cura) values (11,70,5);
+-- cenoura (id 12) revive com 50% de vida. 
+
 -- ITENS EVOLUÇÃO
 insert into item(nome_item, preco_item, desc_item, foto) values ('Pedra de Gelo', 100, 'Evolui Disparervilha para Gelervilha', '../ImagensPVZ/itens/itens de evolução/pedra_de_gelo.png'); -- 13
 insert into item(nome_item, preco_item, desc_item, foto) values ('Capacete', 300, 'Evolui Gelervilha para Ervilhadora', '../ImagensPVZ/itens/itens de evolução/capacete.png'); -- 14
@@ -332,6 +375,23 @@ update especie set id_evo = 41 where id_esp = 35; --  Paparazzumbi -> Sumô
 update especie set id_evo = 42 where id_esp = 41; --  Sumô -> Aspirante a Herói
 
 update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
+
+
+insert into evolucao(id_item, id_esp) values (13, 11) -- Pedra de Gelo pra Ervilha
+insert into evolucao(id_item, id_esp) values (14, 1) -- Capacete pra Gelervilha
+insert into evolucao(id_item, id_esp) values (15, 1) -- Saxofone pra Uvas
+insert into evolucao(id_item, id_esp) values (16, 1) -- Buraco Negro pra Boca-de-Dragão
+insert into evolucao(id_item, id_esp) values (17, 1) -- Arco-Íris pra Girassol
+insert into evolucao(id_item, id_esp) values (18, 1) -- Babosa pro Nabossauro
+
+insert into evolucao(id_item, id_esp) values (19, 1) -- Cutelo pro Frango
+insert into evolucao(id_item, id_esp) values (20, 1) -- Pedra de Fogo (evolui frango pra galo)
+insert into evolucao(id_item, id_esp) values (21, 1) -- Super Fedor pro Zumbolha
+insert into evolucao(id_item, id_esp) values (22, 1) -- Discobola pro Disco
+insert into evolucao(id_item, id_esp) values (23, 1) -- Hamburguer pro Paparazzumbi
+insert into evolucao(id_item, id_esp) values (24, 1) -- Bandeira pro Sumô
+insert into evolucao(id_item, id_esp) values (25, 1) -- Teleporte pra Cabra
+
 
 -- CRIANDO OS INIMIGOS
 
