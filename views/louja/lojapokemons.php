@@ -17,7 +17,7 @@ $usr->load();
     <title>Bazar do Rux - Minions</title>
     <link rel="stylesheet" href="lojinha.css">
 </head>
-<body class="tema-pokemons">
+<body class="loja tema-pokemons">
  <audio src="../../Música/Laura Shigihara - Cerebrawl.mp3" autoplay loop></audio>
 
     <a href="lojainicial.php" class="back-btn">⬅ Voltar</a>
@@ -36,198 +36,141 @@ $usr->load();
 
             <div class="pages-container">
 
-            <?php 
+            <?php
             $esp = new especie();
             $tipo = new tipo();
+
+            /**
+             * Renderiza no máximo cinco espécies de um único tipo.
+             * A validação após load() evita que registros de outro tipo,
+             * eventualmente retornados pela consulta, sejam repetidos na linha.
+             */
+            /**
+             * Converte texto legado para UTF-8 antes de escapar o HTML.
+             * Isso evita que nomes com acentos inválidos desapareçam quando
+             * htmlspecialchars recebe bytes que não são UTF-8 válido.
+             */
+            function textoLojaHtml($valor) {
+                $texto = (string) $valor;
+
+                if (preg_match('//u', $texto) !== 1) {
+                    if (function_exists('mb_convert_encoding')) {
+                        $texto = mb_convert_encoding($texto, 'UTF-8', 'Windows-1252');
+                    } elseif (function_exists('iconv')) {
+                        $convertido = @iconv('Windows-1252', 'UTF-8//IGNORE', $texto);
+                        if ($convertido !== false) {
+                            $texto = $convertido;
+                        }
+                    }
+                }
+
+                return htmlspecialchars($texto, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            }
+
+            function renderTipoNaLoja($idTipo, $esp, $tipo) {
+                $idTipo = (int) $idTipo;
+                $esp->setTipo($idTipo);
+                $tipo->setId($idTipo);
+                $tipo->load();
+
+                $lista = $esp->TodosDoTipo();
+                $idsExibidos = [];
+                $quantidade = 0;
+
+                echo '<div class="type-row">';
+
+                foreach ($lista as $pkm) {
+                    if ($quantidade >= 5) {
+                        break;
+                    }
+
+                    $idEspecie = (int) $pkm['id_esp'];
+                    if (isset($idsExibidos[$idEspecie])) {
+                        continue;
+                    }
+
+                    $esp->setId($idEspecie);
+                    $esp->load();
+
+                    // Garante que a linha contenha somente o tipo solicitado.
+                    if ((int) $esp->getTipo() !== $idTipo) {
+                        continue;
+                    }
+
+                    $idsExibidos[$idEspecie] = true;
+                    $nome = textoLojaHtml($esp->getNome());
+                    $foto = textoLojaHtml($esp->getFoto());
+                    $nomeTipo = textoLojaHtml($tipo->getNome());
+                    $forca = textoLojaHtml($esp->getForca());
+                    $vida = textoLojaHtml($esp->getVida());
+                    $velocidade = textoLojaHtml($esp->getVeloc());
+                    $preco = textoLojaHtml($esp->getPreco());
+                    $id = (int) $esp->getId();
+
+                    echo '<div class="shop-item">';
+                    echo '  <div class="tooltip">Tipo: ' . $nomeTipo . '<br>ATK: ' . $forca . ' | HP: ' . $vida . ' | Vel: ' . $velocidade . '</div>';
+                    echo '  <img src="../' . $foto . '" alt="' . $nome . '" class="item-img">';
+                    echo '  <h3 class="item-name">' . $nome . '</h3>';
+                    echo '  <p class="item-price">$ ' . $preco . '</p>';
+                    echo '  <div class="buy-btn"><a href="compraMonstro.php?compra=' . $id . '">Recrutar</a></div>';
+                    echo '</div>';
+
+                    $quantidade++;
+                }
+
+                echo '</div>';
+            }
             ?>
 
                 <!-- PÁGINA 1 -->
                 <div class="page active">
-                    <?php 
-                        $esp->setTipo(2);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
-
-                        $esp->setTipo(3);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
+                    
+                    <?php
+                        renderTipoNaLoja(2, $esp, $tipo);
+                        renderTipoNaLoja(3, $esp, $tipo);
                     ?>
                 </div>
                                   
                 <!-- PÁGINA 2 -->
                 <div class="page">
+                    
                     <?php
-                        $esp->setTipo(4);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
-
-                        $esp->setTipo(1);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
+                        renderTipoNaLoja(4, $esp, $tipo);
+                        renderTipoNaLoja(1, $esp, $tipo);
                     ?>
                 </div>
 
                 <!-- PÁGINA 3 -->
-                <div class="page">
-                    <?php 
-                        $esp->setTipo(5);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
+                <div class="page page-single-row">
+                    
+                    <?php
+                        renderTipoNaLoja(5, $esp, $tipo);
                     ?>
                 </div>
 
                 <!-- PÁGINA 4 -->
                 <div class="page">
-                    <?php 
-                        $esp->setTipo(7);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
-
-                        $esp->setTipo(8);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
+                    
+                    <?php
+                        renderTipoNaLoja(7, $esp, $tipo);
+                        renderTipoNaLoja(8, $esp, $tipo);
                     ?>
                 </div>
 
                 <!-- PÁGINA 5 -->
                 <div class="page">
-                    <?php 
-                        $esp->setTipo(6);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
-
-                        $esp->setTipo(10);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
+                    
+                    <?php
+                        renderTipoNaLoja(6, $esp, $tipo);
+                        renderTipoNaLoja(10, $esp, $tipo);
                     ?>
                 </div>
 
                 <!-- PÁGINA 6 -->
-                <div class="page">
-                    <?php 
-                        $esp->setTipo(9);
-                        $tipo->setId($esp->getTipo());
-                        $tipo->load();
-                        $lista = $esp->TodosDoTipo();
-                        foreach($lista as $pkm) {
-                            $esp->setId($pkm['id_esp']);    
-                            $esp->load();
-                            echo '<div class="shop-item">';
-                            echo '  <div class="tooltip">Tipo: ' . $tipo->getNome() . ' <br>ATK:' . $esp->getForca() . ' | HP: ' . $esp->getVida() .' | Vel: ' . $esp->getVeloc(). '</div>';
-                            echo '  <img src="../' . $esp->getFoto() . '" alt=" '. $esp->getNome() . ' " class="item-img">';
-                            echo '  <h3 class="item-name">'. $esp->getNome() .'</h3>';
-                            echo '  <p class="item-price">$ '. $esp->getPreco() .'</p>';
-                            echo '  <div class="buy-btn"><a href="compraMonstro.php?compra='. $esp->getId().'">Recrutar</a></div>';
-                            echo '</div>';
-                        }
+                <div class="page page-single-row">
+                    
+                    <?php
+                        renderTipoNaLoja(9, $esp, $tipo);
                     ?>
                 </div>
 

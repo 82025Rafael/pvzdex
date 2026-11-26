@@ -173,8 +173,7 @@ $usr = $stmt->fetch();
 return $usr['id_usr'];
 
 
-} // FIM METODO LOGIN  ==============================================================================
-public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
+}public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
     $pdo = connect();
     $sql = "SELECT pokemon.id_pkm, pokemon.id_esp, pokemon.nome_pkm, especie.nome_esp, especie.foto, tipo.nome_tipo,
                    pokemon.vida_atual AS vida_restante_pkm,
@@ -194,15 +193,34 @@ public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO CO
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-public function pegarMeuInventario() { 
+
+public function pegarMeuInventario() {  // METODO PEGAR OS ITENS DO INVENTARIO DO USUARIO
     $pdo = connect();
-    $sql = "SELECT nome_item, quant_item FROM inventario 
-    JOIN item ON inventario.id_item = item.id_item
-    where id_usr = :id ";
+    $sql = "SELECT i.id_item, i.nome_item, i.desc_item, i.foto, i.preco_item,
+                   inv.quant_item
+            FROM inventario inv
+            JOIN item i ON i.id_item = inv.id_item
+            WHERE inv.id_usr = :id
+              AND inv.quant_item > 0
+            ORDER BY i.nome_item";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':id' => $this->id_usr
-    ]);
-    return $stmt->fetchAll();
-    }
+    $stmt->execute([':id' => $this->id_usr]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function pegarMeusLogs(int $limite = 300) {  // METODO PARA A PAGINA DE LOG
+    $pdo = connect();
+    $sql = "SELECT id_log, nome_usr, nome_inim, data_log,
+                   ganhou_perdeu, tipo, detalhe
+            FROM log
+            WHERE nome_usr = :nome
+            ORDER BY data_log DESC
+            LIMIT :lim";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':nome', $this->nome_usr);
+    $stmt->bindValue(':lim', $limite, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+} // ← ESSA chave é a que estava faltando! Fecha a classe Usuario

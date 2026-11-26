@@ -13,6 +13,11 @@
 require_once '../../config.php';
 session_start();
 
+// 1. Puxa as informações do usuário para mostrar o dinheiro
+$usr = new Usuario();
+$usr->setId($_SESSION['id_usr']);
+$usr->load();
+
 $esp = new especie();
 $tipo = new tipo();
 $pkm = new pokemon();
@@ -23,6 +28,14 @@ $esp->load();
 
 $_SESSION['id_esp_compra'] = $esp->getId();
 ?>
+
+<!-- 2. Botão de Voltar (aponta de volta para a lista de monstros) -->
+<a href="lojapokemons.php" class="back-btn">⬅ Voltar</a>
+
+<!-- 3. Caixa de Dinheiro -->
+<div class="money-box">
+    💰 $ <span id="player-money"><?= $usr->getDinheiro() ?? '5000' ?></span>
+</div>
 
 <div class="tela-compra">
     <h2>Comprar <?=$esp->getNome();?>?</h2>

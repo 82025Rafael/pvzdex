@@ -30,6 +30,11 @@
         <header class="page-header">
             <h1 id="titulo">Selecione seu time!</h1>
             <p id="instrucoes">Escolha 6 Monstrinhos para sua equipe:</p>
+
+            <?php if (!empty($_SESSION['msg_item'])): ?>
+                <p class="msg-item"><?= htmlspecialchars($_SESSION['msg_item'], ENT_QUOTES, 'UTF-8') ?></p>
+                <?php unset($_SESSION['msg_item']); ?>
+            <?php endif; ?>
         </header>
 
         <!-- Grade principal: equipe à esquerda, inventário e monstrinhos no centro e navegação à direita. -->
@@ -47,7 +52,9 @@
                     <div id="inventario" class="inventory-list">
                         <?php if (!empty($inventario)): ?>
                             <?php foreach ($inventario as $item): ?>
-                                <div class="item-card">
+                                <div class="item-card"
+                                     data-item-id="<?= (int)($item['id_item'] ?? 0) ?>"
+                                     title="Clique para usar em um monstrinho">
                                     <h3><?php echo htmlspecialchars($item['nome_item'] ?? 'Item', ENT_QUOTES, 'UTF-8'); ?></h3>
                                     <p>Quantidade: <?php echo htmlspecialchars((string) ($item['quant_item'] ?? 0), ENT_QUOTES, 'UTF-8'); ?></p>
                                 </div>
@@ -165,6 +172,58 @@
                 idsContainer.appendChild(input);
             });
         });
+
+        // ---------- USO DE ITENS ----------
+        let itemSelecionado = null;
+
+        document.querySelectorAll('.item-card[data-item-id]').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.itemId;
+                if (!id || id === '0') return;
+
+                if (itemSelecionado === id) {
+                    itemSelecionado = null;
+                    card.classList.remove('item-selected');
+                } else {
+                    document.querySelectorAll('.item-card').forEach(c => c.classList.remove('item-selected'));
+                    itemSelecionado = id;
+                    card.classList.add('item-selected');
+                }
+                document.body.classList.toggle('item-mode', itemSelecionado !== null);
+            });
+        });
+
+        // Captura o clique no monstrinho em modo "item selecionado"
+        document.addEventListener('click', (event) => {
+            if (!itemSelecionado) return;
+
+            const pokemonCard = event.target.closest('.pokemon-card');
+            if (!pokemonCard) return;
+
+            // Impede que o checkbox do card seja marcado
+            event.preventDefault();
+            event.stopPropagation();
+
+            const pkmId = pokemonCard.dataset.pokemonId;
+            if (!pkmId) return;
+
+            const nomePkm = pokemonCard.querySelector('.pokemon-info strong')?.textContent?.trim() || 'este monstrinho';
+            if (!confirm(`Usar o item selecionado em ${nomePkm}?`)) return;
+
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '../../controllers/item_controller.php';
+
+            const i1 = document.createElement('input');
+            i1.type = 'hidden'; i1.name = 'id_item'; i1.value = itemSelecionado;
+            const i2 = document.createElement('input');
+            i2.type = 'hidden'; i2.name = 'id_pkm';  i2.value = pkmId;
+
+            form.appendChild(i1);
+            form.appendChild(i2);
+            document.body.appendChild(form);
+            form.submit();
+        }, true); // capture=true, pega antes do <label>
     </script>
 </body>
 </html>

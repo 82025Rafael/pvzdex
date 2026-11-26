@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", cursive;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    background-image: url("../imagensPVZ/Cenários/teladetitulo.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #203020;
+    color: #fff;
+    padding: 16px;
+}
+
+.log-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
+.log-header {
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.85);
+}
+
+.log-header h1 { margin: 0; font-size: 2rem; }
+.log-header p  { margin: 4px 0 0; font-size: 1rem; opacity: .9; }
+
+/* Painel de estatísticas */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px;
+    border: 5px solid hsl(20, 73%, 7%);
+    border-radius: 10px;
+    background: hsl(18, 71%, 18%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+}
+
+.stat-num   { font-size: 1.8rem; font-weight: bold; }
+.stat-label { font-size: .85rem; opacity: .85; }
+
+.stat-vitoria .stat-num { color: #6caf48; }
+.stat-derrota .stat-num { color: #f32e2e; }
+.stat-taxa    .stat-num { color: #ffd64e; }
+.stat-total   .stat-num { color: #49baf7; }
+
+/* Lista de entradas */
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.log-entry {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 5px solid hsl(20, 73%, 7%);
+    border-left-width: 10px;
+    border-radius: 10px;
+    background: hsl(18, 71%, 18%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+}
+
+.log-win  { border-left-color: #6caf48; }
+.log-loss { border-left-color: #f32e2e; }
+
+.log-icon { font-size: 2rem; }
+
+.log-body { flex: 1; min-width: 0; }
+
+.log-title {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.log-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: .8rem;
+    opacity: .8;
+}
+
+.log-result {
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: .85rem;
+    white-space: nowrap;
+}
+
+.log-win  .log-result { background: #6caf48; color: #fff; }
+.log-loss .log-result { background: #f32e2e; color: #fff; }
+
+/* Estado vazio */
+.log-vazio {
+    text-align: center;
+    padding: 30px;
+    border: 5px solid hsl(20, 73%, 7%);
+    border-radius: 10px;
+    background: hsl(18, 71%, 18%);
+    font-size: 1.1rem;
+}
+
+/* Botões inferiores */
+.log-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.log-actions a { text-decoration: none; }
+
+.log-actions button {
+    padding: 11px 22px;
+    border: 0;
+    border-radius: 6px;
+    background: #4b8b45;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "Comic Sans MS", cursive;
+}
+
+.log-actions button:hover { background: #3a6e35; }
+
+/* Responsivo */
+@media (max-width: 700px) {
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .log-entry {
+        flex-wrap: wrap;
+    }
+    .log-result {
+        width: 100%;
+        text-align: center;
+    }
+}
