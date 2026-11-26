@@ -250,11 +250,11 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Teleporte', 20
 
 -- ATAQUES
 
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ruinagumelo',1,7.0,4,'Destroi violentamente o inimigo, mas precisa de recarga', null); -- 1
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Ruinagumelo',1,3.5,4,'Destroi violentamente o inimigo, mas precisa de recarga', null); -- 1
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Barreira de Noz',1,0.0,-1,'Se proteja de ataques', null); -- 2
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Explosão Frutífera',2,1.8,2,'Frutinhas violentamente explosivas', null); -- 3 3
-insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Bombanana',2,4,1,'Explosão Forte e rápida', null); -- 4
+insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Bombanana',2,1.5,1,'Explosão Forte e rápida', null); -- 4
 
 
 insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) values ('Canhervilha',3,1,4,'Dispara um projetil comum', null); -- 5
@@ -289,14 +289,14 @@ insert into ataque(nome_atk, id_tipo, mult_dano, priori, desc_atk, id_cond) valu
 
 -- ESPECIES
 
-insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Noz Obstáculo', 2, 19, 0,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
-insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Cacto', 3, 6, 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
+insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Noz Obstáculo', 2, 19, 4,60,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Wall-NutPvZH.png'); -- 1
+insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Cacto', 4, 6, 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Tricenourátops', 11, 3, 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 1, 18, 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png'); -- 4
-insert into especie(nome_esp, atk1, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 2, 0,10,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 2,1, 50 ,1,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
 
 
-insert into especie(nome_esp, atk1, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 4, 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 4, 13, 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Coronel Milho', 3, 9, 12,60,8,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png'); -- 7
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto) values ('Nabossauro Bebê', 11, 20, 3,20,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png'); -- 8
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Uvas Azedas', 3, 6, 4,20,4,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png'); -- 9
@@ -318,8 +318,8 @@ insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto
 
 
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Girassol', 9, 10, 2,10,1,5, '../ImagensPVZ/monstrinhos_campo/Solar/Sunflower.png'); -- 21
-insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Flor Elétrica', 9, 6, 6,50,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Power_Flower.png'); -- 22
-insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Babosassauro', 11, 20, 8,70,5,5, '../ImagensPVZ/monstrinhos_campo/Solar/Aloesauru.png'); -- 23
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Flor Elétrica', 9, 4, 6,50,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Power_Flower.png'); -- 22
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Babosassauro', 17, 20, 8,70,5,5, '../ImagensPVZ/monstrinhos_campo/Solar/Aloesauru.png'); -- 23
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Carnívora', 11, 4, 5,30,4,5, '../ImagensPVZ/monstrinhos_campo/Solar/Chomper.png'); -- 24
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Zoiudo', 17, 9, 4,10,2,5, '../ImagensPVZ/monstrinhos_campo/Solar/EyeSpore.png'); -- 25
 
@@ -340,7 +340,7 @@ insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Soldado', 13, 18, 6,40,5,8, '../ImagensPVZ/monstrinhos_campo/doidões/soldado.png'); -- 37
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Dançarino', 15, 16, 6,10,3,8, '../ImagensPVZ/monstrinhos_campo/doidões/zumbidodisco.png'); -- 38
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Discotron 3000', 15, 13, 10,50,6,8, '../ImagensPVZ/monstrinhos_campo/doidões/DiscoTron3000.png'); -- 39
-insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Valquíria', 20, 15, 0,60,4,8, '../ImagensPVZ/monstrinhos_campo/doidões/valkiria.png'); -- 40
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Valquíria', 20, 15, 4 ,70,4,8, '../ImagensPVZ/monstrinhos_campo/doidões/valkiria.png'); -- 40
 -- VIGOROSO
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Zumbi Sumô', 19, 20, 4,30,2,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/zumbisumo.png'); -- 41
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Aspirante a Herói', 17, 12, 12,10,7,9, '../ImagensPVZ/monstrinhos_campo/vigoroso/devastador.png'); -- 42
@@ -375,22 +375,23 @@ update especie set id_evo = 41 where id_esp = 35; --  Paparazzumbi -> Sumô
 update especie set id_evo = 42 where id_esp = 41; --  Sumô -> Aspirante a Herói
 
 update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
+update especie set id_evo = 45 where id_esp = 48; --  Galo -> Mascote
 
 
 insert into evolucao(id_item, id_esp) values (13, 11); -- Pedra de Gelo pra Ervilha
-insert into evolucao(id_item, id_esp) values (14, 18);-- Capacete pra Gelervilha
+insert into evolucao(id_item, id_esp) values (14, 18); -- Capacete pra Gelervilha
 insert into evolucao(id_item, id_esp) values (15, 9); -- Saxofone pra Uvas
 insert into evolucao(id_item, id_esp) values (16, 17); -- Buraco Negro pra Boca-de-Dragão
 insert into evolucao(id_item, id_esp) values (17, 21); -- Arco-Íris pra Girassol
-insert into evolucao(id_item, id_esp) values (18, 8);  -- Babosa pro Nabossauro
+insert into evolucao(id_item, id_esp) values (18, 8); -- Babosa pro Nabossauro
 
 insert into evolucao(id_item, id_esp) values (19, 47); -- Cutelo pro Frango
-insert into evolucao(id_item, id_esp) values (20, 47);-- Pedra de Fogo (evolui frango pra galo)
-insert into evolucao(id_item, id_esp) values (21, 32);-- Super Fedor pro Zumbolha
-insert into evolucao(id_item, id_esp) values (22, 38);-- Discobola pro Disco
-insert into evolucao(id_item, id_esp) values (23, 35);-- Hamburguer pro Paparazzumbi
-insert into evolucao(id_item, id_esp) values (24, 41);-- Bandeira pro Sumô
-insert into evolucao(id_item, id_esp) values (25, 26);-- Teleporte pra Cabra
+insert into evolucao(id_item, id_esp) values (20, 48); -- Pedra de Fogo (evolui frango pra galo)
+insert into evolucao(id_item, id_esp) values (21, 32); -- Super Fedor pro Zumbolha
+insert into evolucao(id_item, id_esp) values (22, 38); -- Discobola pro Disco
+insert into evolucao(id_item, id_esp) values (23, 35); -- Hamburguer pro Paparazzumbi
+insert into evolucao(id_item, id_esp) values (24, 41); -- Bandeira pro Sumô
+insert into evolucao(id_item, id_esp) values (25, 26); -- Teleporte pra Cabra
 
 
 -- CRIANDO OS INIMIGOS
@@ -402,7 +403,7 @@ insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim', 1, 8,
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim 2', 1, 32, 50);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Pudim O Maior', 1, 48, 10);
 
-insert into inimigo(txt_entra, txt_mata, txt_morre) values ("Oii! Meus pudins polimórficos vão acabar com você!", "Sabia que venceria. Você nunca venceria essa sobrecarga de métodos!", "Parece que te subestimei! Mas esse é só o começo.");
+insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Oii! Meus pudins polimórficos vão acabar com você!", "Sabia que venceria. Você nunca venceria essa sobrecarga de métodos!", "Parece que te subestimei! Mas esse é só o começo.");
 
 -- JACQUE
 
@@ -413,7 +414,7 @@ insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Readzinho', 2
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Updatonho', 2, 41, 30);
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Deletosa', 2, 22, 50);
 
-insert into inimigo(txt_entra, txt_mata, txt_morre) values ("Olá! Você sabe quais são as operações do CRUD?", "Parece que meu time deu Truncate no seu", "Ótima luta. Você sabe mesmo de modelagem");
+insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Olá! Você sabe quais são as operações do CRUD?", "Parece que meu time deu Truncate no seu", "Ótima luta. Você sabe mesmo de modelagem");
 
 -- MARCIO
 
@@ -427,4 +428,4 @@ insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Revisinho Oli
 insert into pokemon(nome_pkm, id_usr, id_esp, vida_atual) values ('Rhiana', 3, 50, 50);
 
 
-insert into inimigo(txt_entra, txt_mata, txt_morre) values ("Esse será o seu teste final. PREPARE-SE", "Você não revisou o suficiente.", "Meus parabens. Você se mostrou capaz de dominar a programação web.");
+insert into Inimigo(txt_entra, txt_mata, txt_morre) values ("Esse será o seu teste final. PREPARE-SE", "Você não revisou o suficiente.", "Meus parabens. Você se mostrou capaz de dominar a programação web.");
