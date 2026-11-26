@@ -13,14 +13,7 @@ $usuario = new Usuario();
 $usuario->setId((int)$_SESSION['id_usr']);
 $usuario->load();
 
-/*
-|------------------------------------------------------------------
-| Busca os logs do usuário logado.
-| A tabela 'log' tem (pelo que vi no selecao_controller.php):
-|   id_log, nome_usr, nome_inim, id_inim, ganhou_perdeu
-| Se existir 'data_log', mostra data. Se não, cai no catch.
-|------------------------------------------------------------------
-*/
+
 $temData = false;
 try {
     $sql = "SELECT id_log, nome_usr, nome_inim, ganhou_perdeu, data_log
@@ -65,7 +58,7 @@ $taxaVitoria  = $total > 0 ? (int) round(($totalVitorias / $total) * 100) : 0;
     <link rel="stylesheet" href="log.css">
 </head>
 <body>
-    <audio src="../Música/Laura Shigihara - Zen Garden.mp3" autoplay loop></audio>
+    <audio src="../Música/Laura Shigihara - Choose Your Seeds.mp3" autoplay loop></audio>
 
     <div class="log-page">
         <header class="log-header">
