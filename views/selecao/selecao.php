@@ -91,12 +91,10 @@
                 <div class="banco">Dinheiro: $<?= $usuario->getDinheiro() ?></div>           
 
                 <a style = "width:100%;" href="../index.php"><button type="button">Sair</button></a>
-                
+                                    <a style="width:100%;" href="../creditos.php"> <button type="button" style="width:100%;">Créditos</button> </a>
+
 
                 <?php  if ($venceuJogo): // SE O DESGRAÇADO VENCEU ?>
-                    <a style="width:100%;" href="../creditos.php">
-                        <button type="button" style="width:100%;">Créditos</button>
-                    </a>
                 <?php else: // CASO CONTRARIO ELE SÓ FICA CINZA ?>
                     
                     <button type="button" style="width:100%;" disabled title="Vença o jogo para desbloquear!">Créditos</button>
