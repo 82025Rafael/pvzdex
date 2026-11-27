@@ -239,7 +239,7 @@ insert into item(nome_item, preco_item, desc_item, foto) values ('Buraco Negro',
 insert into item(nome_item, preco_item, desc_item, foto) values ('Arco-íris', 250, 'Evolui Girassol para Flor Elétrica', '../ImagensPVZ/itens/itens de evolução/arcoiris.png'); -- 17
 insert into item(nome_item, preco_item, desc_item, foto) values ('Babosa', 350, 'Evolui Nabossauro para Babosassauro', '../ImagensPVZ/itens/itens de evolução/babosa.png'); -- 18
 
-insert into item(nome_item, preco_item, desc_item, foto) values ('Cutelo', 200, 'Evolui Galinha para Mascote de Time', '../ImagensPVZ/itens/itens de evolução/cutelo.png'); -- 19
+insert into item(nome_item, preco_item, desc_item, foto) values ('Cutelo', 200, 'Evolui Galo para Mascote de Time', '../ImagensPVZ/itens/itens de evolução/cutelo.png'); -- 19
 insert into item(nome_item, preco_item, desc_item, foto) values ('Pedra do Fogo', 200, 'Evolui Galinha para Galo', '../ImagensPVZ/itens/itens de evolução/pedra_de_fogo.png'); -- 20
 insert into item(nome_item, preco_item, desc_item, foto) values ('Super Fedor', 300, 'Evolui Zumbolha para Gigante Gasoso', '../ImagensPVZ/itens/itens de evolução/super_fedor.png'); -- 21
 insert into item(nome_item, preco_item, desc_item, foto) values ('Discobola', 250, 'Evolui Dançarino para Discotron 3000', '../ImagensPVZ/itens/itens de evolução/Disco_bola.png'); -- 22
@@ -293,7 +293,7 @@ insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto
 insert into especie(nome_esp, atk1, atk2, forca,  vida_max, veloc, id_tipo, foto) values ('Cacto', 4, 6, 4,50,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Cactus(PvZH).png'); -- 2
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Tricenourátops', 11, 3, 2,20,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Carrot_cutie.png'); -- 3
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto) values ('Planterna', 1, 18, 6,30,3,1, '../ImagensPVZ/monstrinhos_campo/Protetor/Plantern_(PvZH)_HD.png'); -- 4
-insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 2,1, 50 ,1,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 2,1, 50 ,2,2,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
 
 
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 4, 13, 6,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
