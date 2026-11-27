@@ -1,8 +1,10 @@
+/* Regra global para incluir bordas e preenchimentos nos tamanhos calculados. */
 * {
     box-sizing: border-box;
     font-family: "Comic Sans MS", Arial, sans-serif;
 }
 
+/* Fundo e tipografia que mantêm a página alinhada ao restante do jogo. */
 body {
     min-height: 100vh;
     margin: 0;
@@ -11,11 +13,13 @@ body {
     background: url("../../imagensPVZ/Cenários/teladetitulo.png") center / cover fixed;
 }
 
+/* Limita a largura do conteúdo para manter o quadro legível em telas grandes. */
 .type-page {
     width: min(1200px, 100%);
     margin: 0 auto;
 }
 
+/* Cabeçalho com título da página e atalho para retornar à seleção. */
 .page-header {
     display: flex;
     align-items: center;
@@ -42,6 +46,7 @@ body {
     margin-top: 6px;
 }
 
+/* Link estilizado como botão para voltar à tela de seleção. */
 .back-link {
     flex: 0 0 auto;
     padding: 10px 14px;
@@ -57,6 +62,7 @@ body {
     background: #376d33;
 }
 
+/* Painel principal que envolve o quadro de vantagens e fraquezas. */
 .chart-panel {
     padding: 18px;
     border: 5px solid hsl(20, 73%, 7%);
@@ -65,6 +71,7 @@ body {
     box-shadow: 0 2px 8px rgba(32, 48, 32, 0.2);
 }
 
+/* Painel da lista de ataques e do seu filtro por tipo. */
 .attack-panel {
     margin-top: 18px;
     padding: 18px;
@@ -79,6 +86,7 @@ body {
     color: #fff;
 }
 
+/* Agrupa o rótulo e o seletor de tipo em uma linha flexível. */
 .attack-filter {
     display: flex;
     align-items: center;
@@ -88,6 +96,7 @@ body {
     color: #fff;
 }
 
+/* Aparência do seletor usado para filtrar os ataques. */
 .attack-filter select {
     min-width: 190px;
     padding: 8px 10px;
@@ -98,12 +107,14 @@ body {
     font: inherit;
 }
 
+/* Cards de ataques se ajustam ao espaço horizontal disponível. */
 .attack-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 10px;
 }
 
+/* Cada ataque recebe uma borda superior com a cor de seu tipo. */
 .attack-card {
     min-width: 0;
     padding: 12px;
@@ -117,6 +128,7 @@ body {
     display: none;
 }
 
+/* Alinha o nome do ataque ao marcador colorido do tipo. */
 .attack-card-heading {
     display: flex;
     align-items: flex-start;
@@ -137,6 +149,7 @@ body {
     margin-top: 8px;
 }
 
+/* O tipo do ataque é mostrado como uma etiqueta colorida. */
 .type-chip {
     flex: 0 0 auto;
     padding: 3px 8px;
@@ -152,6 +165,7 @@ body {
     color: #fff;
 }
 
+/* Legenda dos multiplicadores exibidos na matriz de tipos. */
 .legend {
     display: flex;
     flex-wrap: wrap;
@@ -176,11 +190,13 @@ body {
     font-weight: bold;
 }
 
+/* Permite rolagem horizontal quando a matriz não cabe na tela. */
 .table-scroll {
     overflow: auto;
     border-radius: 6px;
 }
 
+/* Matriz de confronto: tipos nas linhas e nas colunas. */
 .type-chart {
     width: 100%;
     min-width: 860px;
@@ -202,6 +218,7 @@ body {
     border-radius: 4px;
 }
 
+/* Cabeçalhos da matriz recebem a cor do tipo correspondente. */
 .type-chart th {
     color: var(--type-text, #fff);
     background: var(--type-color, #4b8b45);
@@ -215,10 +232,12 @@ body {
     text-shadow: none;
 }
 
+/* Destaca os valores das células da matriz de confrontos. */
 .matchup {
     font-weight: bold;
 }
 
+/* Cores de fundo que distinguem vantagem, fraqueza e dano neutro. */
 .strong {
     background: #b7e4c7;
 }
@@ -236,6 +255,7 @@ body {
     text-align: left;
 }
 
+/* Nomes de tipo mapeados para as cores dos cards da seleção. */
 [data-tipo="Protetor"] {
     --type-color: #6c553b;
 }
@@ -280,6 +300,8 @@ body {
     --type-color: #1e1e1e;
 }
 
+/* Em telas estreitas, reduz margens e mantém os painéis dentro da viewport. */
+/* Ajustes para manter cabeçalho e painéis confortáveis em telas estreitas. */
 @media (max-width: 640px) {
     body {
         padding: 12px;

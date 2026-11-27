@@ -1,8 +1,13 @@
-<?php require __DIR__ . '/../../controllers/selecao_controller.php';  
+<?php
+// O controller carrega os dados do usuário, da equipe e do inventário usados pela tela.
+require __DIR__ . '/../../controllers/selecao_controller.php';
+
+// Impede o acesso à seleção sem uma sessão autenticada.
  if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false)
   { header("location:login.php"); exit; }  
         
 
+  // Descarta uma seleção antiga de Pokémon e carrega os dados atuais do usuário.
   unset($_SESSION['pkm']);
         
         $usuario = new usuario();
@@ -20,14 +25,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Monstrinhos</title>
+    <!-- A folha de estilos controla o layout dos painéis, cards e menu. -->
     <link rel="stylesheet" href="selecao.css">
     
 </head>
 <body>
+    <!-- Música ambiente da tela de seleção. -->
  <audio src="../../Música/Laura Shigihara - Zen Garden.mp3" autoplay loop></audio>
 
     <div class="selection-page">
         <header class="page-header">
+            <!-- Instruções e mensagem temporária retornada após o uso de um item. -->
             <h1 id="titulo">Selecione seu time!</h1>
             <p id="instrucoes">Escolha 6 Monstrinhos para sua equipe:</p>
 
@@ -46,7 +54,7 @@
             </section>
 
             <div class="center-column">
-                <!-- Mostra os itens e quantidades carregados do inventário do usuário. -->
+                <!-- Mostra os itens e quantidades carregados do inventário do usuário. Clicar em um item o deixa pronto para uso. -->
                 <section class="panel inventory-panel">
                     <h2 style = "color:oklab(0.85 0.01 0.13);" >Inventário</h2>
                     <div id="inventario" class="inventory-list">
@@ -65,7 +73,7 @@
                     </div>
                 </section>
 
-                <!-- Cada card mantém o checkbox para seleção e revela os dados ao passar o mouse. -->
+                <!-- Cada card representa um Pokémon. O checkbox controla a equipe e o hover revela seus dados. -->
                 <section class="panel pokemon-panel">
                     <h2 style = "color:oklab(0.85 0.01 0.13);" >Monstrinhos disponíveis</h2>
                     <div id="pokemons" class="card-list">
@@ -96,7 +104,7 @@
                 </section>
             </div>
 
-            <!-- Menu de navegação ficam agrupados na coluna direita. -->
+            <!-- Menu lateral com perfil, saldo e atalhos para as outras áreas do jogo. -->
             <nav style="display: flex; justify-content:center; align-items:center; "id="menu" class="panel menu-panel" aria-label="Menu principal">
 
                 <img class="fotoPerfil" src="../<?= htmlspecialchars($usuario->getFoto(), ENT_QUOTES, 'UTF-8'); ?>">
@@ -123,10 +131,12 @@
     </div>
 
     <script>
+        // Referências às listas de equipe e Pokémon disponíveis, além do limite permitido.
         const equipeSelecionada = document.getElementById('equipe-selecionada');
         const pokemonsDisponiveis = document.getElementById('pokemons');
         const limiteEquipe = 6;
 
+        // Desabilita Pokémon mortos e impede selecionar mais de seis integrantes.
         function atualizarDisponibilidade() {
             const equipeCheia = equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length >= limiteEquipe;
             document.querySelectorAll('.pokemon-checkbox').forEach((checkbox) => {
@@ -135,7 +145,7 @@
             });
         }
 
-        // Ao marcar ou desmarcar, move o card entre a lista disponível e a equipe.
+        // Ao marcar ou desmarcar, valida o card e o move entre disponíveis e equipe.
         document.addEventListener('change', (event) => {
             if (!(event.target instanceof HTMLInputElement) || !event.target.matches('.pokemon-checkbox')) return;
 
@@ -161,6 +171,7 @@
             atualizarDisponibilidade();
         });
 
+        // Converte os checkboxes marcados em campos enviados ao controller da batalha.
         document.getElementById('batalha-form').addEventListener('submit', (event) => {
             const idsContainer = document.getElementById('pokemon-ids');
             idsContainer.replaceChildren();
@@ -184,9 +195,10 @@
             });
         });
 
-        // ---------- USO DE ITENS ----------
+        // Mantém o item atualmente escolhido no inventário.
         let itemSelecionado = null;
 
+        // Clique em um item alterna sua seleção e ativa o modo de uso nos Pokémon.
         document.querySelectorAll('.item-card[data-item-id]').forEach(card => {
             card.addEventListener('click', () => {
                 const id = card.dataset.itemId;
@@ -204,14 +216,14 @@
             });
         });
 
-        // Captura o clique no monstrinho em modo "item selecionado"
+        // Com um item selecionado, o clique em um Pokémon envia ambos os IDs ao controller de itens.
         document.addEventListener('click', (event) => {
             if (!itemSelecionado) return;
 
             const pokemonCard = event.target.closest('.pokemon-card');
             if (!pokemonCard) return;
 
-            // Impede que o checkbox do card seja marcado
+            // Evita que o clique usado para aplicar o item altere a seleção da equipe.
             event.preventDefault();
             event.stopPropagation();
 
@@ -225,6 +237,7 @@
             form.method = 'POST';
             form.action = '../../controllers/item_controller.php';
 
+            // Campos ocultos carregam o item e o Pokémon escolhidos na requisição POST.
             const i1 = document.createElement('input');
             i1.type = 'hidden'; i1.name = 'id_item'; i1.value = itemSelecionado;
             const i2 = document.createElement('input');
