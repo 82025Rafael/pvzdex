@@ -10,6 +10,14 @@ if (empty($_SESSION['logado']) || empty($_SESSION['id_usr'])) {
 $pdo = connect();
 $stmt = $pdo->query('SELECT id_tipo, nome_tipo, f1, f2, w1, w2 FROM tipo ORDER BY id_tipo');
 $tipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->query(
+    'SELECT a.id_atk, a.nome_atk, a.desc_atk, t.id_tipo, t.nome_tipo
+     FROM ataque a
+     INNER JOIN tipo t ON a.id_tipo = t.id_tipo
+     ORDER BY t.id_tipo, a.id_atk'
+);
+$ataques = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -86,6 +94,63 @@ $tipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </table>
             </div>
         </section>
+
+        <section class="attack-panel" aria-labelledby="attack-heading">
+            <h2 id="attack-heading">Ataques por tipo</h2>
+            <div class="attack-filter">
+                <label for="attack-type-filter">Filtrar por tipo:</label>
+                <select id="attack-type-filter">
+                    <option value="all">Todos os tipos</option>
+                    <?php foreach ($tipos as $tipo): ?>
+                        <option value="<?= (int) $tipo['id_tipo'] ?>">
+                            <?= htmlspecialchars($tipo['nome_tipo'], ENT_QUOTES, 'UTF-8') ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="attack-list" id="attack-list">
+                <?php foreach ($ataques as $ataque): ?>
+                    <?php
+                    $nomeAtaque = htmlspecialchars($ataque['nome_atk'], ENT_QUOTES, 'UTF-8');
+                    $descricaoAtaque = htmlspecialchars($ataque['desc_atk'], ENT_QUOTES, 'UTF-8');
+                    $nomeTipoAtaque = htmlspecialchars($ataque['nome_tipo'], ENT_QUOTES, 'UTF-8');
+                    ?>
+                    <article
+                        class="attack-card"
+                        data-tipo-id="<?= (int) $ataque['id_tipo'] ?>"
+                        data-tipo="<?= $nomeTipoAtaque ?>"
+                    >
+                        <div class="attack-card-heading">
+                            <h3><?= $nomeAtaque ?></h3>
+                            <span class="type-chip" data-tipo="<?= $nomeTipoAtaque ?>"><?= $nomeTipoAtaque ?></span>
+                        </div>
+                        <p><?= $descricaoAtaque ?></p>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+            <p class="empty-state" id="empty-attacks" hidden>Nenhum ataque encontrado para este tipo.</p>
+        </section>
     </main>
+    <script>
+        const typeFilter = document.getElementById('attack-type-filter');
+        const attackCards = Array.from(document.querySelectorAll('.attack-card'));
+        const emptyAttacks = document.getElementById('empty-attacks');
+
+        function filterAttacks() {
+            let visibleCount = 0;
+
+            attackCards.forEach((card) => {
+                const visible = typeFilter.value === 'all' || card.dataset.tipoId === typeFilter.value;
+                card.hidden = !visible;
+                if (visible) visibleCount++;
+            });
+
+            emptyAttacks.hidden = visibleCount > 0;
+        }
+
+        typeFilter.addEventListener('change', filterAttacks);
+        filterAttacks();
+    </script>
 </body>
 </html>

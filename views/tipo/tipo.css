@@ -65,6 +65,93 @@ body {
     box-shadow: 0 2px 8px rgba(32, 48, 32, 0.2);
 }
 
+.attack-panel {
+    margin-top: 18px;
+    padding: 18px;
+    border: 5px solid hsl(20, 73%, 7%);
+    border-radius: 10px;
+    background: hsl(18, 71%, 18%);
+    box-shadow: 0 2px 8px rgba(32, 48, 32, 0.2);
+}
+
+.attack-panel h2 {
+    margin: 0 0 14px;
+    color: #fff;
+}
+
+.attack-filter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: #fff;
+}
+
+.attack-filter select {
+    min-width: 190px;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 6px;
+    color: #203020;
+    background: #e5eddc;
+    font: inherit;
+}
+
+.attack-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+}
+
+.attack-card {
+    min-width: 0;
+    padding: 12px;
+    border-top: 5px solid var(--type-color, #4b8b45);
+    border-radius: 6px;
+    color: #203020;
+    background: #e5eddc;
+}
+
+.attack-card[hidden] {
+    display: none;
+}
+
+.attack-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.attack-card h3,
+.attack-card p {
+    margin: 0;
+}
+
+.attack-card h3 {
+    font-size: 1.05rem;
+}
+
+.attack-card p {
+    margin-top: 8px;
+}
+
+.type-chip {
+    flex: 0 0 auto;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: var(--type-text, #fff);
+    background: var(--type-color, #4b8b45);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.attack-panel .empty-state {
+    margin: 0;
+    color: #fff;
+}
+
 .legend {
     display: flex;
     flex-wrap: wrap;
