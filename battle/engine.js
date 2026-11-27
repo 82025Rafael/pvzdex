@@ -1,23 +1,20 @@
-// ============================================================
-// BATTLE/ENGINE.JS
-// Motor Principal de Combate
-// ============================================================
-import { SPECIAL_MOVES } from './specials.js';
-import { BatalhaIA } from './ai.js';
 
-export class Lutador {
-    constructor(pkmData) {
+import { SPECIAL_MOVES } from './specials.js'; // PEGA OS GOLPES QUE NAO DAO DANO
+import { BatalhaIA } from './ai.js'; // PEGA O BOT QUE ESCOLHE GOLPES INIMIGOS
+
+export class Lutador { // OS BIXO BRABO ATIVO
+    constructor(pkmData) { // PEGA OS DADOS DE JSON DO POKEMON
         Object.assign(this, pkmData);
-        this.hpMax = pkmData.vida_max;
+        this.hpMax = pkmData.vida_max; // SETANDO VALORES
         this.hp = pkmData.vida_atual;
-        this.forcaBase = pkmData.forca;
+        this.forcaBase = pkmData.forca; 
         this.velocBase = pkmData.veloc;
 
         const statusMap = { 1: 'Queimado', 2: 'Envenenado', 3: 'Paralisado', 4: 'Adormecido', 5: 'Congelado' };
-        this.status = pkmData.id_cond ? statusMap[pkmData.id_cond] : null;
+        this.status = pkmData.id_cond ? statusMap[pkmData.id_cond] : null; // DEFININDO OS STATUS A PARTIR DO ID
 
-        this.forcaBonus = 0;
-        this.protegido = false;
+        this.forcaBonus = 0; 
+        this.protegido = false; 
         this.ultimoAtaque = null;
         this.velocPenalidade = 0;
         this.mortosNoBolso = 0;
@@ -27,35 +24,35 @@ export class Lutador {
     get vivo() { return this.hp > 0; }
 
     get forcaEfetiva() {
-        let f = this.forcaBase + this.forcaBonus;
-        if (this.status === 'Queimado') f = f * 0.75;
-        return Math.max(0, Math.floor(f));
+        let f = this.forcaBase + this.forcaBonus; // CALCULO DE FORCA TOTAL QUE APARECE DO BIXO
+        if (this.status === 'Queimado') f = f * 0.75; // DIMINUI ATAQUE QUANDO TA QUEIMADO 75%
+        return Math.max(0, Math.floor(f)); 
     }
 
     get velocEfetiva() {
         let v = this.velocBase - this.velocPenalidade;
         if (this.status === 'Envenenado') v = v * 0.80;
-        if (this.status === 'Paralisado') v = v * 0.50;
+        if (this.status === 'Paralisado') v = v * 0.50; // DIMINUI VELOC QUANDO PARALIZADO OU ENVEN
         return Math.max(0, Math.floor(v));
     }
 }
 
 export class BattleEngine {
     constructor(dadosBatalha, callbacksUI) {
-        this.movesCatalog = dadosBatalha.movesCatalog;
+        this.movesCatalog = dadosBatalha.movesCatalog; // SETANDO OS GOLPES, TIPOS E ITEMS QUE EXISTEM
         this.typeChart = dadosBatalha.typeChart;
         this.itemsCatalog = dadosBatalha.itemsCatalog;
 
-        this.usuarioTime = dadosBatalha.userTeam.map(p => new Lutador(p));
+        this.usuarioTime = dadosBatalha.userTeam.map(p => new Lutador(p)); // CRIANDO LUTADOR DO USUARIO E INIMIGO A PARTIR DOS DADOS DO JSON
         this.inimigoTime = dadosBatalha.enemyTeam.map(p => new Lutador(p));
 
-        this.usuarioAtivoIndex = 0;
+        this.usuarioAtivoIndex = 0; // NUMERO DO BIXO NA FILA A SER USADO
         this.inimigoAtivoIndex = 0;
 
         this.inventario = { ...dadosBatalha.userInventory };
-        this.itensUsados = {};
+        this.itensUsados = {}; // ESVAZIA O VETOR DE QUAIS ITENS FORAM GASTOS PRA SEMPRE RENOVAR E TIRAR QUANDO ACABAR
 
-        this.callbacks = callbacksUI;
+        this.callbacks = callbacksUI; // CONFIG INTERNA DA INTERFACE
         this.batalhaAtiva = true;
         this.esperandoClique = false;
         this.resolverClique = null;
@@ -63,19 +60,19 @@ export class BattleEngine {
         this.resolverAcao = null;
     }
 
-    get usuarioAtivo() { return this.usuarioTime[this.usuarioAtivoIndex]; }
-    get inimigoAtivo() { return this.inimigoTime[this.inimigoAtivoIndex]; }
-    get usuarioVivo() { return this.usuarioTime.filter(p => p.vivo).length; }
+    get usuarioAtivo() { return this.usuarioTime[this.usuarioAtivoIndex]; } // GET PRA MOSTRAR O POKEMON ATUAL
+    get inimigoAtivo() { return this.inimigoTime[this.inimigoAtivoIndex]; } 
+    get usuarioVivo() { return this.usuarioTime.filter(p => p.vivo).length; } // GET POKEMONS VIVOS DO USUARIO
     get inimigoVivo() { return this.inimigoTime.filter(p => p.vivo).length; }
     get totalVivo() { return this.usuarioVivo + this.inimigoVivo; }
 
     async log(texto, lado = 'usuario') {
         if (!this.batalhaAtiva) return;
-        this.callbacks.log(texto, lado);
+        this.callbacks.log(texto, lado); 
         await this.esperarClique();
     }
 
-    async esperarClique() {
+    async esperarClique() { // MENU OCIOSO
         if (!this.batalhaAtiva) return;
         return new Promise(resolve => {
             this.esperandoClique = true;
@@ -84,7 +81,7 @@ export class BattleEngine {
         });
     }
 
-    avancarClique() {
+    avancarClique() { 
         if (this.esperandoClique && this.resolverClique) {
             this.esperandoClique = false;
             this.callbacks.mostrarIndicadorClique(false);
@@ -110,23 +107,23 @@ export class BattleEngine {
         r(acao);
     }
 
-    async iniciar() {
+    async iniciar() {  // QUANDO A BATALHA COMEÇA
         await this.log("A batalha começou!", 'usuario');
         this.loopTurno();
     }
 
-    async loopTurno() {
-        while (this.batalhaAtiva && this.usuarioVivo > 0 && this.inimigoVivo > 0) {
+    async loopTurno() { // LOOP DE REPETIÇÃO DOS PROCESSOS DO TURNO
+        while (this.batalhaAtiva && this.usuarioVivo > 0 && this.inimigoVivo > 0) { // SO TEM TURNO ENQUANTO TIVER ALGUEM VIVO NUM DOS TIMES
             const acaoUser = await this.pedirAcaoJogador();
             if (!this.batalhaAtiva) break;
 
-            if (acaoUser.tipo === 'fugir') {
+            if (acaoUser.tipo === 'fugir') { // SE FUGIR O USUARIO PERDE
                 await this.log("Você fugiu da batalha!", 'usuario');
                 this.finalizar('enemy', 'fuga');
                 return;
             }
 
-            if (acaoUser.tipo === 'trocar') {
+            if (acaoUser.tipo === 'trocar') { // ACAO PRA TROCAR DE BIXO
                 this.executarTroca('usuario', acaoUser.index);
                 await this.log(`Você enviou ${this.usuarioAtivo.nome}!`, 'usuario');
                 await this.executarAtaqueInimigo();
@@ -135,7 +132,7 @@ export class BattleEngine {
                 continue;
             }
 
-            if (acaoUser.tipo === 'item') {
+            if (acaoUser.tipo === 'item') { // ACAO PRA USAR ITENS
                 await this.executarItem(acaoUser.id_item, acaoUser.index);
                 await this.executarAtaqueInimigo();
                 if (!this.batalhaAtiva) break;
@@ -143,23 +140,23 @@ export class BattleEngine {
                 continue;
             }
 
-            const acaoInimigo = BatalhaIA.escolherAcao(this);
-            await this.resolverAtaques(acaoUser, acaoInimigo);
+            const acaoInimigo = BatalhaIA.escolherAcao(this); 
+            await this.resolverAtaques(acaoUser, acaoInimigo); // ESPERAR O IA FAZER SUA DECISAO
             if (!this.batalhaAtiva) break;
             await this.fimDeTurno();
         }
     }
 
-    async resolverAtaques(acaoUser, acaoInimigo) {
+    async resolverAtaques(acaoUser, acaoInimigo) { // CALCULA OS ATAQUES
     const idGolpeUser = acaoUser.slot === 1 ? this.usuarioAtivo.atk1 : this.usuarioAtivo.atk2;
     const idGolpeIni  = acaoInimigo.slot === 1 ? this.inimigoAtivo.atk1 : this.inimigoAtivo.atk2;
     const movUser = this.movesCatalog[idGolpeUser];
-    const movIni  = this.movesCatalog[idGolpeIni];
+    const movIni  = this.movesCatalog[idGolpeIni]; 
 
     const podeUser = this.checarStatusAntesDeAgir(this.usuarioAtivo);
     const podeIni  = this.checarStatusAntesDeAgir(this.inimigoAtivo);
 
-    if (!podeUser) await this.log(`${this.usuarioAtivo.nome} não pode se mover!`, 'usuario');
+    if (!podeUser) await this.log(`${this.usuarioAtivo.nome} não pode se mover!`, 'usuario'); // SE NAO PODE SE MOVER NAO MOVE
     if (!podeIni)  await this.log(`${this.inimigoAtivo.nome} não pode se mover!`, 'inimigo');
 
     let primeiro = null;
@@ -178,7 +175,6 @@ export class BattleEngine {
         primeiro = 'ini';
     }
 
-    // ✅ CORREÇÃO: o segundo atacante só age se TAMBÉM pode agir
     if (primeiro === 'user') {
         await this.executarGolpe(this.usuarioAtivo, this.inimigoAtivo, movUser, 'usuario');
         if (podeIni && this.inimigoAtivo.vivo && this.batalhaAtiva)
@@ -192,7 +188,7 @@ export class BattleEngine {
     if (this.batalhaAtiva) await this.checarDesmaios();
 }
 
-    checarStatusAntesDeAgir(pkm) {
+    checarStatusAntesDeAgir(pkm) { // CHECAR OS STATUS DE PARALISIA ANTES DE ATACAR E NAO DEIXAR
         if (pkm.status === 'Congelado') return false;
         if (pkm.status === 'Adormecido') {
             if (Math.random() * 100 <= 40) {
@@ -206,7 +202,7 @@ export class BattleEngine {
         return true;
     }
 
-    async executarGolpe(atacante, defensor, golpe, lado) {
+    async executarGolpe(atacante, defensor, golpe, lado) { // ATACA
         if (!this.batalhaAtiva) return;
         await this.log(`${atacante.nome} usou ${golpe.nome_atk}!`, lado);
 
@@ -223,7 +219,7 @@ export class BattleEngine {
             return;
         }
 
-        if (SPECIAL_MOVES[golpe.id_atk]) {
+        if (SPECIAL_MOVES[golpe.id_atk]) { // EXECUTA ATAQUES ESPECIAIS
             await SPECIAL_MOVES[golpe.id_atk].executar(this, atacante, defensor);
             atacante.ultimoAtaque = golpe.id_atk;
             return;
@@ -239,17 +235,17 @@ export class BattleEngine {
             }
 
             defensor.hp = Math.max(0, defensor.hp - dano);
-            this.emitir('hpChange', defensor);
+            this.emitir('hpChange', defensor); // MUDA A VIDA COM BASE NO DANO
             await this.log(`Causou ${dano} de dano em ${defensor.nome}.`, lado);
 
-            if (defensor.status === 'Congelado') {
+            if (defensor.status === 'Congelado') { // SE CONGELADO E FOR ATACADO DESCONGELA
                 defensor.status = null;
                 this.callbacks.evento('statusChange', defensor);
                 await this.log(`${defensor.nome} descongelou!`, lado === 'usuario' ? 'inimigo' : 'usuario');
             }
 
             if (golpe.id_cond && Math.random() * 100 <= (golpe.chance_cond ?? 100)) {
-                if (!defensor.status) {
+                if (!defensor.status) { // IMPEDIR ACUMULO DE STATUS
                     const statusList = ['Queimado', 'Envenenado', 'Paralisado', 'Adormecido', 'Congelado'];
                     defensor.status = statusList[golpe.id_cond - 1];
                     this.callbacks.evento('statusChange', defensor);
@@ -257,7 +253,7 @@ export class BattleEngine {
                 }
             }
 
-            if (!defensor.vivo) {
+            if (!defensor.vivo) { // SE NAO TA MAIS VIVO MORRE
                 await this.log(`${defensor.nome} desmaiou!`, lado === 'usuario' ? 'inimigo' : 'usuario');
                 
             }
@@ -265,15 +261,12 @@ export class BattleEngine {
         atacante.ultimoAtaque = golpe.id_atk;
     }
 
-    executarTroca(lado, index) {
+    executarTroca(lado, index) { // FAZER TROCA DE BIXOS
         if (lado === 'usuario') {
             this.usuarioAtivo.ultimoAtaque = null;
             this.usuarioAtivoIndex = index;
             this.emitir('troca', this.usuarioAtivo);
-            if (this.usuarioAtivo.id_esp === 40) {
-                this.usuarioAtivo.forcaBonus = 4 * this.usuarioAtivo.mortosNoBolso;
-                this.usuarioAtivo.mortosNoBolso = 0;
-            }
+            
         } else {
             this.inimigoAtivo.ultimoAtaque = null;
             this.inimigoAtivo.ultimaAcaoIA = 'ataque';
@@ -287,9 +280,9 @@ export class BattleEngine {
         const item = this.itemsCatalog[id_item];
         await this.log(`Usou ${item.nome_item} em ${pkm.nome}.`, 'usuario');
 
-        if (id_item === 12) {
+        if (id_item === 12) { 
             if (pkm.hp === 0) { pkm.hp = Math.ceil(pkm.hpMax / 2); pkm.status = null; }
-        } else if (id_item === 11) {
+        } else if (id_item === 11) { 
             pkm.hp = pkm.hpMax; pkm.status = null;
         } else if (id_item >= 5 && id_item <= 10) {
             pkm.status = null;
@@ -305,30 +298,30 @@ export class BattleEngine {
         await this.log(`O item foi aplicado com sucesso.`, 'usuario');
     }
 
-    async executarAtaqueInimigo() {
+    async executarAtaqueInimigo() { // ATAQUE DO INIMIGO
         if (!this.batalhaAtiva) return;
         const acaoIni = BatalhaIA.escolherAcao(this);
         const idGolpe = acaoIni.slot === 1 ? this.inimigoAtivo.atk1 : this.inimigoAtivo.atk2;
         const movIni = this.movesCatalog[idGolpe];
 
-        if (this.checarStatusAntesDeAgir(this.inimigoAtivo)) {
+        if (this.checarStatusAntesDeAgir(this.inimigoAtivo)) { // MESMA COISA CHECA ANTES DE ATACAR
             await this.executarGolpe(this.inimigoAtivo, this.usuarioAtivo, movIni, 'inimigo');
             if (this.batalhaAtiva) await this.checarDesmaios();
         }
     }
 
-    async fimDeTurno() {
+    async fimDeTurno() { // TURNO ACABOU
         if (!this.batalhaAtiva) return;
 
         for (const pkm of [...this.usuarioTime, ...this.inimigoTime]) {
-            if (!pkm.vivo) continue;
+            if (!pkm.vivo) continue; // VERIFICAR SE A GALERA AINDA TA VIVA
             if (pkm.status === 'Queimado') {
-                const dano = Math.ceil(pkm.hpMax * 0.05);
+                const dano = Math.ceil(pkm.hpMax * 0.1); // DANO DE QUEIMADURA
                 pkm.hp = Math.max(0, pkm.hp - dano);
                 this.emitir('hpChange', pkm);
                 await this.log(`${pkm.nome} sofreu ${dano} de queimadura!`, pkm === this.usuarioAtivo ? 'usuario' : 'inimigo');
             } else if (pkm.status === 'Envenenado') {
-                const dano = Math.ceil(pkm.hpMax * 0.05);
+                const dano = Math.ceil(pkm.hpMax * 0.1); // DANO DE VENENO
                 pkm.hp = Math.max(0, pkm.hp - dano);
                 this.emitir('hpChange', pkm);
                 await this.log(`${pkm.nome} sofreu ${dano} de veneno!`, pkm === this.usuarioAtivo ? 'usuario' : 'inimigo');
@@ -339,7 +332,7 @@ export class BattleEngine {
         if (this.batalhaAtiva) await this.checarDesmaios();
     }
 
-    async checarDesmaios() {
+    async checarDesmaios() { 
         if (this.inimigoVivo === 0) { this.finalizar('user', 'faint'); return; }
         if (this.usuarioVivo === 0) { this.finalizar('enemy', 'faint'); return; }
 
@@ -358,7 +351,7 @@ export class BattleEngine {
         }
     }
 
-    emitir(evento, dados) { this.callbacks.evento(evento, dados); }
+    emitir(evento, dados) { this.callbacks.evento(evento, dados); } 
 
     finalizar(vencedor, motivo) {
         if (!this.batalhaAtiva) return;

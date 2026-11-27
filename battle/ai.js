@@ -1,9 +1,5 @@
-// ============================================================
-// BATTLE/AI.JS
-// Inteligência Artificial do Inimigo
-// ============================================================
 
-export const BatalhaIA = {
+export const BatalhaIA = { // JS PRA FAZER O INIMIGO BOT
     escolherAcao(engine) {
         const eu = engine.inimigoAtivo;
         const oponente = engine.usuarioAtivo;

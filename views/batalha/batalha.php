@@ -286,7 +286,7 @@ $foto_ini = formatar_caminho_imagem($dados['enemyData']['foto']);
             }
             
             motor.usuarioTime.forEach((pkmReal, index) => {
-                const itensRevive = [11, 12]; // 11 = Frangão, 12 = Cenoura do Poder
+                const itensRevive = [12]; // 12 = Cenoura do Poder
                 const ehRevive = acao_destino === 'item' && itensRevive.includes(parseInt(id_item));
 
                 let disabled = "";
