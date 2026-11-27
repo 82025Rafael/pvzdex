@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    color: #203020;
+    background: url("../../imagensPVZ/Cenários/teladetitulo.png") center / cover fixed;
+}
+
+.type-page {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 18px;
+    padding: 18px 22px;
+    border: 5px solid hsl(20, 73%, 7%);
+    border-radius: 10px;
+    color: #fff;
+    background: hsl(18, 71%, 18%);
+}
+
+.page-header h1,
+.page-header p {
+    margin: 0;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+}
+
+.page-header p {
+    margin-top: 6px;
+}
+
+.back-link {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #fff;
+    background: #4b8b45;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+    background: #376d33;
+}
+
+.chart-panel {
+    padding: 18px;
+    border: 5px solid hsl(20, 73%, 7%);
+    border-radius: 10px;
+    background: hsl(18, 71%, 18%);
+    box-shadow: 0 2px 8px rgba(32, 48, 32, 0.2);
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+    color: #fff;
+}
+
+.legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-mark {
+    display: inline-grid;
+    width: 34px;
+    height: 28px;
+    place-items: center;
+    border-radius: 5px;
+    color: #203020;
+    font-weight: bold;
+}
+
+.table-scroll {
+    overflow: auto;
+    border-radius: 6px;
+}
+
+.type-chart {
+    width: 100%;
+    min-width: 860px;
+    border-spacing: 2px;
+    table-layout: fixed;
+    text-align: center;
+}
+
+.type-chart caption {
+    padding: 8px;
+    color: #fff;
+    text-align: left;
+}
+
+.type-chart th,
+.type-chart td {
+    height: 48px;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.type-chart th {
+    color: var(--type-text, #fff);
+    background: var(--type-color, #4b8b45);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.type-chart .axis-label {
+    width: 130px;
+    color: #203020;
+    background: #e5eddc;
+    text-shadow: none;
+}
+
+.matchup {
+    font-weight: bold;
+}
+
+.strong {
+    background: #b7e4c7;
+}
+
+.weak {
+    background: #f3b7b7;
+}
+
+.neutral {
+    background: #e5eddc;
+}
+
+.empty-state {
+    color: #fff;
+    text-align: left;
+}
+
+[data-tipo="Protetor"] {
+    --type-color: #6c553b;
+}
+
+[data-tipo="Explosivo"] {
+    --type-color: #f32e2e;
+}
+
+[data-tipo="Crescida"] {
+    --type-color: #6caf48;
+}
+
+[data-tipo="Esperto"] {
+    --type-color: #cccccc;
+    --type-text: #203020;
+    text-shadow: none;
+}
+
+[data-tipo="Solar"] {
+    --type-color: #ffd64e;
+    --type-text: #203020;
+    text-shadow: none;
+}
+
+[data-tipo="Feroz"] {
+    --type-color: #49baf7;
+}
+
+[data-tipo="Miolástico"] {
+    --type-color: #ff5bd9;
+}
+
+[data-tipo="Doidão"] {
+    --type-color: #9a42cd;
+}
+
+[data-tipo="Vigoroso"] {
+    --type-color: #ff8018;
+}
+
+[data-tipo="Furtivo"] {
+    --type-color: #1e1e1e;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 12px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 1.45rem;
+    }
+
+    .chart-panel {
+        padding: 10px;
+    }
+}

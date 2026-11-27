@@ -113,6 +113,7 @@
                 <?php endif; ?>
                 <a  style = "width:100%;" href="../log.php"><button type="button">Log</button></a>
                 <a style = "width:100%;" href="../louja/lojainicial.php"><button type="button">Loja</button></a>
+                <a style="width:100%;" href="../tipo/tipo.php"><button type="button">Forças e Fraquezas</button></a>
                 <form class = "batalha" id="batalha-form" action="../../controllers/batalha_controller.php" method="post">
                     <div id="pokemon-ids"></div>
                     <button style = "width:100%;"  type="submit">Batalhar</button>
