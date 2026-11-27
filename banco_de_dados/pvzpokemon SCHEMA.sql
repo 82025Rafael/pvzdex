@@ -224,11 +224,11 @@ insert into cura(id_item, id_cond) values (10,2);
 insert into cura(id_item, id_cond) values (10,3);
 insert into cura(id_item, id_cond) values (10,4);
 insert into cura(id_item, id_cond) values (10,5);
-insert into cura(id_item, quant_cura) values (11,70,1);
-insert into cura(id_item, quant_cura) values (11,70,2);
-insert into cura(id_item, quant_cura) values (11,70,3);
-insert into cura(id_item, quant_cura) values (11,70,4);
-insert into cura(id_item, quant_cura) values (11,70,5);
+insert into cura(id_item, quant_cura,id_cond) values (11,70,1);
+insert into cura(id_item, quant_cura,id_cond) values (11,70,2);
+insert into cura(id_item, quant_cura,id_cond) values (11,70,3);
+insert into cura(id_item, quant_cura,id_cond) values (11,70,4);
+insert into cura(id_item, quant_cura,id_cond) values (11,70,5);
 -- cenoura (id 12) revive com 50% de vida. 
 
 -- ITENS EVOLUÇÃO
@@ -360,7 +360,7 @@ update especie set id_evo = 23 where id_esp = 8; -- Nabossauro -> Babosassauro
 
 update especie set id_evo = 22 where id_esp = 21; -- Girassol -> Flor Eletrica
 
-update especie set id_evo = 18 where id_esp = 11; -- Disarervilha -> Gelervilha
+update especie set id_evo = 18 where id_esp = 11; -- Disparervilha -> Gelervilha
 update especie set id_evo = 12 where id_esp = 18; -- Gelervilha -> Ervilhadora
 
 update especie set id_evo = 19 where id_esp = 17; -- Boca-de-Dragão -> Pitaya
@@ -378,19 +378,19 @@ update especie set id_evo = 48 where id_esp = 47; --  Galinha -> Galo
 
 
 insert into evolucao(id_item, id_esp) values (13, 11) -- Pedra de Gelo pra Ervilha
-insert into evolucao(id_item, id_esp) values (14, 1) -- Capacete pra Gelervilha
-insert into evolucao(id_item, id_esp) values (15, 1) -- Saxofone pra Uvas
-insert into evolucao(id_item, id_esp) values (16, 1) -- Buraco Negro pra Boca-de-Dragão
-insert into evolucao(id_item, id_esp) values (17, 1) -- Arco-Íris pra Girassol
-insert into evolucao(id_item, id_esp) values (18, 1) -- Babosa pro Nabossauro
+insert into evolucao(id_item, id_esp) values (14, 18) -- Capacete pra Gelervilha
+insert into evolucao(id_item, id_esp) values (15, 9) -- Saxofone pra Uvas
+insert into evolucao(id_item, id_esp) values (16, 17) -- Buraco Negro pra Boca-de-Dragão
+insert into evolucao(id_item, id_esp) values (17, 21) -- Arco-Íris pra Girassol
+insert into evolucao(id_item, id_esp) values (18, 8) -- Babosa pro Nabossauro
 
-insert into evolucao(id_item, id_esp) values (19, 1) -- Cutelo pro Frango
-insert into evolucao(id_item, id_esp) values (20, 1) -- Pedra de Fogo (evolui frango pra galo)
-insert into evolucao(id_item, id_esp) values (21, 1) -- Super Fedor pro Zumbolha
-insert into evolucao(id_item, id_esp) values (22, 1) -- Discobola pro Disco
-insert into evolucao(id_item, id_esp) values (23, 1) -- Hamburguer pro Paparazzumbi
-insert into evolucao(id_item, id_esp) values (24, 1) -- Bandeira pro Sumô
-insert into evolucao(id_item, id_esp) values (25, 1) -- Teleporte pra Cabra
+insert into evolucao(id_item, id_esp) values (19, 47) -- Cutelo pro Frango
+insert into evolucao(id_item, id_esp) values (20, 47) -- Pedra de Fogo (evolui frango pra galo)
+insert into evolucao(id_item, id_esp) values (21, 32) -- Super Fedor pro Zumbolha
+insert into evolucao(id_item, id_esp) values (22, 38) -- Discobola pro Disco
+insert into evolucao(id_item, id_esp) values (23, 35) -- Hamburguer pro Paparazzumbi
+insert into evolucao(id_item, id_esp) values (24, 41) -- Bandeira pro Sumô
+insert into evolucao(id_item, id_esp) values (25, 26) -- Teleporte pra Cabra
 
 
 -- CRIANDO OS INIMIGOS
