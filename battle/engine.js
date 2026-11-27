@@ -2,7 +2,7 @@
 // BATTLE/ENGINE.JS
 // Motor Principal de Combate
 // ============================================================
-import { SPECIAL_MOVES, SPECIAL_SPECIES } from './specials.js';
+import { SPECIAL_MOVES } from './specials.js';
 import { BatalhaIA } from './ai.js';
 
 export class Lutador {
@@ -151,38 +151,46 @@ export class BattleEngine {
     }
 
     async resolverAtaques(acaoUser, acaoInimigo) {
-        const idGolpeUser = acaoUser.slot === 1 ? this.usuarioAtivo.atk1 : this.usuarioAtivo.atk2;
-        const idGolpeIni = acaoInimigo.slot === 1 ? this.inimigoAtivo.atk1 : this.inimigoAtivo.atk2;
-        const movUser = this.movesCatalog[idGolpeUser];
-        const movIni = this.movesCatalog[idGolpeIni];
+    const idGolpeUser = acaoUser.slot === 1 ? this.usuarioAtivo.atk1 : this.usuarioAtivo.atk2;
+    const idGolpeIni  = acaoInimigo.slot === 1 ? this.inimigoAtivo.atk1 : this.inimigoAtivo.atk2;
+    const movUser = this.movesCatalog[idGolpeUser];
+    const movIni  = this.movesCatalog[idGolpeIni];
 
-        const podeUser = this.checarStatusAntesDeAgir(this.usuarioAtivo);
-        const podeIni = this.checarStatusAntesDeAgir(this.inimigoAtivo);
+    const podeUser = this.checarStatusAntesDeAgir(this.usuarioAtivo);
+    const podeIni  = this.checarStatusAntesDeAgir(this.inimigoAtivo);
 
-        if (!podeUser) await this.log(`${this.usuarioAtivo.nome} não pode se mover!`, 'usuario');
-        if (!podeIni) await this.log(`${this.inimigoAtivo.nome} não pode se mover!`, 'inimigo');
+    if (!podeUser) await this.log(`${this.usuarioAtivo.nome} não pode se mover!`, 'usuario');
+    if (!podeIni)  await this.log(`${this.inimigoAtivo.nome} não pode se mover!`, 'inimigo');
 
-        let primeiro = null;
-        if (podeUser && podeIni) {
-            if (movUser.priori !== movIni.priori) primeiro = movUser.priori < movIni.priori ? 'user' : 'ini';
-            else if (this.usuarioAtivo.velocEfetiva !== this.inimigoAtivo.velocEfetiva)
-                primeiro = this.usuarioAtivo.velocEfetiva > this.inimigoAtivo.velocEfetiva ? 'user' : 'ini';
-            else primeiro = Math.random() < 0.5 ? 'user' : 'ini';
-        } else if (podeUser) primeiro = 'user';
-        else if (podeIni) primeiro = 'ini';
-
-        if (primeiro === 'user') {
-            await this.executarGolpe(this.usuarioAtivo, this.inimigoAtivo, movUser, 'usuario');
-            if (this.inimigoAtivo.vivo && this.batalhaAtiva)
-                await this.executarGolpe(this.inimigoAtivo, this.usuarioAtivo, movIni, 'inimigo');
-        } else if (primeiro === 'ini') {
-            await this.executarGolpe(this.inimigoAtivo, this.usuarioAtivo, movIni, 'inimigo');
-            if (this.usuarioAtivo.vivo && this.batalhaAtiva)
-                await this.executarGolpe(this.usuarioAtivo, this.inimigoAtivo, movUser, 'usuario');
+    let primeiro = null;
+    if (podeUser && podeIni) {
+        if (movUser.priori !== movIni.priori) {
+            primeiro = movUser.priori < movIni.priori ? 'user' : 'ini';
+        } else if (this.usuarioAtivo.velocEfetiva !== this.inimigoAtivo.velocEfetiva) {
+            // ✅ CORREÇÃO: MENOR veloc age primeiro
+            primeiro = this.usuarioAtivo.velocEfetiva < this.inimigoAtivo.velocEfetiva ? 'user' : 'ini';
+        } else {
+            primeiro = Math.random() < 0.5 ? 'user' : 'ini';
         }
-
-        if (this.batalhaAtiva) await this.checarDesmaios();
+    } else if (podeUser) {
+        primeiro = 'user';
+    } else if (podeIni) {
+        primeiro = 'ini';
     }
+
+    // ✅ CORREÇÃO: o segundo atacante só age se TAMBÉM pode agir
+    if (primeiro === 'user') {
+        await this.executarGolpe(this.usuarioAtivo, this.inimigoAtivo, movUser, 'usuario');
+        if (podeIni && this.inimigoAtivo.vivo && this.batalhaAtiva)
+            await this.executarGolpe(this.inimigoAtivo, this.usuarioAtivo, movIni, 'inimigo');
+    } else if (primeiro === 'ini') {
+        await this.executarGolpe(this.inimigoAtivo, this.usuarioAtivo, movIni, 'inimigo');
+        if (podeUser && this.usuarioAtivo.vivo && this.batalhaAtiva)
+            await this.executarGolpe(this.usuarioAtivo, this.inimigoAtivo, movUser, 'usuario');
+    }
+
+    if (this.batalhaAtiva) await this.checarDesmaios();
+}
 
     checarStatusAntesDeAgir(pkm) {
         if (pkm.status === 'Congelado') return false;
@@ -251,9 +259,7 @@ export class BattleEngine {
 
             if (!defensor.vivo) {
                 await this.log(`${defensor.nome} desmaiou!`, lado === 'usuario' ? 'inimigo' : 'usuario');
-                if (SPECIAL_SPECIES[defensor.id_esp]?.aoMorrer) {
-                    await SPECIAL_SPECIES[defensor.id_esp].aoMorrer(this, defensor, atacante);
-                }
+                
             }
         }
         atacante.ultimoAtaque = golpe.id_atk;

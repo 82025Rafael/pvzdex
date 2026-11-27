@@ -7,7 +7,7 @@ nome_usr varchar(100) not null unique,
 id_usr int auto_increment primary key,
 senha varchar(20) not null,
 cor_favorita char(7) default '#00bfff',
-dinheiro int default 500,
+dinheiro int default 1000,
 foto varchar(200),
 fase int default 1
 
@@ -296,7 +296,7 @@ insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto)
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Batatamina', 2,1, 50 ,1,1,1, '../ImagensPVZ/monstrinhos_campo/Protetor/HD_Potato_Mine.png'); -- 5
 
 
-insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 4, 13, 0,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
+insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Lança-Banana', 4, 13, 6,30,2,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Banana_Launcher_PvZH.png'); -- 6
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Coronel Milho', 3, 9, 12,60,8,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/HD_Kernel_Corn.png'); -- 7
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo,foto) values ('Nabossauro Bebê', 11, 20, 3,20,3,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/Velociradish.png'); -- 8
 insert into especie(nome_esp, atk1, atk2, forca , vida_max, veloc, id_tipo, foto) values ('Uvas Azedas', 3, 6, 4,20,4,2, '../ImagensPVZ/monstrinhos_campo/Explosivo/uvas.png'); -- 9

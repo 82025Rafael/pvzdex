@@ -1,6 +1,6 @@
 <?php
 
-class ItemEvo extends item{
+class ItemEvo extends Item{
 
 private int $id_esp;
 

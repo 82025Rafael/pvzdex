@@ -3,6 +3,38 @@
 require_once '../config.php'; // conectando com o banco
 session_start();
 
+/**
+ * Busca uma palavra aleatória na API do Dicionário Aberto.
+ * Tenta até 2 vezes antes de desistir. Timeout de 2s por tentativa.
+ * Retorna null se todas falharem.
+ */
+function gerarPalavraAleatoria(): ?string {
+    for ($i = 0; $i < 2; $i++) {
+        $contexto = stream_context_create([
+            'http' => [
+                'timeout' => 2,
+                'method'  => 'GET',
+            ],
+        ]);
+
+        $resposta = @file_get_contents('https://api.dicionario-aberto.net/random', false, $contexto);
+        if ($resposta === false) {
+            continue;
+        }
+
+        $dados = json_decode($resposta, true);
+        if (!is_array($dados) || empty($dados['word'])) {
+            continue;
+        }
+
+        $palavra = trim($dados['word']);
+        if ($palavra !== '') {
+            return ucfirst($palavra);
+        }
+    }
+    return null;
+}
+
     $nome_usr = htmlspecialchars($_POST['nome_usr']);   
     $senha = htmlspecialchars($_POST['senha']);
     $cor_favorita = htmlspecialchars($_POST['cor']);
@@ -80,44 +112,31 @@ try{
 // CRIAÇÃO DOS POKEMONS INICIAIS -------------------
 
 $id_usr = $usuario->getID(); // PEGANDO O ID RECEM INSERIDO
-$pokemon = new Pokemon();
-$especie = new Especie();
 
-//Insere Disparervilha
+// Sorteia 3 espécies diferentes (IDs de 1 a 50)
+$pool = range(1, 50);
+shuffle($pool);
+$idsEspecies = array_slice($pool, 0, 3);
 
-$pokemon->setUsr($id_usr);
+foreach ($idsEspecies as $idEsp) {
+    $especie = new Especie();
+    $especie->setId($idEsp);
+    $especie->load();
 
-$especie->setId(11);
-$especie->load();
+    // Gera nome aleatório via API; se falhar, usa o nome da espécie
+    $nomePokemon = gerarPalavraAleatoria();
+    if ($nomePokemon === null) {
+        $nomePokemon = $especie->getNome(); // fallback seguro
+    }
 
-$pokemon->setEsp($especie->getId());
-$pokemon->setNome($especie->getNome());
-$pokemon->setVida($especie->getVida());
+    $pokemon = new Pokemon();
+    $pokemon->setUsr($id_usr);
+    $pokemon->setEsp($especie->getId());
+    $pokemon->setNome($nomePokemon);
+    $pokemon->setVida($especie->getVida());
+    $pokemon->insert();
+}
 
-$pokemon->insert();
-
-//Insere Paparazzumbi
-
-
-$especie->setId(35);
-$especie->load();
-
-$pokemon->setEsp($especie->getId());
-$pokemon->setNome($especie->getNome());
-$pokemon->setVida($especie->getVida());
-
-$pokemon->insert();
-
-//Insere Girassol
-
-$especie->setId(21);
-$especie->load();
-
-$pokemon->setEsp($especie->getId());
-$pokemon->setNome($especie->getNome());
-$pokemon->setVida($especie->getVida());
-
-$pokemon->insert();
 // Inserindo entrada no log
 $mensagem = "Usuário cadastrado: {$usuario->getNome()} ";
 $arquivoLog = "../logs/registro.log";
@@ -131,9 +150,4 @@ header('Location: ../views/index.php'); // volta pro index
 } catch(PDOException $e) {
     echo "Erro ao cadastrar usuário: " . $e->getMessage();
 }
-
-
-
-
-
-
+?>

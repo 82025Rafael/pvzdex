@@ -79,16 +79,3 @@ export const SPECIAL_MOVES = {
     }
 };
 
-export const SPECIAL_SPECIES = {
-    // 5: Batatamina explode ao morrer (40 dano em quem matou)
-    5: {
-        aoMorrer: async (engine, morto, assassino) => {
-            await engine.log(`A Batatamina explodiu ao ser derrotada!`);
-            if (assassino && assassino.vivo) {
-                assassino.hp = Math.max(0, assassino.hp - 40);
-                engine.emitir('hpChange', assassino);
-                await engine.log(`${assassino.nome} recebeu 40 de dano da explosão!`);
-            }
-        }
-    }
-};

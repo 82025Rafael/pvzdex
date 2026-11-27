@@ -257,7 +257,7 @@ if ($action === 'finalizar') {
             }
 
             $divisor = max(1, $userActiveHp / 2); 
-            $recompensa = ceil($preco / $divisor) + $aliveUser;
+            $recompensa = (ceil($preco / $divisor) + $aliveUser) * 10; // arredonda pra cima a divisão
             // Atualiza dinheiro
             $usr->setDinheiro($usr->getDinheiro() + $recompensa);
 

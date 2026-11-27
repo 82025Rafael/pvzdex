@@ -11,11 +11,11 @@ public function getCura()
 public function getCond()
 {return $this->id_cond;}
 
-public function setCura(quant_cura)
+public function setCura($quant_cura)
 {$this->quant_cura = $quant_cura;}
 
 
-public function setCond(id_cond)
+public function setCond($id_cond)
 {$this->id_cond = $id_cond;}
 
 

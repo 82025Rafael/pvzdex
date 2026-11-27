@@ -10,7 +10,7 @@ private string $cor_favorita = '#00bfff';
 
 private int $id_usr;
 
-private int $dinheiro = 500;
+private int $dinheiro = 1000;
 private string $foto;
 
 private int $fase;
