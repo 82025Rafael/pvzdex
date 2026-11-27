@@ -39,7 +39,7 @@ if ($action === 'iniciar') {
     $usr = new Usuario();
     $usr->setId((int)$_SESSION['id_usr']);
     $usr->load();
-    $fase_atual = $usr->getFase();
+    $fase_atual = $usr->faseParaBatalha();
 
     // TIME DO USUARIO
     $userTeam = [];
@@ -168,13 +168,13 @@ if ($action === 'iniciar') {
             'txt_mata' => $ini->getMata(),
             'txt_morre' => $ini->getMorre(),
             'foto' => $ini->getFoto(),
-            'cor' => $ini->getCor() // <-- ADICIONE ISSO
+            'cor' => $ini->getCor()
         ],
         'userData' => [
             'nome' => $usr->getNome(),
             'foto' => $usr->getFoto(),
             'dinheiro' => $usr->getDinheiro(),
-            'cor' => $usr->getCor() // <-- ADICIONE ISSO
+            'cor' => $usr->getCor()
         ],
         'cenario' => $cenarios[$fase_atual] ?? $cenarios[1],
         'musica' => $musicas[$fase_atual] ?? $musicas[1]
@@ -261,13 +261,8 @@ if ($action === 'finalizar') {
             // Atualiza dinheiro
             $usr->setDinheiro($usr->getDinheiro() + $recompensa);
 
-
-            //  ID do maior inimigo cadastrado no banco
-            $stmtFase = $pdo->query("SELECT MAX(id_inim) FROM inimigo");
-            $max_fase = (int)$stmtFase->fetchColumn();
-
             // Só avança a fase se o jogador ainda não estiver na ultima
-            if ($usr->getFase() < $max_fase) {
+            if ($usr->getFase() < 3) {
                 $usr->setFase($usr->getFase() + 1);
             }
             
@@ -286,19 +281,23 @@ if ($action === 'finalizar') {
             $stmt->execute([$usr->getID()]);
         }
 
-        $vent = new inventario();
-        $vent->setUsr($_SESSION['id_usr']);
-
-            // Atualizar inventario do usuario
+        // Atualizar inventario do usuario
         foreach ($itemsUsed as $id_item => $quant) {
-            if ($quant > 0) {
-               $vent->setItem((int) $id_item);
-               $vent->setQuant((int) $quant);
-               $vent->update();
-                
-                // Remove a linha do inventário se a quantidade zerar
-                if($vent->getQuant() == 0)
-                    {$vent->delete();}
+            $quant = (int) $quant;
+            if ($quant <= 0) continue;
+
+            $vent = new inventario();
+            $vent->setItem((int) $id_item);
+            $vent->setUsr($usr->getID());
+            $vent->load();
+
+            $restante = $vent->getQuant() - $quant;
+
+            if ($restante <= 0) {
+                $vent->delete();
+            } else {
+                $vent->setQuant($restante);
+                $vent->update();
             }
         }
 

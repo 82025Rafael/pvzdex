@@ -86,3 +86,9 @@
 [2026-11-26 21:42:21] = Falha ao logar: testeB
 [2026-11-26 21:42:31] = Usuário cadastrado: testeB 
 [2026-11-26 21:42:36] = Usuário logado com sucesso: testeB
+[2026-11-26 21:49:45] = Usuário deslogado: testeB
+[2026-11-26 21:50:02] = Usuário cadastrado: testeC 
+[2026-11-26 21:50:09] = Usuário logado com sucesso: testeC
+[2026-11-26 22:25:00] = Usuário deslogado: testeC
+[2026-11-26 22:25:22] = Usuário cadastrado: Oiii 
+[2026-11-26 22:25:28] = Usuário logado com sucesso: Oiii

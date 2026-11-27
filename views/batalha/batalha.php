@@ -286,8 +286,26 @@ $foto_ini = formatar_caminho_imagem($dados['enemyData']['foto']);
             }
             
             motor.usuarioTime.forEach((pkmReal, index) => {
-                let disabled = (!pkmReal.vivo) ? "disabled" : "";
-                if (acao_destino === 'trocar' && index === motor.usuarioAtivoIndex) disabled = "disabled";
+                const itensRevive = [11, 12]; // 11 = Frangão, 12 = Cenoura do Poder
+                const ehRevive = acao_destino === 'item' && itensRevive.includes(parseInt(id_item));
+
+                let disabled = "";
+
+                if (acao_destino === 'trocar_forcado') {
+                    // Troca forçada: só pokémons vivos
+                    if (!pkmReal.vivo) disabled = "disabled";
+                } else if (acao_destino === 'trocar') {
+                    // Troca normal: vivos, exceto o que já está em campo
+                    if (!pkmReal.vivo || index === motor.usuarioAtivoIndex) disabled = "disabled";
+                } else if (acao_destino === 'item') {
+                    if (ehRevive) {
+                        // Item revive: só pokémons desmaiados
+                        if (pkmReal.vivo) disabled = "disabled";
+                    } else {
+                        // Item comum (cura/status): só pokémons vivos
+                        if (!pkmReal.vivo) disabled = "disabled";
+                    }
+                }
                 
                 let classe = (disabled && acao_destino === 'trocar') ? "botao-pokemon desativado" : "botao-pokemon";
                 let status_vida = (!pkmReal.vivo) ? " (Desmaiado)" : (index === motor.usuarioAtivoIndex ? " (Em campo)" : "");

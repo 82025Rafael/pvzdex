@@ -221,6 +221,26 @@ public function pegarMeusLogs(int $limite = 300) {  // METODO PARA A PAGINA DE L
     $stmt->bindValue(':lim', $limite, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+} // ==============================================================================================
+
+public function venceuJogo(): bool { // VERIFICA SE O USUARIO JA DERROTOU O BIGOLIN
+    $pdo = connect();
+    $sql = "SELECT COUNT(*) FROM log l
+            INNER JOIN usuario u ON l.nome_inim = u.nome_usr
+            WHERE l.nome_usr = :nome AND u.id_usr = 3 AND l.ganhou_perdeu = 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':nome' => $this->nome_usr]);
+    return $stmt->fetchColumn() > 0;
+}// ================================================================================================
+
+
+
+public function faseParaBatalha(): int { // Sorteio de inimigos do pós jogo
+    if ($this->fase >= 3 && $this->venceuJogo()) {
+        return random_int(1, 3);
+    }
+    return $this->fase;
 }
 
-} // ← ESSA chave é a que estava faltando! Fecha a classe Usuario
+
+} 
