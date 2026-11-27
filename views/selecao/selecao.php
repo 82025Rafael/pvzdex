@@ -71,8 +71,12 @@
                     <div id="pokemons" class="card-list">
                         <?php if (!empty($pokemons)): ?>
                             <?php foreach ($pokemons as $pokemon): ?>
-                                <label class="pokemon-card" data-pokemon-id="<?php echo (int) ($pokemon['id_pkm'] ?? 0); ?>" tipo="<?php echo htmlspecialchars($pokemon['nome_tipo'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
-                                    <input type="checkbox" class="pokemon-checkbox" aria-label="Selecionar Pokémon">
+                                <?php $pokemonMorto = (int) ($pokemon['vida_restante_pkm'] ?? 0) <= 0; ?>
+                                <label class="pokemon-card<?= $pokemonMorto ? ' pokemon-morto' : ''; ?>" data-pokemon-id="<?php echo (int) ($pokemon['id_pkm'] ?? 0); ?>" data-morto="<?= $pokemonMorto ? 'true' : 'false'; ?>" tipo="<?php echo htmlspecialchars($pokemon['nome_tipo'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                                    <input type="checkbox" class="pokemon-checkbox" aria-label="Selecionar Pokémon" <?= $pokemonMorto ? 'disabled' : ''; ?>>
+                                    <?php if ($pokemonMorto): ?>
+                                        <span class="pokemon-status">Morto</span>
+                                    <?php endif; ?>
                                     <img class="pokemon-image" src="<?php echo '../../foto/' . htmlspecialchars($pokemon['foto'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($pokemon['nome_pkm'] ?? 'Pokémon', ENT_QUOTES, 'UTF-8'); ?>">
                                     <span class="pokemon-info">
                                         <strong><?php echo htmlspecialchars($pokemon['nome_pkm'] ?? '', ENT_QUOTES, 'UTF-8'); ?></strong>
@@ -124,7 +128,8 @@
         function atualizarDisponibilidade() {
             const equipeCheia = equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length >= limiteEquipe;
             document.querySelectorAll('.pokemon-checkbox').forEach((checkbox) => {
-                checkbox.disabled = equipeCheia && !checkbox.checked;
+                const pokemonMorto = checkbox.closest('.pokemon-card')?.dataset.morto === 'true';
+                checkbox.disabled = pokemonMorto || (equipeCheia && !checkbox.checked);
             });
         }
 
@@ -135,6 +140,12 @@
             const checkbox = event.target;
             const card = checkbox.closest('.pokemon-card');
             if (!card) return;
+
+            if (card.dataset.morto === 'true' && checkbox.checked) {
+                checkbox.checked = false;
+                atualizarDisponibilidade();
+                return;
+            }
 
             if (checkbox.checked && equipeSelecionada.querySelectorAll('.pokemon-checkbox:checked').length > limiteEquipe) {
                 checkbox.checked = false;

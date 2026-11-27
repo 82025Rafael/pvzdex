@@ -199,6 +199,23 @@ body {
     border-color: #3b8f45;
 }
 
+.pokemon-card.pokemon-morto {
+    filter: grayscale(0.85);
+}
+
+.pokemon-status {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    z-index: 1;
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: rgba(120, 0, 0, 0.9);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .pokemon-checkbox {
     position: absolute;
     width: 1px;
