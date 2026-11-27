@@ -63,123 +63,33 @@ $vidaAnterior = $pkm->getVida();
 $condicaoAnterior = $pkm->getCond();
 $especieAnterior = $pkm->getEsp();
 
-switch($item->getId()){
+if ($idItem === 12) {
+    if ($pkm->getVida() === 0) {
+        $pkm->setVida(max(1, (int) ($esp->getVida() / 2)));
+    }
+} else {
+    $itemCura = new ItemCura();
+    $itemCura->setId($idItem);
 
-        case 1:
-        if($pkm->getVida() > 0)
-            {$pkm->setVida($pkm->getVida() + 6);
-            if($pkm->getVida() > $esp->getVida()) {$pkm->setVida($esp->getVida()); }
-            }
-        break;
-        
-        case 2:
-        if($pkm->getVida() > 0){        
-            $pkm->setVida($pkm->getVida() + 12);
-            if($pkm->getVida() > $esp->getVida()) {$pkm->setVida($esp->getVida());}
+    if ($itemCura->loadCura()) {
+        $quantCura = $itemCura->getCura();
+
+        if ($quantCura !== null && $pkm->getVida() > 0) {
+            $vidaRestaurada = min($pkm->getVida() + $quantCura, $esp->getVida());
+            $pkm->setVida($vidaRestaurada);
         }
-        break;
-        case 3:  
-        if($pkm->getVida() > 0){
-            $pkm->setVida($pkm->getVida() + 45);
-            if($pkm->getVida() > $esp->getVida()) {$pkm->setVida($esp->getVida()); }
-        }
-        break;
-        case 4:       
-        if($pkm->getVida() > 0)
-        {
-            $pkm->setVida($esp->getVida());$vent->setQuant(0);
-        }
-        break;
-        case 5:
-            if($pkm->getCond() == 1) {$pkm->setCond(null); }
-        break;
-        case 6:
-            if($pkm->getCond() == 5) {$pkm->setCond(null); }
-        break;
-        case 7:
-            if($pkm->getCond() == 2) {$pkm->setCond(null); }
-        break;
-        case 8:
-            if($pkm->getCond() == 3) {$pkm->setCond(null); }
-        break;
-        case 9:
-            if($pkm->getCond() == 4) {$pkm->setCond(null); }
-        break;
-        case 10:
+
+        if (
+            $pkm->getCond() !== null
+            && in_array((int) $pkm->getCond(), $itemCura->getConds(), true)
+        ) {
             $pkm->setCond(null);
-        break;
-        case 11:
-
-        if($pkm->getVida() > 0)
-        {$pkm->setVida($esp->getVida());}
-        $pkm->setCond(null);
-    
-        break;
-        case 12:
-        if($pkm->getVida() == 0)
-        {
-            $pkm->setVida($esp->getVida()/2);
         }
-        break;
-        case 13:
-            if($pkm->getEsp() == 11)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 14:
-            if($pkm->getEsp() == 18)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 15:
-            if($pkm->getEsp() == 9)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        
-        case 16:
-            if($pkm->getEsp() == 17)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        
-        case 17:
-            if($pkm->getEsp() == 21)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        
-        case 18:
-            if($pkm->getEsp() == 8)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 19:
-            if($pkm->getEsp() == 47)
-                {$pkm->setEsp($esp->getEvo()-3);}
-        break;
-        case 20:
-            if($pkm->getEsp() == 47)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 21:
-            if($pkm->getEsp() == 32)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 22:
-            if($pkm->getEsp() == 38)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 23:
-            if($pkm->getEsp() == 35)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 24:
-            if($pkm->getEsp() == 41)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-        case 25:
-            if($pkm->getEsp() == 26)
-                {$pkm->setEsp($esp->getEvo());}
-        break;
-
-
-
-
+    } else {
+        $itemEvo = new ItemEvo();
+        $itemEvo->setId($idItem);
+        $itemEvo->evoluir($pkm, $esp);
+    }
 }
 
 if (
