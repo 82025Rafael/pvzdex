@@ -269,18 +269,23 @@ if ($action === 'finalizar') {
             // Salva o usuário (dinheiro atualizado e, se for o caso, nova fase)
             $usr->updateBD();
 
-        } else {
-            // JOGADOR PERDEU/FUGIU (ruim)
-            //CURA TODO MUNDO E TIRA CONDIÇÕES, MAS NAO PASSA
-            $stmt = $pdo->prepare("
-                UPDATE pokemon 
-                SET vida_atual = (SELECT vida_max FROM especie WHERE id_esp = pokemon.id_esp), 
-                    id_cond = NULL 
-                WHERE id_usr = ?
-            ");
-            $stmt->execute([$usr->getID()]);
-        }
+     
+            } else {
+        // JOGADOR PERDEU/FUGIU (ruim)
+        // Cura APENAS os pokémons que participaram da batalha
+        $idsTime = array_map(fn($p) => (int)$p['id_pkm'], $_SESSION['battle_data']['userTeam']);
 
+            if (!empty($idsTime)) {
+                $placeholders = implode(',', array_fill(0, count($idsTime), '?'));
+                $stmt = $pdo->prepare("
+                    UPDATE pokemon 
+                    SET vida_atual = (SELECT vida_max FROM especie WHERE id_esp = pokemon.id_esp), 
+                        id_cond = NULL 
+                    WHERE id_pkm IN ($placeholders)
+                ");
+                $stmt->execute($idsTime);
+            }
+}
         // Atualizar inventario do usuario
         foreach ($itemsUsed as $id_item => $quant) {
             $quant = (int) $quant;
