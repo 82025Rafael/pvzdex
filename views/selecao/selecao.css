@@ -26,6 +26,7 @@ body {
     padding: 16px;
 }
 
+/* Espaçamento e alinhamento do título e das instruções da tela. */
 .page-header {
     margin-bottom: 14px;
     text-align: center;
@@ -45,6 +46,7 @@ body {
     min-height: 580px;
 }
 
+/* Aparência compartilhada pelos painéis da equipe, inventário, Pokémon e menu. */
 .panel {
     min-width: 0;
     padding: 14px;
@@ -54,6 +56,7 @@ body {
     box-shadow: 0 2px 8px rgba(32, 48, 32, 0.12);
 }
 
+/* Estilo comum para os títulos de cada painel. */
 .panel h2 {
     margin: 0 0 12px;
     font-size: 1.15rem;
@@ -91,6 +94,7 @@ body {
     min-height: 0;
 }
 
+/* Organiza o inventário e a lista de Pokémon em dois painéis centrais. */
 .center-column {
     display: grid;
     grid-template-rows: minmax(190px, 0.75fr) minmax(300px, 1.25fr);
@@ -98,6 +102,7 @@ body {
     min-height: 0;
 }
 
+/* Evita que os painéis internos ultrapassem as linhas do layout central. */
 .inventory-panel,
 .pokemon-panel {
     min-height: 0;
@@ -130,6 +135,7 @@ body {
     flex-direction: column;
 }
 
+/* Grade rolável onde são renderizados os cards dos Pokémon disponíveis. */
 .card-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -154,7 +160,7 @@ body {
     cursor: pointer;
     user-select: none;
 }
-/* SOFIAAAA coloca as cores certinhas aqui :D */
+/* Cores de identificação dos tipos, reutilizadas nos cards da seleção. */
 .pokemon-card[tipo="Protetor"]{
     background-color: #6c553b;
 }
@@ -195,14 +201,17 @@ body {
     background-color: #1e1e1e;
 }
 
+/* Borda que confirma visualmente a inclusão do card na equipe. */
 .pokemon-card.selected {
     border-color: #3b8f45;
 }
 
+/* Dessatura cards de Pokémon mortos, que não podem ser selecionados. */
 .pokemon-card.pokemon-morto {
     filter: grayscale(0.85);
 }
 
+/* Selo visual que indica que o Pokémon não pode ser escolhido para a equipe. */
 .pokemon-status {
     position: absolute;
     top: 6px;
@@ -229,6 +238,7 @@ body {
     object-fit: contain;
 }
 
+/* Painel com os dados do Pokémon, revelado quando o card recebe hover ou foco. */
 .pokemon-info {
     position: absolute;
     right: 0;
@@ -236,14 +246,14 @@ body {
     left: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
     padding: 5px;
     color: white;
     background: rgba(0, 0, 0, 0.8);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s;
-    font-size: 13px;
+    font-size: 11px;
 
 }
 
@@ -253,6 +263,7 @@ body {
     visibility: visible;
 }
 
+/* Saldo do usuário apresentado acima dos atalhos de navegação. */
 .banco {
     font-size: 20px;
     font-weight: bold;
@@ -266,7 +277,7 @@ body {
     border-radius: 8px;
 }
 
-/* Botões de navegação empilhados na coluna direita. */
+/* Botões e links de navegação empilhados no painel direito. */
 .menu-panel {
     display: flex;
     flex-direction: column;
@@ -277,6 +288,7 @@ body {
 
 }
 
+/* Remove o sublinhado dos links e mantém o formulário alinhado ao menu. */
 .menu-panel a {
     text-decoration: none;
 }
@@ -374,14 +386,16 @@ body {
         order: 4;
     }
 }
+/* Indenta visualmente os nomes dos ataques exibidos nos cards. */
 .ataques{
     padding-left:40px
     
 }
+/* Mantém a foto do usuário circular sem distorcer a imagem original. */
 .fotoPerfil {
     display: block;
-    width: 230px;
-    height: 230px;
+    width: 170px;
+    height: 170px;
     object-fit: cover;
     border: 3px solid white;
     border-radius: 100%;
@@ -404,7 +418,7 @@ body {
     box-shadow: 0 0 14px #ffd64e;
 }
 
-/* Em "modo item", destaca todos os monstrinhos */
+/* Em modo de uso de item, destaca os Pokémon que podem receber o clique. */
 body.item-mode .pokemon-card {
     cursor: crosshair;
     outline: 2px dashed #ffd64e;
@@ -416,6 +430,7 @@ body.item-mode .pokemon-card:hover {
     outline-width: 3px;
 }
 
+/* Notificação temporária exibida após o controller processar o uso de item. */
 .msg-item {
     position: fixed;
     top: 16px;

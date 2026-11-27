@@ -45,6 +45,10 @@ public function evoluir(Pokemon $pokemon, Especie $especie): bool
         return false;
     }
 
+    if ($proximaEspecie <= 0 || $proximaEspecie === $pokemon->getEsp()) {
+        return false;
+    }
+
     $pokemon->setEsp($proximaEspecie);
     return true;
 }
