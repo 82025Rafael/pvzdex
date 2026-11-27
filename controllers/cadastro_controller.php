@@ -9,27 +9,27 @@ session_start();
  * Retorna null se todas falharem.
  */
 function gerarPalavraAleatoria(): ?string {
-    for ($i = 0; $i < 2; $i++) {
-        $contexto = stream_context_create([
+    for ($i = 0; $i < 2; $i++) { // Tentará executar 2 vezes
+        $contexto = stream_context_create([ // ACESSAR A INTERNET
             'http' => [
-                'timeout' => 2,
-                'method'  => 'GET',
+                'timeout' => 2, // SE DEMORAR 3 SEGUNDOS ABORTA
+                'method'  => 'GET', // SO DAR UMA PEGADINHA DE DADOS
             ],
         ]);
 
-        $resposta = @file_get_contents('https://api.dicionario-aberto.net/random', false, $contexto);
+        $resposta = @file_get_contents('https://api.dicionario-aberto.net/random', false, $contexto); // ACESSA O DICIONARIO
         if ($resposta === false) {
-            continue;
+            continue; // se der ruim só continua e roda o for dnv
         }
 
         $dados = json_decode($resposta, true);
-        if (!is_array($dados) || empty($dados['word'])) {
-            continue;
+        if (!is_array($dados) || empty($dados['word'])) { // Se não achou a palavra
+            continue; // faz a segunda tentativa
         }
 
-        $palavra = trim($dados['word']);
+        $palavra = trim($dados['word']);    
         if ($palavra !== '') {
-            return ucfirst($palavra);
+            return ucfirst($palavra); // retorna a palavra com primeira letra maiuscula
         }
     }
     return null;
