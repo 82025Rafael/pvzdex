@@ -175,7 +175,8 @@ return $usr['id_usr'];
 
 }public function pegarMeusPokemons() {  // METODO PEGAR OS POKEMONS DO USUARIO COM ID TAL
     $pdo = connect();
-    $sql = "SELECT pokemon.id_pkm, pokemon.id_esp, pokemon.nome_pkm, especie.nome_esp, especie.foto, tipo.nome_tipo,
+    $sql = "SELECT pokemon.id_pkm, pokemon.id_esp, pokemon.nome_pkm, pokemon.id_cond,
+                   condicao.nome_cond AS condicao_pkm, especie.nome_esp, especie.foto, tipo.nome_tipo,
                    pokemon.vida_atual AS vida_restante_pkm,
                    especie.vida_max AS vida_total_pkm,
                    a1.nome_atk AS atk1,
@@ -183,6 +184,7 @@ return $usr['id_usr'];
             FROM pokemon
             JOIN especie ON pokemon.id_esp = especie.id_esp
             JOIN tipo ON especie.id_tipo = tipo.id_tipo
+            LEFT JOIN condicao ON pokemon.id_cond = condicao.id_cond
             JOIN ataque a1 ON especie.atk1 = a1.id_atk
             LEFT JOIN ataque a2 ON especie.atk2 = a2.id_atk 
             WHERE pokemon.id_usr = :id";
